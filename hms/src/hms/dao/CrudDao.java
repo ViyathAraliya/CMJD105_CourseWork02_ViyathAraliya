@@ -2,15 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package hms.service.custom;
-
-import hms.dto.UserDto;
-import hms.service.SuperService;
+package hms.dao;
 
 /**
  *
  * @author viyat
  */
-public interface UserService extends SuperService{
-    public String saveUser(UserDto userDto)throws Exception;
+public interface CrudDao<Entity,ID> extends SuperDao {
+    String save(Entity entity)throws Exception;
+    
 }

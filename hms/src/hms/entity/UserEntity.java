@@ -4,10 +4,56 @@
  */
 package hms.entity;
 
-/**
- *
- * @author viyat
- */
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+//@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+
+@Entity
+@Table(name="User")
 public class UserEntity {
+
+    public UserEntity(String userName, String email, String phoneNumber, String password) {
+        this.userName = userName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+    }
+    
+   
+    @Id
+    @Column(name="UserID")
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Integer id;
+    
+    @Column(name="User_Name")
+    private String userName;
+    
+    @Column(name="Email")
+    private String email;
+    
+    @Column(name="Phone_Number")
+    private String phoneNumber;
+    
+    @Column(name="password")
+    private String password;
+    
     
 }

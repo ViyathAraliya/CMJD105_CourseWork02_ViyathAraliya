@@ -4,7 +4,8 @@
  */
 package hms;
 
-import hms.util.SessionFactoryConfiguration;
+import hms.view.AddNewUser;
+
 
 /**
  *
@@ -16,8 +17,7 @@ public class Hms {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-      
+        new AddNewUser().setVisible(true);
     }
     
 }

@@ -1,26 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package hms.view;
 
+import hms.controller.UserController;
 import hms.dto.UserDto;
-
-
 
 /**
  *
  * @author viyat
  */
 public class AddNewUser extends javax.swing.JFrame {
-   
+
     /**
      * Creates new form AddNewUser
      */
-   
+    private final UserController USER_CONTROLLER;
+
     public AddNewUser() {
+        USER_CONTROLLER = new UserController();
         initComponents();
-        
+
     }
 
     /**
@@ -121,12 +119,12 @@ public class AddNewUser extends javax.swing.JFrame {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
+        saveUser();
     }//GEN-LAST:event_saveBtnActionPerformed
 
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField confirmPasswordField;
@@ -142,8 +140,14 @@ public class AddNewUser extends javax.swing.JFrame {
     private javax.swing.JTextField usernNameField;
     // End of variables declaration//GEN-END:variables
 
-    private void saveUser(){
-        UserDto userDto=new UserDto(usernNameField.getText(),emailField.getText(),phoneNumberField.getText()
-                ,passwordField.getPassword().toString(),confirmPasswordField.getPassword().toString());
+    private void saveUser() {
+        UserDto userDto = new UserDto(usernNameField.getText(), emailField.getText(), phoneNumberField.getText(),
+                 passwordField.getPassword().toString(), confirmPasswordField.getPassword().toString());
+        try {
+            System.out.println(USER_CONTROLLER.saveUser(userDto));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }

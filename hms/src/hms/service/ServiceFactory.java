@@ -15,7 +15,6 @@ public class ServiceFactory {
     private static ServiceFactory serviceFactory;
 
     private ServiceFactory() {
-        //serviceFactory=new ServiceFactory();
     }
 
     public static ServiceFactory getInstance() {
