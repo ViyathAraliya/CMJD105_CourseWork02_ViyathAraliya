@@ -171,7 +171,7 @@ public class AddNewUser extends javax.swing.JFrame {
             return;
         }
         UserDto userDto = new UserDto(usernNameField.getText(), role, emailField.getText(), phoneNumberField.getText(),
-                passwordField.getPassword().toString(), confirmPasswordField.getPassword().toString());
+                passwordField.getPassword().toString());
         try {
             System.out.println(USER_CONTROLLER.saveUser(userDto));
         } catch (Exception e) {
@@ -182,6 +182,8 @@ public class AddNewUser extends javax.swing.JFrame {
     private void selectRole() {
 
         role = selectRoleCmbBx.getSelectedItem().toString();
-
     }
+    
+    private void getUser(){
+        UserDto userDto=USER_CONTROLLER.getUser(usernNameField.getText());}
 }

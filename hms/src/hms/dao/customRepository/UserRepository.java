@@ -1,10 +1,11 @@
 
 package hms.dao.customRepository;
 
+import hms.dao.CrudRepository;
 import hms.dao.SuperRepository;
 import hms.entity.UserEntity;
 
 
-public interface UserRepository extends SuperRepository<UserEntity, String>{
+public interface UserRepository extends CrudRepository<UserEntity, String>{
     
 }

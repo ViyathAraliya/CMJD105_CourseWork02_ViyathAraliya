@@ -10,5 +10,6 @@ package hms.dao;
  */
 public interface CrudDao<Entity,ID> extends SuperDao {
     String save(Entity entity)throws Exception;
+    Entity getByName(ID name)throws Exception;
     
 }

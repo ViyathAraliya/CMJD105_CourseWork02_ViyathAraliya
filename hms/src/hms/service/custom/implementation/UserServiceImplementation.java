@@ -1,4 +1,3 @@
-
 package hms.service.custom.implementation;
 
 import hms.dao.DaoFactory;
@@ -16,11 +15,17 @@ public class UserServiceImplementation implements UserService {
     UserDao userDao = (UserDao) DaoFactory.getInstance().getDao(DaoFactory.DaoType.USER);
 
     public String saveUser(UserDto userDto) throws Exception {
-       System.out.println("print "+userDto.getRole());
-        UserEntity userEntity = new UserEntity(userDto.getName(),userDto.getRole(),
+       
+        UserEntity userEntity = new UserEntity(userDto.getName(), userDto.getRole(),
                 userDto.getEmail(), userDto.getPhoneNumber(), userDto.getPassword());
-        System.out.println( "prints "+userEntity.getRole());
+        
         return userDao.save(userEntity);
+    }
+
+    public UserDto getUser(String name) throws Exception {
+        UserEntity userEntity = userDao.getByName(name);
+        return new UserDto(userEntity.getUserName(), userEntity.getRole(), userEntity.getEmail(), userEntity.getPhoneNumber(),
+                userEntity.getPassword());
     }
 
 }

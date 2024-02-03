@@ -13,8 +13,15 @@ import hms.service.custom.UserService;
  * @author viyat
  */
 public class UserController {
-    UserService userService=(UserService)ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.USER);
-    public String saveUser(UserDto userDto) throws Exception{
-    return userService.saveUser(userDto);}
-    
+
+    UserService userService = (UserService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.USER);
+
+    public String saveUser(UserDto userDto) throws Exception {
+        return userService.saveUser(userDto);
+    }
+
+    public UserDto getUser(String userName) throws Exception{
+        return userService.getUser(userName);
+    }
+
 }
