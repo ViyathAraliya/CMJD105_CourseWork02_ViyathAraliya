@@ -30,8 +30,9 @@ import lombok.ToString;
 @Table(name="User")
 public class UserEntity {
 
-    public UserEntity(String userName, String email, String phoneNumber, String password) {
+    public UserEntity(String userName, String role, String email, String phoneNumber, String password) {
         this.userName = userName;
+        this.role=role;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
@@ -45,6 +46,9 @@ public class UserEntity {
     
     @Column(name="User_Name")
     private String userName;
+    
+    @Column(name="Role")
+    private String role;
     
     @Column(name="Email")
     private String email;

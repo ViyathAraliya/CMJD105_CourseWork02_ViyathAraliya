@@ -16,8 +16,10 @@ public class UserServiceImplementation implements UserService {
     UserDao userDao = (UserDao) DaoFactory.getInstance().getDao(DaoFactory.DaoType.USER);
 
     public String saveUser(UserDto userDto) throws Exception {
-        UserEntity userEntity = new UserEntity(userDto.getName(),
+       System.out.println("print "+userDto.getRole());
+        UserEntity userEntity = new UserEntity(userDto.getName(),userDto.getRole(),
                 userDto.getEmail(), userDto.getPhoneNumber(), userDto.getPassword());
+        System.out.println( "prints "+userEntity.getRole());
         return userDao.save(userEntity);
     }
 
