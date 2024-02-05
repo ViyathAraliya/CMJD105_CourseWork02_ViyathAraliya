@@ -1,8 +1,7 @@
 
-package hms.dao.customRepository;
+package hms.repository.custom;
 
-import hms.dao.CrudRepository;
-import hms.dao.SuperRepository;
+import hms.repository.CrudRepository;
 import hms.entity.UserEntity;
 
 

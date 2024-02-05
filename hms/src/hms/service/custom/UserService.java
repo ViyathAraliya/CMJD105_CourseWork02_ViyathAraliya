@@ -14,4 +14,5 @@ import hms.service.SuperService;
 public interface UserService extends SuperService{
     public String saveUser(UserDto userDto)throws Exception;
     public UserDto getUser(String name)throws Exception;
+    public boolean doesUserNameExist(String userName) throws Exception;
 }

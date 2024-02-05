@@ -165,17 +165,24 @@ public class AddNewUser extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void saveUser() {
-        role = selectRoleCmbBx.getSelectedItem().toString();
-        if (role.equals("- please select a role")) {
-            JOptionPane.showMessageDialog(this, "please select a role");
-            return;
-        }
-        UserDto userDto = new UserDto(usernNameField.getText(), role, emailField.getText(), phoneNumberField.getText(),
-                passwordField.getPassword().toString());
         try {
+           if (doesUserNameExist()) {
+                JOptionPane.showMessageDialog(this, "username already exists !");
+                return;
+            }
+            UserDto userDto = new UserDto(usernNameField.getText(), role, emailField.getText(), phoneNumberField.getText(),
+                    passwordField.getPassword().toString());
+           
+
+            role = selectRoleCmbBx.getSelectedItem().toString();
+            if (role.equals("- please select a role")) {
+                JOptionPane.showMessageDialog(this, "please select a role");
+                return;
+            }
+          
             System.out.println(USER_CONTROLLER.saveUser(userDto));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
 
@@ -183,7 +190,10 @@ public class AddNewUser extends javax.swing.JFrame {
 
         role = selectRoleCmbBx.getSelectedItem().toString();
     }
-    
-    private void getUser(){
-        UserDto userDto=USER_CONTROLLER.getUser(usernNameField.getText());}
+
+    private boolean doesUserNameExist() throws Exception {
+        return USER_CONTROLLER.doesUserNameExist(usernNameField.getText());
+
+    }
+
 }

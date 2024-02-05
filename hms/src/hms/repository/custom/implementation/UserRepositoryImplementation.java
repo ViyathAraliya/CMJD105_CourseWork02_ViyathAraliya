@@ -1,12 +1,13 @@
-package hms.dao.customRepository.implementation;
+package hms.repository.custom.implementation;
 
-import hms.dao.SessionFactoryConfiguration;
-import hms.dao.customRepository.UserRepository;
+import hms.repository.SessionFactoryConfiguration;
+import hms.repository.custom.UserRepository;
 import hms.entity.UserEntity;
 import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
+
 
 /**
  *
@@ -21,7 +22,7 @@ public class UserRepositoryImplementation implements UserRepository {
         try {
             Integer id = (Integer) session.save(userEntity);
             transaction.commit();
-            
+
             return id.toString();
         } catch (Exception e) {
             transaction.rollback();
@@ -31,13 +32,22 @@ public class UserRepositoryImplementation implements UserRepository {
 
     public UserEntity getByName(String userName) {
         try {
-            String str="SELECT*FROM User WHERE userName="+userName;
-            Query query=session.createQuery(str);
-            List list=query.getResultList();
-            return new UserEntity((Integer)list.get(0),(String)list.get(1),(String)list.get(2),
-                    (String)list.get(3),(String)list.get(4),(String)list.get(5));
+            System.out.print(userName);
+            String hql = "FROM UserEntity WHERE userName='"+ userName+"'";
+            List list = session.createQuery(hql).getResultList();
+            UserEntity userEntity= (UserEntity) list.get(0);
+            return userEntity;
+
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return null;
         }
+    }
+    
+    public boolean doesNameExist(String name){
+    
+                String hql="select 1 from UserEntity where exists (select 1 from UserEntity  where userName='"
+                     +name+"')";
+        return session.createQuery(hql).uniqueResult() != null;
     }
 }

@@ -23,5 +23,9 @@ public class UserController {
     public UserDto getUser(String userName) throws Exception{
         return userService.getUser(userName);
     }
+    
+    public boolean doesUserNameExist(String userName)throws Exception{
+    return userService.doesUserNameExist(userName);}
+    
 
 }

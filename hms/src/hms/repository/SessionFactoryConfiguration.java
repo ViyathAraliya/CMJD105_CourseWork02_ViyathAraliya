@@ -1,5 +1,5 @@
 
-package hms.dao;
+package hms.repository;
 
 
 
