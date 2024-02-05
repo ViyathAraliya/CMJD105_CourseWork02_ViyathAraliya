@@ -27,5 +27,8 @@ public class UserController {
     public boolean doesUserNameExist(String userName)throws Exception{
     return userService.doesUserNameExist(userName);}
     
+    public boolean isEmpty(){
+      return  userService.isEmpty();            
+    }
 
 }

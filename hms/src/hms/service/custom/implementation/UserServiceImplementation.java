@@ -31,8 +31,10 @@ public class UserServiceImplementation implements UserService {
     }
     public boolean doesUserNameExist(String userName) throws Exception{
      return userRepository.doesNameExist(userName);
-        
-        
     }
+    
+    public boolean isEmpty(){
+        return userRepository.isEmpty();
+        }
 
 }

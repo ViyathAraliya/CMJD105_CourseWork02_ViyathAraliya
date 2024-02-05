@@ -50,4 +50,12 @@ public class UserRepositoryImplementation implements UserRepository {
                      +name+"')";
         return session.createQuery(hql).uniqueResult() != null;
     }
+    
+    public boolean isEmpty(){
+       
+        List list=session.createQuery("from UserEntity").getResultList();
+        System.out.println("size : "+list.size());
+        return list.size()==0;
+        
+    }
 }
