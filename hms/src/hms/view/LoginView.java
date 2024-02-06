@@ -32,7 +32,7 @@ public class LoginView extends javax.swing.JFrame {
         }
         else{
             registerFirstUserBtn.setEnabled(false);
-            messegeLbl2.setText("note : this option is not available because a user has already been registered");  
+         
             }
     }
     /**
@@ -48,7 +48,6 @@ public class LoginView extends javax.swing.JFrame {
         userNameField = new javax.swing.JTextField();
         passwordLbl = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
-        messegeLbl2 = new javax.swing.JLabel();
         messegeLbl1 = new javax.swing.JLabel();
         loginBtn = new javax.swing.JButton();
         registerFirstUserBtn = new javax.swing.JButton();
@@ -59,8 +58,6 @@ public class LoginView extends javax.swing.JFrame {
         userNameLble.setText("username");
 
         passwordLbl.setText("password");
-
-        messegeLbl2.setText(".");
 
         messegeLbl1.setText(".");
 
@@ -85,6 +82,7 @@ public class LoginView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(messegeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(userNameLble, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -94,25 +92,19 @@ public class LoginView extends javax.swing.JFrame {
                                     .addComponent(userNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                                     .addComponent(passwordField)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(messegeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(registerFirstUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(loginBtn)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(186, 186, 186)
-                                .addComponent(messegeLbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(76, 76, 76)
+                                .addComponent(loginBtn)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(registerFirstUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(243, 243, 243)
                         .addComponent(titleLbl)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(messegeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,8 +119,7 @@ public class LoginView extends javax.swing.JFrame {
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(loginBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(messegeLbl2))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -143,7 +134,6 @@ public class LoginView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton loginBtn;
     private javax.swing.JLabel messegeLbl1;
-    private javax.swing.JLabel messegeLbl2;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLbl;
     private javax.swing.JButton registerFirstUserBtn;

@@ -5,6 +5,7 @@
 package hms;
 
 
+import hms.view.AddNewUser;
 import hms.view.LoginView;
 
 

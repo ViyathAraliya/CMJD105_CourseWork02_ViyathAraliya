@@ -3,6 +3,8 @@ package hms.view;
 import hms.controller.UserController;
 import hms.dto.UserDto;
 import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -42,6 +44,8 @@ public class AddNewUser extends javax.swing.JFrame {
         saveBtn = new javax.swing.JButton();
         roleLbl = new javax.swing.JLabel();
         selectRoleCmbBx = new javax.swing.JComboBox<>();
+        messageLbl1 = new javax.swing.JLabel();
+        messageLbl2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +76,10 @@ public class AddNewUser extends javax.swing.JFrame {
             }
         });
 
+        messageLbl1.setText(".");
+
+        messageLbl2.setText(".");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,16 +101,22 @@ public class AddNewUser extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(usernNameField)
+                            .addComponent(emailField)
+                            .addComponent(phoneNumberField)
+                            .addComponent(passwordField)
+                            .addComponent(confirmPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(messageLbl1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(messageLbl2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(selectRoleCmbBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(saveBtn))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(usernNameField)
-                        .addComponent(emailField)
-                        .addComponent(phoneNumberField)
-                        .addComponent(passwordField)
-                        .addComponent(confirmPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(saveBtn)
+                        .addGap(0, 91, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,11 +136,13 @@ public class AddNewUser extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordLbl)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(messageLbl1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmPasswordLbl)
-                    .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(messageLbl2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(roleLbl)
@@ -153,6 +169,8 @@ public class AddNewUser extends javax.swing.JFrame {
     private javax.swing.JLabel confirmPasswordLbl;
     private javax.swing.JTextField emailField;
     private javax.swing.JLabel emailLbl;
+    private javax.swing.JLabel messageLbl1;
+    private javax.swing.JLabel messageLbl2;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLbl;
     private javax.swing.JTextField phoneNumberField;
@@ -166,20 +184,24 @@ public class AddNewUser extends javax.swing.JFrame {
 
     private void saveUser() {
         try {
-           if (doesUserNameExist()) {
+            if (!doPasswordsMatch()) {
+                System.out.println(doPasswordsMatch());
+                JOptionPane.showMessageDialog(this, "passwords don't match");
+                return;
+            }
+            if (doesUserNameExist()) {
                 JOptionPane.showMessageDialog(this, "username already exists !");
                 return;
             }
             UserDto userDto = new UserDto(usernNameField.getText(), role, emailField.getText(), phoneNumberField.getText(),
                     passwordField.getPassword().toString());
-           
 
             role = selectRoleCmbBx.getSelectedItem().toString();
             if (role.equals("- please select a role")) {
                 JOptionPane.showMessageDialog(this, "please select a role");
                 return;
             }
-          
+
             System.out.println(USER_CONTROLLER.saveUser(userDto));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -193,7 +215,31 @@ public class AddNewUser extends javax.swing.JFrame {
 
     private boolean doesUserNameExist() throws Exception {
         return USER_CONTROLLER.doesUserNameExist(usernNameField.getText());
+    }
 
+    private boolean doPasswordsMatch() {
+        System.out.println(passwordField.getPassword());
+        boolean doesMatch = true;
+        char[] ar1 = passwordField.getPassword();
+        char[] ar2 = confirmPasswordField.getPassword();
+        for (int i = 0; i < ar1.length; i++) {
+            if (ar1[i] != ar2[i]) {
+                doesMatch = false;
+            }
+        }
+        if (!doesMatch) {
+            messageLbl1.setText("passwords dont match");
+            messageLbl1.setForeground(Color.red);
+            messageLbl1.setFont(messageLbl1.getFont().deriveFont(Font.PLAIN));
+
+            messageLbl2.setText("passwords dont match");
+            messageLbl2.setForeground(Color.red);
+            messageLbl2.setFont(messageLbl1.getFont().deriveFont(Font.PLAIN));
+        } else {
+            messageLbl2.setText("");
+            messageLbl1.setText("");
+        }
+        return doesMatch;
     }
 
 }
