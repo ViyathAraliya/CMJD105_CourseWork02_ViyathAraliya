@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package hms;
-
-
 import hms.view.AddNewUser;
 import hms.view.LoginView;
 
@@ -19,7 +17,7 @@ public class Hms {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new LoginView().setVisible(true);
+        new AddNewUser().setVisible(true);
     }
     
 }

@@ -273,19 +273,6 @@ public class FirstUserView extends javax.swing.JFrame {
                 doesMatch = false;
             }
         }
-        if (!doesMatch) {
-            messageLbl1.setText("passwords dont match");
-            messageLbl1.setForeground(Color.red);
-            messageLbl1.setFont(messageLbl1.getFont().deriveFont(Font.PLAIN));
-
-            messageLbl2.setText("passwords dont match");
-            messageLbl2.setForeground(Color.red);
-            messageLbl2.setFont(messageLbl1.getFont().deriveFont(Font.PLAIN));
-        } else {
-            messageLbl2.setText("");
-            messageLbl1.setText("");
-        }
-
         return doesMatch;
     }
 

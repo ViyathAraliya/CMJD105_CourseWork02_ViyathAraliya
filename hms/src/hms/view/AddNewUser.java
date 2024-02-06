@@ -2,10 +2,14 @@ package hms.view;
 
 import hms.controller.UserController;
 import hms.dto.UserDto;
-import java.awt.Color;
 import java.awt.Font;
+import java.awt.Color;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -19,6 +23,27 @@ public class AddNewUser extends javax.swing.JFrame {
     public AddNewUser() {
         USER_CONTROLLER = new UserController();
         initComponents();
+        confirmPasswordField.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void insertUpdate(DocumentEvent e) {
+                pwdCheck();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                pwdCheck();
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                pwdCheck();
+            }
+        });
+
+        selectRoleCmbBx.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                selectRoleCheck();
+            }
+        });
 
     }
 
@@ -46,6 +71,7 @@ public class AddNewUser extends javax.swing.JFrame {
         selectRoleCmbBx = new javax.swing.JComboBox<>();
         messageLbl1 = new javax.swing.JLabel();
         messageLbl2 = new javax.swing.JLabel();
+        messageLbl3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +106,8 @@ public class AddNewUser extends javax.swing.JFrame {
 
         messageLbl2.setText(".");
 
+        messageLbl3.setText(".");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,10 +141,14 @@ public class AddNewUser extends javax.swing.JFrame {
                             .addComponent(messageLbl2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(selectRoleCmbBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(saveBtn)
-                        .addGap(0, 91, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(messageLbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(saveBtn)
+                .addGap(97, 97, 97))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,9 +178,11 @@ public class AddNewUser extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(roleLbl)
-                    .addComponent(saveBtn)
-                    .addComponent(selectRoleCmbBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                    .addComponent(selectRoleCmbBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(messageLbl3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(saveBtn)
+                .addContainerGap())
         );
 
         pack();
@@ -171,6 +205,7 @@ public class AddNewUser extends javax.swing.JFrame {
     private javax.swing.JLabel emailLbl;
     private javax.swing.JLabel messageLbl1;
     private javax.swing.JLabel messageLbl2;
+    private javax.swing.JLabel messageLbl3;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLbl;
     private javax.swing.JTextField phoneNumberField;
@@ -193,16 +228,21 @@ public class AddNewUser extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "username already exists !");
                 return;
             }
+            role = selectRoleCmbBx.getSelectedItem().toString();
             UserDto userDto = new UserDto(usernNameField.getText(), role, emailField.getText(), phoneNumberField.getText(),
                     passwordField.getPassword().toString());
 
-            role = selectRoleCmbBx.getSelectedItem().toString();
             if (role.equals("- please select a role")) {
                 JOptionPane.showMessageDialog(this, "please select a role");
+                messageLbl3.setText("please select a role");
+                messageLbl3.setForeground(Color.red);
+                messageLbl3.setFont(messageLbl1.getFont().deriveFont(Font.PLAIN));
                 return;
+
             }
 
-            System.out.println(USER_CONTROLLER.saveUser(userDto));
+           USER_CONTROLLER.saveUser(userDto);
+           JOptionPane.showMessageDialog(this, "user saved!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -218,28 +258,46 @@ public class AddNewUser extends javax.swing.JFrame {
     }
 
     private boolean doPasswordsMatch() {
-        System.out.println(passwordField.getPassword());
         boolean doesMatch = true;
-        char[] ar1 = passwordField.getPassword();
-        char[] ar2 = confirmPasswordField.getPassword();
-        for (int i = 0; i < ar1.length; i++) {
-            if (ar1[i] != ar2[i]) {
+
+        char[] pwd1 = passwordField.getPassword();
+        char[] pwd2 = confirmPasswordField.getPassword();
+        if (pwd1.length != pwd2.length) {
+            return false;
+        }
+        for (int i = 0; i < pwd1.length; i++) {
+            if (pwd1[i] != pwd2[i]) {
                 doesMatch = false;
             }
         }
-        if (!doesMatch) {
-            messageLbl1.setText("passwords dont match");
-            messageLbl1.setForeground(Color.red);
-            messageLbl1.setFont(messageLbl1.getFont().deriveFont(Font.PLAIN));
-
-            messageLbl2.setText("passwords dont match");
-            messageLbl2.setForeground(Color.red);
-            messageLbl2.setFont(messageLbl1.getFont().deriveFont(Font.PLAIN));
-        } else {
-            messageLbl2.setText("");
-            messageLbl1.setText("");
-        }
         return doesMatch;
+    }
+
+    public void pwdMismatchWarning() {
+        messageLbl1.setText("passwords dont match");
+        messageLbl1.setForeground(Color.red);
+        messageLbl1.setFont(messageLbl1.getFont().deriveFont(Font.PLAIN));
+
+        messageLbl2.setText("passwords dont match");
+        messageLbl2.setForeground(Color.red);
+        messageLbl2.setFont(messageLbl1.getFont().deriveFont(Font.PLAIN));
+    }
+
+    public void pwdCheck() {
+        if (!doPasswordsMatch()) {
+            pwdMismatchWarning();
+        } else {
+            messageLbl1.setText("");
+            messageLbl2.setText("");
+        }
+    }
+
+    public void selectRoleCheck() {
+        if (selectRoleCmbBx.getSelectedItem().toString() == "- please select a role") {
+            messageLbl3.setText("please select a role");
+            messageLbl3.setForeground(Color.red);
+            messageLbl3.setFont(messageLbl1.getFont().deriveFont(Font.PLAIN));
+        }
     }
 
 }
