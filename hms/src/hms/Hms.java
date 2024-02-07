@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package hms;
+
 import hms.view.AddNewUser;
-import hms.view.LoginView;
+
 
 
 /**
@@ -18,6 +19,7 @@ public class Hms {
      */
     public static void main(String[] args) {
         new AddNewUser().setVisible(true);
+     
     }
     
 }

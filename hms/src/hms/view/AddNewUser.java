@@ -39,7 +39,7 @@ public class AddNewUser extends javax.swing.JFrame {
         });
 
         selectRoleCmbBx.addItemListener(new ItemListener() {
-            @Override
+            
             public void itemStateChanged(ItemEvent e) {
                 selectRoleCheck();
             }
@@ -96,11 +96,6 @@ public class AddNewUser extends javax.swing.JFrame {
 
         selectRoleCmbBx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- please select a role", "admin", "staff" }));
         selectRoleCmbBx.setToolTipText("");
-        selectRoleCmbBx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectRoleCmbBxActionPerformed(evt);
-            }
-        });
 
         messageLbl1.setText(".");
 
@@ -193,10 +188,6 @@ public class AddNewUser extends javax.swing.JFrame {
         saveUser();
     }//GEN-LAST:event_saveBtnActionPerformed
 
-    private void selectRoleCmbBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectRoleCmbBxActionPerformed
-        selectRole();
-    }//GEN-LAST:event_selectRoleCmbBxActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField confirmPasswordField;
@@ -218,7 +209,9 @@ public class AddNewUser extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void saveUser() {
-        try {
+        try {   if(hasEmptityFields()){
+                JOptionPane.showMessageDialog(this, "please fill all the fields!");
+                return;}
             if (!doPasswordsMatch()) {
                 System.out.println(doPasswordsMatch());
                 JOptionPane.showMessageDialog(this, "passwords don't match");
@@ -297,6 +290,18 @@ public class AddNewUser extends javax.swing.JFrame {
             messageLbl3.setText("please select a role");
             messageLbl3.setForeground(Color.red);
             messageLbl3.setFont(messageLbl1.getFont().deriveFont(Font.PLAIN));
+        }else{messageLbl3.setText("");}
+    }
+    
+    public boolean hasEmptityFields() {
+        
+        if (usernNameField.getText().isEmpty() || emailField.getText().isEmpty()
+                || phoneNumberField.getText().isEmpty() || 
+                passwordField.getPassword().length==0 ||
+                confirmPasswordField.getPassword().length==0) {
+            return true;
+        } else {
+            return false;
         }
     }
 
