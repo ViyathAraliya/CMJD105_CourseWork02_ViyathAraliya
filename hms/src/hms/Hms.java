@@ -5,6 +5,7 @@
 package hms;
 
 import hms.view.AddNewUser;
+import hms.view.LoginView;
 
 
 
@@ -18,7 +19,7 @@ public class Hms {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new AddNewUser().setVisible(true);
+        new LoginView().setVisible(true);
      
     }
     

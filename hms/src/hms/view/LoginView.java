@@ -5,8 +5,9 @@
 package hms.view;
 
 import hms.controller.UserController;
-
-
+import hms.dto.UserDto;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,26 +16,25 @@ import hms.controller.UserController;
 public class LoginView extends javax.swing.JFrame {
 
     private final UserController USER_CONTROLLER;
+
     public LoginView() {
-        
+
         initComponents();
-      USER_CONTROLLER=new UserController();
-    
-      
-        
-        if(isEmpty()){
-         
+        USER_CONTROLLER = new UserController();
+
+        if (isEmpty()) {
+
             messegeLbl1.setText("A user has not been registered yet. Please register the first user");
             userNameField.setEditable(false);
-            passwordField.setEditable(false); 
+            passwordField.setEditable(false);
             loginBtn.setEnabled(false);
-             
-        }
-        else{
+
+        } else {
             registerFirstUserBtn.setEnabled(false);
-         
-            }
+
+        }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,6 +62,11 @@ public class LoginView extends javax.swing.JFrame {
         messegeLbl1.setText(".");
 
         loginBtn.setText("Login");
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBtnActionPerformed(evt);
+            }
+        });
 
         registerFirstUserBtn.setText("register the first user");
         registerFirstUserBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +134,10 @@ public class LoginView extends javax.swing.JFrame {
         createTheFirstUser();
     }//GEN-LAST:event_registerFirstUserBtnActionPerformed
 
-    
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+        login();// TODO add your handling code here:
+    }//GEN-LAST:event_loginBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton loginBtn;
@@ -142,13 +150,38 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JLabel userNameLble;
     // End of variables declaration//GEN-END:variables
 
-private boolean isEmpty(){
- return USER_CONTROLLER.isEmpty();}
+    private boolean isEmpty() {
+        return USER_CONTROLLER.isEmpty();
+    }
 
-private void createTheFirstUser(){
-   
-    new FirstUserView().setVisible(true);
-   this.dispose();
-   return;
-}
+    private void createTheFirstUser(){
+        new FirstUserView().setVisible(true);
+        this.dispose();
+        return;
+    }
+    private void login() {
+        String userName = userNameField.getText();
+        char pwd[] = passwordField.getPassword();
+        
+        try {
+            boolean userExists = USER_CONTROLLER.doesUserNameExist(userName);
+            if(userExists){
+               
+                UserDto userDto=USER_CONTROLLER.getUser(userName);
+                if(Arrays.equals(pwd,userDto.getPassword())){
+                    new Home().setVisible(true);
+                    this.dispose();
+                    }
+                else{JOptionPane.showMessageDialog(this, "incorrect password");}
+                
+            }else{
+            JOptionPane.showMessageDialog(this, "no such user.");
+            return;}
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }finally{
+            return;}
+
+    }
 }

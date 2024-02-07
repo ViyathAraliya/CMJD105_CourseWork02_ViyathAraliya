@@ -185,10 +185,11 @@ public class FirstUserView extends javax.swing.JFrame {
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(messageLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(confirmPasswordLbl)
-                    .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(messageLbl2))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(messageLbl2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(saveBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -238,8 +239,8 @@ public class FirstUserView extends javax.swing.JFrame {
 
     private void saveUser() {
 
-        UserDto userDto = new UserDto(userNameLbl.getText(), "admin", emailField.getText(), phoneNumberField.getText(), passwordField.getPassword()
-                .toString());
+        UserDto userDto = new UserDto(userNameLbl.getText(), "admin", emailField.getText(), phoneNumberField.getText(), 
+                passwordField.getPassword());
 
         try {
             if (hasEmptityFields()) {
@@ -287,6 +288,7 @@ public class FirstUserView extends javax.swing.JFrame {
     private void loginMenu() {
         new LoginView().setVisible(true);
         this.dispose();
+        return;
     }
 
     public void pwdMismatchWarning() {

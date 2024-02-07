@@ -29,16 +29,6 @@ import lombok.ToString;
 @Entity
 @Table(name="User")
 public class UserEntity {
-
-    public UserEntity(String userName, String role, String email, String phoneNumber, String password) {
-        this.userName = userName;
-        this.role=role;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
-    }
-    
-   
     @Id
     @Column(name="UserID")
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -57,7 +47,18 @@ public class UserEntity {
     private String phoneNumber;
     
     @Column(name="password")
-    private String password;
+    private char password[];
+
+    public UserEntity(String userName, String role, String email, String phoneNumber, char password[]) {
+        this.userName = userName;
+        this.role=role;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+    }
+    
+   
+   
     
     
 }

@@ -125,10 +125,12 @@
                   <Component id="messageLbl1" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="confirmPasswordLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="confirmPasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="messageLbl2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="confirmPasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="messageLbl2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="21" max="32767" attributes="0"/>
               <Component id="saveBtn" min="-2" max="-2" attributes="0"/>
