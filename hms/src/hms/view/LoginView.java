@@ -157,7 +157,7 @@ public class LoginView extends javax.swing.JFrame {
     private void createTheFirstUser(){
         new FirstUserView().setVisible(true);
         this.dispose();
-        return;
+       
     }
     private void login() {
         String userName = userNameField.getText();
@@ -171,17 +171,16 @@ public class LoginView extends javax.swing.JFrame {
                 if(Arrays.equals(pwd,userDto.getPassword())){
                     new Home().setVisible(true);
                     this.dispose();
+                    
                     }
                 else{JOptionPane.showMessageDialog(this, "incorrect password");}
                 
             }else{
             JOptionPane.showMessageDialog(this, "no such user.");
-            return;}
-            
+           }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
-        }finally{
-            return;}
+        }
 
     }
 }

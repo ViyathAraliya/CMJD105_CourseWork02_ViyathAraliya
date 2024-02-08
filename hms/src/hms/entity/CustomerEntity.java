@@ -4,7 +4,6 @@
  */
 package hms.entity;
 
-//import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 //import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -20,47 +19,47 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@AllArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 
 @Entity
-@Table(name="User")
-public class UserEntity {
+@Table(name = "Customer")
+public class CustomerEntity {
+
     @Id
-    @Column(name="UserID")
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name = "CustID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Column(name="Name")
+    private String name;
     
-    @Column(name="User_Name")
-    private String userName;
-    
-    @Column(name="Role")
-    private String role;
-    
-    @Column(name="Email")
-    private String email;
-    
-    @Column(name="Phone_Number")
+    @Column(name = "NIC")
+    private String nic;
+
+    @Column(name="PhoneNumber")
     private String phoneNumber;
     
-    @Column(name="password")
-    private char password[];
+    @Column(name="EMail")
+    private String email;
+    
+    @Column(name="Address")
+    private String address;
+    
+    @Column(name="Number of nights")
+    private Integer noOfNight;
    
-            
-
-    public UserEntity(String userName, String role, String email, String phoneNumber, char password[]) {
-        this.userName = userName;
-        this.role=role;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
+    public CustomerEntity(String name,String nic, String phoneNumber,String email, String address ){
+        this.name=name;
+        this.nic=nic;
+        this.phoneNumber=phoneNumber;
+        this.email=email;
+        this.address=address;
     }
-    
-   
    
     
-    
+
 }

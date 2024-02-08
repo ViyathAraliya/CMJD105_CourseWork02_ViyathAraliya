@@ -20,47 +20,30 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @ToString
 
 @Entity
-@Table(name="User")
-public class UserEntity {
+@Table(name="Reservation")
+public class ReservationEntity {
+    
     @Id
-    @Column(name="UserID")
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="ReservationID")
     private Integer id;
     
-    @Column(name="User_Name")
-    private String userName;
+    @Column(name="customerID")
+    private Integer customerId;
     
-    @Column(name="Role")
-    private String role;
+    @Column(name="roomID")
+    private Integer roomID;
     
-    @Column(name="Email")
-    private String email;
+    @Column(name="packageID")
+    private Integer packageID;
     
-    @Column(name="Phone_Number")
-    private String phoneNumber;
-    
-    @Column(name="password")
-    private char password[];
-   
-            
-
-    public UserEntity(String userName, String role, String email, String phoneNumber, char password[]) {
-        this.userName = userName;
-        this.role=role;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
-    }
-    
-   
-   
-    
-    
+    @Column(name="number of nights")
+    private  Integer noOfNights; 
 }

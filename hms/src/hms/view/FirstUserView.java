@@ -288,7 +288,7 @@ public class FirstUserView extends javax.swing.JFrame {
     private void loginMenu() {
         new LoginView().setVisible(true);
         this.dispose();
-        return;
+       
     }
 
     public void pwdMismatchWarning() {
