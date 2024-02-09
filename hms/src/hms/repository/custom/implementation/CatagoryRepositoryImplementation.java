@@ -3,18 +3,16 @@ package hms.repository.custom.implementation;
 
 import hms.entity.CatagoryEntity;
 import hms.repository.custom.CatagoryRepository;
-import hms.util.SessionFactoryConfigurationFactory;
-import hms.util.custom.CatagorySessionFactory;
+import hms.util.CatagorySessionFactoryConfiguration;
 import org.hibernate.Session;
 import java.util.List;
 
-public class CatagoryRepositoryImplementation implements CatagoryRepository {
+public class CatagoryRepositoryImplementation 
+        implements CatagoryRepository
+{
     
-    private CatagorySessionFactory catagorySessionFactory=(CatagorySessionFactory)
-            SessionFactoryConfigurationFactory.getInstance()
-                .getSessionFactoryInstance(SessionFactoryConfigurationFactory.SessionType.CATAGORY);
   
-    Session session=catagorySessionFactory.getSession();
+    Session session=CatagorySessionFactoryConfiguration.getInstance().getSession();
     
     public String save(CatagoryEntity e) throws Exception {
         return "method not created yet";
@@ -38,5 +36,5 @@ public class CatagoryRepositoryImplementation implements CatagoryRepository {
         List<CatagoryEntity> catagoryEntities=session.createQuery("from CatagoryEntity").getResultList();
                return catagoryEntities;
     }
-    
+   
 }

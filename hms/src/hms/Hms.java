@@ -1,13 +1,15 @@
 
 package hms;
 
-import hms.view.MakeReservationView;
+
+import hms.repository.RepositoryFactory;
 
 
 public class Hms {
 
     
     public static void main(String[] args) {
-        new MakeReservationView().setVisible(true);
-    
+        RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.USER);
+        RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.ROOM);
+        RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.CATAGORY);
 }}

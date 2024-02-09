@@ -2,6 +2,7 @@
 package hms.repository;
 
 import hms.repository.custom.implementation.CatagoryRepositoryImplementation;
+import hms.repository.custom.implementation.RoomRepositoryImplementation;
 import hms.repository.custom.implementation.UserRepositoryImplementation;
 
 
@@ -22,13 +23,15 @@ public class RepositoryFactory {
                 return new UserRepositoryImplementation();
             case CATAGORY:
                     return new CatagoryRepositoryImplementation();
+            case ROOM:
+                    return new RoomRepositoryImplementation();
             default:
                 return null;
         }
     }
 
     public enum RepositoryType {
-        USER,CATAGORY
+        USER,CATAGORY,ROOM
     }
 
 }

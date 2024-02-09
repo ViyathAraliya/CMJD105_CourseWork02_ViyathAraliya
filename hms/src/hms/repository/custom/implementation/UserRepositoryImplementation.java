@@ -1,31 +1,19 @@
 package hms.repository.custom.implementation;
 
-import hms.util.SessionFactoryConfigurationFactory;
+
 import hms.repository.custom.UserRepository;
 import hms.entity.UserEntity;
-import hms.util.custom.UserSessionFactory;
+import hms.util.UserSessionFactoryConfiguration;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.SessionFactory;
 
-/**
- *
- * @author viyat
- */
+
+
 public class UserRepositoryImplementation implements UserRepository {
 
-    private UserSessionFactory userSessionFactory
-            = (UserSessionFactory) SessionFactoryConfigurationFactory
-                    .getInstance().getSessionFactoryInstance(SessionFactoryConfigurationFactory
-                            .SessionType.USER);
-
-    Session session =userSessionFactory.getSession();
-
-    
-
+Session session=UserSessionFactoryConfiguration.getInstance().getSession();
     public String save(UserEntity userEntity) {
         Transaction transaction = session.beginTransaction();
         try {

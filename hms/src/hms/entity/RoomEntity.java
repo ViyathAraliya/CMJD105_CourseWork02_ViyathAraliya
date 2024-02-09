@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package hms.entity;
 
-//import javax.persistence.CollectionTable;
+import java.util.Date;
 import javax.persistence.Column;
 //import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -31,12 +28,21 @@ import lombok.ToString;
 public class RoomEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="Room ID")
+    @Column(name="RoomID")
     private Integer id;
     
     @Column(name="catagory")
     private String catagory;
 
+    @Column(name="booked_From")
+    private Date bookedFrom;
+    
+    @Column(name="booked_Till")
+    private Date bookedTill;
+    
+    @Column(name="isAvailable")
+    private boolean isAvailable;
+    
     public RoomEntity(String catagory) {
         this.catagory = catagory;
     }
