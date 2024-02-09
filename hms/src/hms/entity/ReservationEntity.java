@@ -46,4 +46,13 @@ public class ReservationEntity {
     
     @Column(name="number of nights")
     private  Integer noOfNights; 
+
+    public ReservationEntity(Integer customerId, Integer roomID, Integer packageID, Integer noOfNights) {
+        this.customerId = customerId;
+        this.roomID = roomID;
+        this.packageID = packageID;
+        this.noOfNights = noOfNights;
+    }
+    
+    
 }

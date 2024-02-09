@@ -4,6 +4,9 @@
  */
 package hms.repository;
 
+
+import java.util.List;
+
 /**
  *
  * @author viyat
@@ -13,5 +16,6 @@ public interface CrudRepository<Entity,ID> extends SuperRepository{
   Entity getByName(ID name)throws Exception;
   boolean doesNameExist(String name) throws Exception;
   boolean isEmpty();
+    List<Entity> getAll() throws Exception;
     
 }

@@ -30,7 +30,7 @@ import lombok.ToString;
 public class CustomerEntity {
 
     @Id
-    @Column(name = "CustID")
+    @Column(name = "Customer ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 

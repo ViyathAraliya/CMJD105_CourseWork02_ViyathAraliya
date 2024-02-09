@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package hms.service;
 
+import hms.service.custom.implementation.CatagoryServiceImplementation;
 import hms.service.custom.implementation.UserServiceImplementation;
 
-/**
- *
- * @author viyat
- */
 public class ServiceFactory {
 
     private static ServiceFactory serviceFactory;
@@ -28,13 +22,15 @@ public class ServiceFactory {
         switch (type) {
             case USER:
                 return new UserServiceImplementation();
+            case CATAGORY:
+                    return new CatagoryServiceImplementation();
             default:
                 return null;
         }
     }
 
     public enum ServiceType {
-        USER
+        USER,CATAGORY
     }
 
 }

@@ -1,26 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package hms;
 
-import hms.view.AddNewUser;
-import hms.view.LoginView;
+import hms.view.MakeReservationView;
 
 
-
-/**
- *
- * @author viyat
- */
 public class Hms {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        new LoginView().setVisible(true);
-     
-    }
     
-}
+    public static void main(String[] args) {
+        new MakeReservationView().setVisible(true);
+    
+}}

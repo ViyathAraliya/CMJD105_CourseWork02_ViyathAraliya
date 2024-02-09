@@ -37,6 +37,12 @@ public class PackageEntity {
     
     @Column(name="charge for package")
     private String charge;
+
+    public PackageEntity(String description, String charge) {
+        this.description = description;
+        this.charge = charge;
+    }
+    
     
     
 }
