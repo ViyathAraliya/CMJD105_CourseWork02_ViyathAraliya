@@ -6,10 +6,6 @@ import hms.dto.UserDto;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author viyat
- */
 public class LoginView extends javax.swing.JFrame {
 
     private final UserController USER_CONTROLLER;
@@ -166,7 +162,7 @@ public class LoginView extends javax.swing.JFrame {
                
                 UserDto userDto=USER_CONTROLLER.getUser(userName);
                 if(Arrays.equals(pwd,userDto.getPassword())){
-                    new Home().setVisible(true);
+                    new HomeView().setVisible(true);
                     this.dispose();
                     
                     }

@@ -23,6 +23,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+              <Component id="customerTitleLble" min="-2" pref="157" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="579" max="-2" attributes="0"/>
+          </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -42,9 +47,10 @@
                           <Component id="emailField" max="32767" attributes="0"/>
                           <Component id="addressField" pref="144" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -64,24 +70,22 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jTextField1" max="32767" attributes="0"/>
-                                          <Component id="numberOfNightsField" pref="134" max="32767" attributes="0"/>
+                                          <Component id="bookTillDateField" max="32767" attributes="0"/>
+                                          <Component id="bookFromDateField" pref="134" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="messageLblFromDate" min="-2" pref="198" max="-2" attributes="0"/>
+                                          <Component id="messageLblTillDate" min="-2" pref="212" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="140" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="pickRoomBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                      <Component id="customerTitleLble" min="-2" pref="157" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -119,16 +123,22 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="phoneNumberField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="fromDateLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="numberOfNightsField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bookFromDateField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="messageLblFromDate" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="emailLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="emailField" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="bookTillDateField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="messageLblTillDate" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      </Group>
                       <Component id="toLbl" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="emailLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="emailField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -223,7 +233,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="numberOfNightsField">
+    <Component class="javax.swing.JTextField" name="bookFromDateField">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="66" type="rgb"/>
@@ -231,7 +241,7 @@
         <Property name="text" type="java.lang.String" value="MM/dd/yyyy"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="numberOfNightsFieldActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bookFromDateFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="makeReservationBtn">
@@ -249,7 +259,7 @@
         <Property name="text" type="java.lang.String" value="book till"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="bookTillDateField">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="66" type="rgb"/>
@@ -260,6 +270,16 @@
     <Component class="javax.swing.JButton" name="pickRoomBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="pick a room"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="messageLblFromDate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="messageLblTillDate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="."/>
       </Properties>
     </Component>
   </SubComponents>

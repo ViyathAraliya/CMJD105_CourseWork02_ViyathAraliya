@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package hms.view;
 
 import hms.controller.UserController;
@@ -12,10 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-/**
- *
- * @author viyat
- */
+
 public class FirstUserView extends javax.swing.JFrame {
 
     private final UserController USER_CONTROLLER;

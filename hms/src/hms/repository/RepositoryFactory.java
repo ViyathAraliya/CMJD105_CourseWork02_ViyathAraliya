@@ -1,6 +1,7 @@
 
 package hms.repository;
 
+
 import hms.repository.custom.implementation.CatagoryRepositoryImplementation;
 import hms.repository.custom.implementation.RoomRepositoryImplementation;
 import hms.repository.custom.implementation.UserRepositoryImplementation;
@@ -21,17 +22,18 @@ public class RepositoryFactory {
         switch (type) {
             case USER:
                 return new UserRepositoryImplementation();
-            case CATAGORY:
-                    return new CatagoryRepositoryImplementation();
+           
             case ROOM:
                     return new RoomRepositoryImplementation();
+            case CATAGORY:
+                return new CatagoryRepositoryImplementation();
             default:
                 return null;
         }
     }
 
     public enum RepositoryType {
-        USER,CATAGORY,ROOM
+        USER,ROOM,CATAGORY
     }
 
 }

@@ -2,19 +2,113 @@ package hms.view;
 
 import hms.controller.CatagoryController;
 import hms.dto.CatagoryDto;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class MakeReservationView extends javax.swing.JFrame {
 
     private final CatagoryController CATAGORY_CONTROLLER;
+
     public MakeReservationView() {
-        CATAGORY_CONTROLLER=new CatagoryController();
+        CATAGORY_CONTROLLER = new CatagoryController();
         initComponents();
         loadCatagoryComboBox();
+        bookFromDateField.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                bookFromDateField.setText("");
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+        bookFromDateField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+
+                setTextToFromDateLbl();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                setTextToFromDateLbl();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                setTextToFromDateLbl();
+            }
+
+        });
+        bookTillDateField.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                bookTillDateField.setText("");
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+        bookTillDateField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                setTextToTillDateLbl();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                setTextToTillDateLbl();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                setTextToTillDateLbl();
+            }
+        });
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -36,12 +130,14 @@ public class MakeReservationView extends javax.swing.JFrame {
         roomCatagoryLbl = new javax.swing.JLabel();
         catagoryComboBox = new javax.swing.JComboBox<>();
         packageComboBox = new javax.swing.JComboBox<>();
-        numberOfNightsField = new javax.swing.JTextField();
+        bookFromDateField = new javax.swing.JTextField();
         makeReservationBtn = new javax.swing.JButton();
         homeMenuBtn = new javax.swing.JButton();
         toLbl = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        bookTillDateField = new javax.swing.JTextField();
         pickRoomBtn = new javax.swing.JButton();
+        messageLblFromDate = new javax.swing.JLabel();
+        messageLblTillDate = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,11 +159,11 @@ public class MakeReservationView extends javax.swing.JFrame {
 
         roomCatagoryLbl.setText("Room catagory");
 
-        numberOfNightsField.setForeground(new java.awt.Color(102, 102, 102));
-        numberOfNightsField.setText("MM/dd/yyyy");
-        numberOfNightsField.addActionListener(new java.awt.event.ActionListener() {
+        bookFromDateField.setForeground(new java.awt.Color(102, 102, 102));
+        bookFromDateField.setText("MM/dd/yyyy");
+        bookFromDateField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numberOfNightsFieldActionPerformed(evt);
+                bookFromDateFieldActionPerformed(evt);
             }
         });
 
@@ -77,15 +173,23 @@ public class MakeReservationView extends javax.swing.JFrame {
 
         toLbl.setText("book till");
 
-        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField1.setText("MM/dd/yyyy");
+        bookTillDateField.setForeground(new java.awt.Color(102, 102, 102));
+        bookTillDateField.setText("MM/dd/yyyy");
 
         pickRoomBtn.setText("pick a room");
+
+        messageLblFromDate.setText(".");
+
+        messageLblTillDate.setText(".");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(customerTitleLble, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(579, 579, 579))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -103,9 +207,10 @@ public class MakeReservationView extends javax.swing.JFrame {
                             .addComponent(phoneNumberField)
                             .addComponent(emailField)
                             .addComponent(addressField, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,17 +226,15 @@ public class MakeReservationView extends javax.swing.JFrame {
                                             .addComponent(toLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField1)
-                                            .addComponent(numberOfNightsField, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))))
-                                .addGap(0, 140, Short.MAX_VALUE))
+                                            .addComponent(bookTillDateField)
+                                            .addComponent(bookFromDateField, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(messageLblFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(messageLblTillDate, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(pickRoomBtn)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(customerTitleLble, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(makeReservationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,14 +265,18 @@ public class MakeReservationView extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(phoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(fromDateLbl)
-                        .addComponent(numberOfNightsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(bookFromDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(messageLblFromDate)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailLbl)
-                    .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(toLbl)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bookTillDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(messageLblTillDate, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(toLbl))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(emailLbl)
+                        .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addressLbl)
@@ -185,14 +292,16 @@ public class MakeReservationView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void numberOfNightsFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberOfNightsFieldActionPerformed
+    private void bookFromDateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookFromDateFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_numberOfNightsFieldActionPerformed
+    }//GEN-LAST:event_bookFromDateFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressField;
     private javax.swing.JLabel addressLbl;
+    private javax.swing.JTextField bookFromDateField;
+    private javax.swing.JTextField bookTillDateField;
     private javax.swing.JComboBox<String> catagoryComboBox;
     private javax.swing.JTextField customerNameField;
     private javax.swing.JLabel customerNameLbl;
@@ -201,11 +310,11 @@ public class MakeReservationView extends javax.swing.JFrame {
     private javax.swing.JLabel emailLbl;
     private javax.swing.JLabel fromDateLbl;
     private javax.swing.JButton homeMenuBtn;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton makeReservationBtn;
+    private javax.swing.JLabel messageLblFromDate;
+    private javax.swing.JLabel messageLblTillDate;
     private javax.swing.JTextField nicField;
     private javax.swing.JLabel nicLbl;
-    private javax.swing.JTextField numberOfNightsField;
     private javax.swing.JComboBox<String> packageComboBox;
     private javax.swing.JLabel packageLbl;
     private javax.swing.JTextField phoneNumberField;
@@ -215,27 +324,56 @@ public class MakeReservationView extends javax.swing.JFrame {
     private javax.swing.JLabel toLbl;
     // End of variables declaration//GEN-END:variables
 
-    private void loadCatagoryComboBox(){
+    private void loadCatagoryComboBox() {
         catagoryComboBox.addItem("-select room catagory");
         try {
-               List<CatagoryDto> catagoryDtos=CATAGORY_CONTROLLER.getAll();
-               for(CatagoryDto dto:catagoryDtos){
-                   catagoryComboBox.addItem(dto.getDescription());
-                }
-               
+            List<CatagoryDto> catagoryDtos = CATAGORY_CONTROLLER.getAll();
+            for (CatagoryDto dto : catagoryDtos) {
+                catagoryComboBox.addItem(dto.getDescription());
+            }
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-    /*private void loadPackageComboBox(){
-       
-    }*/
-    public void convertStringToDate() {
-        try{
-        Date date=new SimpleDateFormat("MM/dd/yyyy").parse("12/08/2023");
-    }catch(Exception e){
-            JOptionPane.showMessageDialog(this, e.getMessage());
+
+    private void setTextToFromDateLbl() {
+        messageLblFromDate.setText(dateValidation(bookFromDateField.getText()));
+        messageLblFromDate.setForeground(Color.red);
+        messageLblFromDate.setFont(messageLblFromDate.getFont().deriveFont(Font.PLAIN));
     }
+
+    private void setTextToTillDateLbl() {
+        messageLblTillDate.setText(dateValidation(bookTillDateField.getText()));
+        messageLblTillDate.setForeground(Color.red);
+        messageLblTillDate.setFont(messageLblTillDate.getFont().deriveFont(Font.PLAIN));
+        try {
+            if (isBookTillDate_After_BookFromFromDate() == false) {
+                messageLblTillDate.setText("checkout date should be after checkin date");
+            }
+        } catch (Exception e) {
+            messageLblTillDate.setText(e.getMessage());
+        }
+
+    }
+
+    private String dateValidation(String textInTextField) {
+        try {
+            Date dateInfield = new SimpleDateFormat("MM/dd/yyyy").parse(textInTextField);
+            if (dateInfield.before(new Date())) {
+                return "The date you entered has already passed";
+            } else {
+                return "";
+            }
+        } catch (Exception e) {
+            return "date format : MM/dd/yyyy";
+        }
+    }
+
+    private boolean isBookTillDate_After_BookFromFromDate() throws Exception {
+        Date fromDate = new SimpleDateFormat("MM/dd/yyyy").parse(bookFromDateField.getText());
+        Date tillDate = new SimpleDateFormat("MM/dd/yyyy").parse(bookTillDateField.getText());
+        return fromDate.before(tillDate);
     }
 
 }

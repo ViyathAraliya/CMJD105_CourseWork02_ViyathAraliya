@@ -11,10 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-/**
- *
- * @author viyat
- */
+
 public class AddNewUser extends javax.swing.JFrame {
 
     String role;
