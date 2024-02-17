@@ -1,6 +1,7 @@
 
 package hms.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 //import javax.persistence.ElementCollection;
@@ -8,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 //import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
@@ -31,6 +34,8 @@ public class RoomEntity {
     @Column(name="RoomID")
     private Integer id;
     
+   
+  
     @Column(name="catagory")
     private String catagory;
 
@@ -40,13 +45,13 @@ public class RoomEntity {
     @Column(name="booked_Till")
     private Date bookedTill;
     
-    @Column(name="isAvailable")
-    private boolean isAvailable;
     
     public RoomEntity(String catagory) {
         this.catagory = catagory;
     }
     
     
-    
+ @ManyToOne
+ @JoinColumn(name="catagory_id", nullable=false)
+ private CatagoryEntity catagoryEntity;
 }

@@ -47,43 +47,36 @@
                           <Component id="emailField" max="32767" attributes="0"/>
                           <Component id="addressField" pref="144" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="packageLbl" min="-2" pref="115" max="-2" attributes="0"/>
-                                          <Component id="roomCatagoryLbl" min="-2" pref="97" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="catagoryComboBox" min="-2" pref="134" max="-2" attributes="0"/>
-                                          <Component id="packageComboBox" min="-2" pref="134" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="fromDateLbl" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
-                                          <Component id="toLbl" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="bookTillDateField" max="32767" attributes="0"/>
-                                          <Component id="bookFromDateField" pref="134" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="messageLblFromDate" min="-2" pref="198" max="-2" attributes="0"/>
-                                          <Component id="messageLblTillDate" min="-2" pref="212" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                                  <Component id="packageLbl" min="-2" pref="115" max="-2" attributes="0"/>
+                                  <Component id="roomCatagoryLbl" min="-2" pref="97" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="catagoryComboBox" min="-2" pref="134" max="-2" attributes="0"/>
+                                  <Component id="packageComboBox" min="-2" pref="134" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="pickRoomBtn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="fromDateLbl" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
+                                  <Component id="toLbl" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
+                                  <Component id="pickRoomBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="bookTillDateField" max="32767" attributes="0"/>
+                                  <Component id="bookFromDateField" pref="134" max="32767" attributes="0"/>
+                                  <Component id="jComboBox1" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="messageLblFromDate" min="-2" pref="198" max="-2" attributes="0"/>
+                                  <Component id="messageLblTillDate" min="-2" pref="212" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -146,6 +139,7 @@
                   <Component id="addressLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="addressField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="pickRoomBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -281,6 +275,21 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="."/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBox1">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

@@ -1,17 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package hms.entity;
 
+import java.util.List;
 import javax.persistence.Column;
 //import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 //import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +30,7 @@ import lombok.ToString;
 public class CustomerEntity {
 
     @Id
-    @Column(name = "Customer ID")
+    @Column(name = "CustomerID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
@@ -49,7 +49,7 @@ public class CustomerEntity {
     @Column(name="Address")
     private String address;
     
-    @Column(name="Number of nights")
+    @Column(name="NumberOfNights")
     private Integer noOfNight;
    
     public CustomerEntity(String name,String nic, String phoneNumber,String email, String address ){
@@ -60,6 +60,10 @@ public class CustomerEntity {
         this.address=address;
     }
    
+    @Transient
+    @OneToMany(mappedBy = "customerEntity",targetEntity = ReservationEntity.class)
+    List<ReservationEntity> reservationEntities;
+    
     
 
 }
