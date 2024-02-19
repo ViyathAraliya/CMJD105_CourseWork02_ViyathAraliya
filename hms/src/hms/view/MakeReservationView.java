@@ -61,24 +61,18 @@ public class MakeReservationView extends javax.swing.JFrame {
         checkInDateField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
+                messageLblCheckInText();
 
-                setTextToFromDateLbl();
-            try{
-                if(isCheckInDate_After_checkOutDate()){
-                            messageLblCheckIn.setText("check in date should be before the check out date");}}catch(Exception ex){
-                }
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                setTextToFromDateLbl();
-               // fromDateLbl.setText(dateValidation(checkOutDateField.getText()));
+                messageLblCheckInText();
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                setTextToFromDateLbl();
-               // fromDateLbl.setText(dateValidation(checkOutDateField.getText()));
+                messageLblCheckInText();
             }
 
         });
@@ -112,17 +106,17 @@ public class MakeReservationView extends javax.swing.JFrame {
         checkOutDateField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                setTextToCheckOutDateLbl();
+                messageLblCheckOutText();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                setTextToCheckOutDateLbl();
+                messageLblCheckOutText();
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                setTextToCheckOutDateLbl();
+                messageLblCheckOutText();
             }
         });
     }
@@ -326,14 +320,8 @@ public class MakeReservationView extends javax.swing.JFrame {
     }//GEN-LAST:event_catagoryComboBoxActionPerformed
 
     private void pickRoomBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pickRoomBtnActionPerformed
-        try {
 
-            //isBookTillDate_After_BookFromFromDate(checkOutDateField.getText()) ||
-            //dateValidation(checkOutDateField.getText()))){}
-            loadTable();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }    // TODO add your handling code here:
+        pickRoom();
     }//GEN-LAST:event_pickRoomBtnActionPerformed
 
 
@@ -375,46 +363,6 @@ public class MakeReservationView extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    private void setTextToFromDateLbl() {
-        messageLblCheckIn.setText(dateValidation(checkInDateField.getText()));
-        messageLblCheckIn.setForeground(Color.red);
-        messageLblCheckIn.setFont(messageLblCheckIn.getFont().deriveFont(Font.PLAIN));
-    }
-
-    private void setTextToCheckOutDateLbl() {
-        messageLblCheckOut.setText(dateValidation(checkOutDateField.getText()));
-        messageLblCheckOut.setForeground(Color.red);
-        messageLblCheckOut.setFont(messageLblCheckOut.getFont().deriveFont(Font.PLAIN));
-        try {
-            if (isCheckInDate_After_checkOutDate() == false) {
-                messageLblCheckOut.setText("checkout date should be after the checking date");
-            }
-        } catch (Exception e) {
-           
-
-        }
-
-    }
-
-    private String dateValidation(String checkOutDate) {
-        try {
-            Date dateInfield = new SimpleDateFormat("MM/dd/yyyy").parse(checkOutDate);
-            if (dateInfield.before(new Date())) {
-                return "The date you entered has already passed";
-            } else {
-                return "";
-            }
-        } catch (Exception e) {
-            return "date format : MM/dd/yyyy";
-        }
-    }
-
-    private boolean isCheckInDate_After_checkOutDate() throws Exception {
-        Date fromDate = new SimpleDateFormat("MM/dd/yyyy").parse(checkInDateField.getText());
-        Date tillDate = new SimpleDateFormat("MM/dd/yyyy").parse(checkOutDateField.getText());
-        return fromDate.before(tillDate);
     }
 
     private void loadTable() throws Exception {
@@ -463,4 +411,104 @@ public class MakeReservationView extends javax.swing.JFrame {
         table.setVisible(true);
     }
 
+    private boolean isDateFormatCorrect(String dateFieldText) {
+        try {
+            Date date = new SimpleDateFormat("MM/dd/yyyy").parse(dateFieldText);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean date_has_not_passed_yet(String dateFieldText) {
+
+        try {
+            Date date = new SimpleDateFormat("MM/dd/yyyy").parse(dateFieldText);
+            return date.after(new Date());
+
+        } catch (Exception e) {
+            return false;//will be handled isDateFormateCorrect method
+        }
+    }
+
+    private boolean is_checkOutDate_after_checkInDate() {
+        try {
+            Date checkInDate = new SimpleDateFormat("MM/dd/yyyy").parse(checkInDateField.getText());
+            Date checkOutDate = new SimpleDateFormat("MM/dd/yyyy").parse(checkOutDateField.getText());
+            return checkOutDate.after(checkInDate);
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private String textInCheckInDateLbl() {
+        String checkInDateText = checkInDateField.getText();
+        if (isDateFormatCorrect(checkInDateText) == false) {
+            return "date formate : MM/dd/yyyy";
+        }
+        if (date_has_not_passed_yet(checkInDateText) == false) {
+            return "the date you entered has already passed";
+        }
+        if (isDateFormatCorrect(checkOutDateField.getText()) && is_checkOutDate_after_checkInDate() == false) {
+            return "check in date should be before the check out date";
+        }
+        return "";
+    }
+
+    private String textInCheckOutDateLbl() {
+        String checkOutDateText = checkOutDateField.getText();
+        if (isDateFormatCorrect(checkOutDateText) == false) {
+            return "date formate : MM/dd/yyyy";
+        }
+        if (date_has_not_passed_yet(checkOutDateText) == false) {
+            return "the date you entered has already passed";
+        }
+        if (isDateFormatCorrect(checkOutDateField.getText()) && is_checkOutDate_after_checkInDate() == false) {
+            return "check out date should be after the check in date";
+        }
+        return "";
+    }
+
+    public void messageLblCheckInText() {
+        messageLblCheckIn.setText(textInCheckInDateLbl());
+        messageLblCheckIn.setForeground(Color.red);
+        messageLblCheckIn.setFont(messageLblCheckOut.getFont().deriveFont(Font.PLAIN));
+
+        messageLblCheckOut.setText(textInCheckOutDateLbl());
+        messageLblCheckOut.setForeground(Color.red);
+        messageLblCheckOut.setFont(messageLblCheckOut.getFont().deriveFont(Font.PLAIN));
+
+    }
+
+    public void messageLblCheckOutText() {
+        messageLblCheckOut.setText(textInCheckOutDateLbl());
+        messageLblCheckOut.setForeground(Color.red);
+        messageLblCheckOut.setFont(messageLblCheckOut.getFont().deriveFont(Font.PLAIN));
+
+        messageLblCheckIn.setText(textInCheckInDateLbl());
+        messageLblCheckIn.setForeground(Color.red);
+        messageLblCheckIn.setFont(messageLblCheckOut.getFont().deriveFont(Font.PLAIN));
+    }
+
+    public void pickRoom() {
+        if (isDateFormatCorrect(checkInDateField.getText())==false) {
+            JOptionPane.showMessageDialog(this, "incorrect date format in \"check in date\" field");
+            return;
+        }
+        if (isDateFormatCorrect(checkOutDateField.getText())==false) {
+            JOptionPane.showMessageDialog(this, "incorrect date format in \" check in date\" field");
+            return;
+        }
+        if (date_has_not_passed_yet(checkInDateField.getText())==false) {
+            JOptionPane.showMessageDialog(this, " date you entered as \"check in date\"  has already passed");
+            return;
+        }
+        if(is_checkOutDate_after_checkInDate()==false){
+            JOptionPane.showMessageDialog(this, "\"check out date\" should be after the \"check in date\"");
+            return;
+        }
+        try{loadTable();}catch(Exception e){
+        JOptionPane.showMessageDialog(this, e.getMessage());}
+    }
 }
