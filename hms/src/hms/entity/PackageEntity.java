@@ -12,7 +12,9 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -32,7 +34,7 @@ import net.bytebuddy.build.HashCodeAndEqualsPlugin;
 @Entity
 @Table(name="Package")
 
-public class PackageEntity  implements  Serializable {
+public class PackageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="PackageNumber")
@@ -48,6 +50,10 @@ public class PackageEntity  implements  Serializable {
         this.description = description;
         this.charge = charge;
     }
+    
+    @Transient //untested
+    @OneToMany(mappedBy = "reservation_Detail", targetEntity = ReservationDetailEntity.class)
+    List<ReservationDetailEntity> reservationDetails;
     
    /* @ManyToMany
     @JoinTable(

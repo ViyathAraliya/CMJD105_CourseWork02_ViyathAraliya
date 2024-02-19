@@ -57,9 +57,12 @@ public class ReservationEntity {
     @ManyToOne(cascade = CascadeType.ALL    )
     @JoinColumn(name="Custumer_ID",nullable = false)
     private CustomerEntity customerEntity;
+   
+    
+    
     
     @Transient
     @OneToMany(mappedBy = "reservationDetailEntity", targetEntity = ReservationDetailEntity.class)
-    private List<ReservationDetailEntity>  reservationDetailEntities;
+    private List<ReservationDetailEntity>  reservationDetails;
     
 }

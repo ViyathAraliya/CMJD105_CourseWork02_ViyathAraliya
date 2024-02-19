@@ -11,7 +11,12 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class ReservationDetailEntityID implements Serializable{
     
-      @ManyToOne 
+    @ManyToOne
+    @JoinColumn(name="reservationID")
+    private ReservationEntity reservation;
+    
+    
+     @ManyToOne 
     @JoinColumn(name="packageId")
     private PackageEntity pacakage;
     

@@ -3,7 +3,7 @@ package hms.repository.custom.implementation;
 
 import hms.entity.CatagoryEntity;
 import hms.repository.custom.CatagoryRepository;
-import hms.util.CatagorySessionFactoryConfiguration;
+import hms.service.util.SessionFactoryConfiguration;
 import org.hibernate.Session;
 import java.util.List;
 
@@ -12,8 +12,7 @@ public class CatagoryRepositoryImplementation
 {
     
   
-    Session session=CatagorySessionFactoryConfiguration.getInstance().getSession();
-    
+   Session session=SessionFactoryConfiguration.getInstance().getSession();
     public String save(CatagoryEntity e) throws Exception {
         return "method not created yet";
     }

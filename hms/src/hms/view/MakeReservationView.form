@@ -26,27 +26,27 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Component id="customerTitleLble" min="-2" pref="157" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="579" max="-2" attributes="0"/>
+              <EmptySpace min="579" pref="593" max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="customerNameLbl" max="32767" attributes="0"/>
+                  <Component id="nicLbl" alignment="0" max="32767" attributes="0"/>
+                  <Component id="phoneNumberLbl" alignment="0" max="32767" attributes="0"/>
+                  <Component id="emailLbl" alignment="0" max="32767" attributes="0"/>
+                  <Component id="addressLbl" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="customerNameField" max="32767" attributes="0"/>
+                  <Component id="nicField" max="32767" attributes="0"/>
+                  <Component id="phoneNumberField" max="32767" attributes="0"/>
+                  <Component id="emailField" max="32767" attributes="0"/>
+                  <Component id="addressField" pref="144" max="32767" attributes="0"/>
+              </Group>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="customerNameLbl" max="32767" attributes="0"/>
-                          <Component id="nicLbl" alignment="0" max="32767" attributes="0"/>
-                          <Component id="phoneNumberLbl" alignment="0" max="32767" attributes="0"/>
-                          <Component id="emailLbl" alignment="0" max="32767" attributes="0"/>
-                          <Component id="addressLbl" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="customerNameField" max="32767" attributes="0"/>
-                          <Component id="nicField" max="32767" attributes="0"/>
-                          <Component id="phoneNumberField" max="32767" attributes="0"/>
-                          <Component id="emailField" max="32767" attributes="0"/>
-                          <Component id="addressField" pref="144" max="32767" attributes="0"/>
-                      </Group>
+                  <Group type="102" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -62,32 +62,36 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="fromDateLbl" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
-                                  <Component id="toLbl" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
-                                  <Component id="pickRoomBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="checkInDateLbl" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
+                                  <Component id="checkOutLbl" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="bookTillDateField" max="32767" attributes="0"/>
-                                  <Component id="bookFromDateField" pref="134" max="32767" attributes="0"/>
-                                  <Component id="jComboBox1" max="32767" attributes="0"/>
+                                  <Component id="checkOutDateField" max="32767" attributes="0"/>
+                                  <Component id="checkInDateField" pref="134" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="messageLblFromDate" min="-2" pref="198" max="-2" attributes="0"/>
-                                  <Component id="messageLblTillDate" min="-2" pref="212" max="-2" attributes="0"/>
+                                  <Component id="messageLblCheckIn" min="-2" pref="198" max="-2" attributes="0"/>
+                                  <Component id="messageLblCheckOut" min="-2" pref="212" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="makeReservationBtn" min="-2" pref="138" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="homeMenuBtn" min="-2" pref="117" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="pickRoomBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="makeReservationBtn" min="-2" pref="138" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="homeMenuBtn" min="-2" pref="117" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="211" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -115,23 +119,21 @@
                   <Component id="phoneNumberLbl" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="phoneNumberField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="fromDateLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bookFromDateField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="messageLblFromDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="checkInDateLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="checkInDateField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="messageLblCheckIn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="bookTillDateField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="messageLblTillDate" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="toLbl" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="checkOutDateField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="messageLblCheckOut" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="emailLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="emailField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="checkOutLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -139,14 +141,13 @@
                   <Component id="addressLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="addressField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="pickRoomBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+              <EmptySpace pref="176" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="makeReservationBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="homeMenuBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -197,9 +198,9 @@
         <Property name="text" type="java.lang.String" value="Package "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="fromDateLbl">
+    <Component class="javax.swing.JLabel" name="checkInDateLbl">
       <Properties>
-        <Property name="text" type="java.lang.String" value="book from"/>
+        <Property name="text" type="java.lang.String" value="check in date"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="roomCatagoryLbl">
@@ -213,6 +214,9 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="catagoryComboBoxActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -227,7 +231,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="bookFromDateField">
+    <Component class="javax.swing.JTextField" name="checkInDateField">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="66" type="rgb"/>
@@ -235,7 +239,7 @@
         <Property name="text" type="java.lang.String" value="MM/dd/yyyy"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bookFromDateFieldActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkInDateFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="makeReservationBtn">
@@ -248,12 +252,12 @@
         <Property name="text" type="java.lang.String" value="back to home "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="toLbl">
+    <Component class="javax.swing.JLabel" name="checkOutLbl">
       <Properties>
-        <Property name="text" type="java.lang.String" value="book till"/>
+        <Property name="text" type="java.lang.String" value="check out date"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="bookTillDateField">
+    <Component class="javax.swing.JTextField" name="checkOutDateField">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="66" type="rgb"/>
@@ -261,35 +265,23 @@
         <Property name="text" type="java.lang.String" value="MM/dd/yyyy"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="messageLblCheckIn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="messageLblCheckOut">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="."/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JButton" name="pickRoomBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="pick a room"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="messageLblFromDate">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="."/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="messageLblTillDate">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="."/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pickRoomBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

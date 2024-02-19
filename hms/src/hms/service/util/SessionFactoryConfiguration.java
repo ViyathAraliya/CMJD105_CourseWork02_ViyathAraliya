@@ -30,7 +30,7 @@ public class SessionFactoryConfiguration {
         sessionFactory = configuration.buildSessionFactory();
     }
 
-    public static SessionFactoryConfiguration getSessionFactoryConfiguration() {
+    public static SessionFactoryConfiguration getInstance() {
         if (sessionFactoryConfiguration == null) {
             sessionFactoryConfiguration = new SessionFactoryConfiguration();
         }

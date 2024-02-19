@@ -3,6 +3,7 @@ package hms.service;
 
 
 import hms.service.custom.implementation.CatagoryServiceImplementation;
+import hms.service.custom.implementation.RoomServiceImplementation;
 import hms.service.custom.implementation.UserServiceImplementation;
 
 public class ServiceFactory {
@@ -25,13 +26,14 @@ public class ServiceFactory {
                 return new UserServiceImplementation();
             case CATAGORY:
                 return new CatagoryServiceImplementation();
-            
+            case ROOM:
+                return new RoomServiceImplementation();
             default:
                 return null;
         }
     }
 
     public enum ServiceType {
-        USER, CATAGORY}
+        USER, CATAGORY,ROOM}
 
 }

@@ -14,7 +14,7 @@ public class ReservationDetailEntity{
   //  @Column(name="ij")
     private ReservationDetailEntityID id=new ReservationDetailEntityID();
     
-    @ManyToOne
+  /*  @ManyToOne
     @JoinColumn(name="reservationID",nullable = false)
-    private ReservationEntity reservationEntity; 
+    private ReservationEntity reservationEntity; */
 }

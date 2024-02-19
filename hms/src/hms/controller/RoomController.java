@@ -1,14 +1,16 @@
-
-
 package hms.controller;
 
-import hms.entity.RoomEntity;
-import hms.repository.RepositoryFactory;
-import hms.repository.custom.RoomRepository;
+import hms.dto.RoomDto;
+import hms.service.ServiceFactory;
+import hms.service.custom.RoomService;
+import java.util.List;
 
 public class RoomController {
-    RoomRepository r=(RoomRepository)RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.ROOM);
-    public String saveRoom(RoomEntity e)throws Exception{
-        return r.save(e);
+
+    RoomService roomService = (RoomService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.ROOM);
+
+    public List<RoomDto> getAll() throws Exception {
+        return roomService.getAll();
     }
+
 }
