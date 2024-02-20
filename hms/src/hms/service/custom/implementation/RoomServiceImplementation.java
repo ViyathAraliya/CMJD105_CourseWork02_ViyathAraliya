@@ -28,7 +28,7 @@ public class RoomServiceImplementation implements  RoomService{
     List<RoomEntity> roomEntities=roomRepository.getAll();
     List<RoomDto> roomDtos=new ArrayList<RoomDto>();
     for(RoomEntity e:roomEntities){
-        roomDtos.add(new RoomDto(e.getId(), e.getCatagory(), e.getBookedFrom(), e.getBookedTill(), e.getCatagoryEntity().getId()));}
+        roomDtos.add(new RoomDto(e.getId(),e.getBookedFrom(), e.getBookedTill(), e.getCatagoryEntity().getId()));}
     return roomDtos;
   }
 

@@ -14,4 +14,7 @@ public class CatagoryController {
     
     public List<CatagoryDto> getAll()throws Exception{
         return catagoryService.getAll();}
+    public CatagoryDto getById(Integer id)throws Exception{
+        return catagoryService.getById(id);
+    }
 }

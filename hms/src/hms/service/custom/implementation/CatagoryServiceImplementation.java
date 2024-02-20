@@ -23,5 +23,11 @@ public class CatagoryServiceImplementation implements CatagoryService {
         }
         return catagoryDtos;
     }
+   
+    public CatagoryDto getById(Integer id) throws Exception{
+       CatagoryEntity catagoryEntity=catagoryRepository.getByName(id);
+       return new CatagoryDto(catagoryEntity.getId(), catagoryEntity.getName(), 
+               catagoryEntity.getDescription(), catagoryEntity.getChargeForCatagory());
+    }
 
 }

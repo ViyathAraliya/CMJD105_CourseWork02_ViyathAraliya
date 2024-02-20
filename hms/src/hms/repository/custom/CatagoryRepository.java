@@ -5,6 +5,6 @@ import hms.entity.CatagoryEntity;
 import hms.repository.CrudRepository;
 
 
-public interface CatagoryRepository extends CrudRepository<CatagoryEntity, String> {
+public interface CatagoryRepository extends CrudRepository<CatagoryEntity, Integer> {
     
 }

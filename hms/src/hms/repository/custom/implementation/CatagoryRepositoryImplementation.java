@@ -18,11 +18,11 @@ public class CatagoryRepositoryImplementation
     }
 
   
-    public CatagoryEntity getByName(String name) throws Exception {
-      return null;
+    public CatagoryEntity getByName(Integer name) throws Exception {
+      return  session.get(CatagoryEntity.class, name);
     }
 
-    public boolean doesNameExist(String name) throws Exception {
+    public boolean doesNameExist(Integer name) throws Exception {
       return false;
     }
 
