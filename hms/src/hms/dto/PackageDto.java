@@ -5,19 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
-
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@AllArgsConstructor
 
-public class CatagoryDto {
+
+public class PackageDto {
     
-    private Integer id;
-    private String catagoryName;
+    private Integer packageID;
     private String description;
-    private Integer chargeForCatagory;
+    private Integer charge_for_package;
+    
+    
+
 }

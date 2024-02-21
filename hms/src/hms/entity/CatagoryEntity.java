@@ -34,7 +34,7 @@ public class CatagoryEntity {
     
     @Id
     @Column(name="catagoryid")
-     @GeneratedValue(strategy = GenerationType.AUTO)
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @Column(name="catagoryName")
@@ -44,9 +44,9 @@ public class CatagoryEntity {
     private String description;
     
     @Column(name="chargeforcatagory")
-    private String chargeForCatagory;
+    private Integer chargeForCatagory;
     
-public CatagoryEntity(String name, String description, String chargeForCatagory) {
+public CatagoryEntity(String name, String description, Integer chargeForCatagory) {
         this.name = name;
         this.description = description;
         this.chargeForCatagory = chargeForCatagory;

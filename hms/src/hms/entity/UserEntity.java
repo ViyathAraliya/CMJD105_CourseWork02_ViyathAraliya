@@ -28,7 +28,7 @@ import lombok.ToString;
 public class UserEntity {
     @Id
     @Column(name="UserID")
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     
     @Column(name="User_Name")

@@ -33,7 +33,7 @@ import lombok.ToString;
 @Table(name="Room")
 public class RoomEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="RoomID")
     private Integer id;
     

@@ -5,19 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
-
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+public class CustomerDto {
 
-public class CatagoryDto {
     
-    private Integer id;
-    private String catagoryName;
-    private String description;
-    private Integer chargeForCatagory;
+    private String name;
+    private String nic;
+    private String phoneNumber;
+    private String email;
+    private String address;
 }

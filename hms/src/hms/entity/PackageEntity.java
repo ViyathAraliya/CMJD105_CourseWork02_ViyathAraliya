@@ -1,27 +1,23 @@
 
 package hms.entity;
 
-import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import net.bytebuddy.build.HashCodeAndEqualsPlugin;
+
 
 
 
@@ -36,7 +32,7 @@ import net.bytebuddy.build.HashCodeAndEqualsPlugin;
 
 public class PackageEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="PackageNumber")
     private Integer id;
     
@@ -44,9 +40,9 @@ public class PackageEntity {
     private String description;
     
     @Column(name="chargeForPackage")
-    private String charge;
+    private Integer charge;
 
-    public PackageEntity(String description, String charge) {
+    public PackageEntity(String description, Integer charge) {
         this.description = description;
         this.charge = charge;
     }

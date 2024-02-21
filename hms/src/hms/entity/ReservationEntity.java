@@ -37,7 +37,7 @@ import lombok.ToString;
 public class ReservationEntity {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ReservationID")
     private Integer id;
     

@@ -31,7 +31,7 @@ public class CustomerEntity {
 
     @Id
     @Column(name = "CustomerID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name="Name")
@@ -49,8 +49,7 @@ public class CustomerEntity {
     @Column(name="Address")
     private String address;
     
-    @Column(name="NumberOfNights")
-    private Integer noOfNight;
+
    
     public CustomerEntity(String name,String nic, String phoneNumber,String email, String address ){
         this.name=name;

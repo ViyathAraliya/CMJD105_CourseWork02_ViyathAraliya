@@ -3,7 +3,8 @@ package hms.repository.custom.implementation;
 
 import hms.repository.custom.UserRepository;
 import hms.entity.UserEntity;
-import hms.util.UserSessionFactoryConfiguration;
+import hms.service.util.SessionFactoryConfiguration;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
@@ -13,7 +14,7 @@ import org.hibernate.Transaction;
 
 public class UserRepositoryImplementation implements UserRepository {
 
-Session session=UserSessionFactoryConfiguration.getInstance().getSession();
+Session session=SessionFactoryConfiguration.getInstance().getSession();
     public String save(UserEntity userEntity) {
         Transaction transaction = session.beginTransaction();
         try {
