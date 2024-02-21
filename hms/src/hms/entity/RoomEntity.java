@@ -1,7 +1,7 @@
 
 package hms.entity;
 
-import java.io.Serializable;
+
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -42,11 +42,11 @@ public class RoomEntity {
     @Column(name="catagory")
     private String catagory;
 
-    @Column(name="booked_From")
-    private Date bookedFrom;
+    @Column(name="check_in")
+    private Date check_in_date;
     
-    @Column(name="booked_Till")
-    private Date bookedTill;
+    @Column(name="check_outl")
+    private Date check_out_date;
     
     
     public RoomEntity(String catagory) {

@@ -3,7 +3,7 @@ package hms.repository.custom.implementation;
 
 import hms.entity.PackageEntity;
 import hms.repository.custom.PackageRepository;
-import hms.service.util.SessionFactoryConfiguration;
+import hms.util.SessionFactoryConfiguration;
 import java.util.List;
 import org.hibernate.Session;
 
@@ -13,7 +13,7 @@ public class PackageRepositoryImplementation implements PackageRepository{
     Session session=SessionFactoryConfiguration.getInstance().getSession();
 
     @Override
-    public String save(PackageEntity e) throws Exception {
+    public Integer save(PackageEntity e) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 

@@ -1,4 +1,4 @@
-package hms.service.util;
+package hms.util;
 
 import hms.entity.CatagoryEntity;
 import hms.entity.CustomerEntity;

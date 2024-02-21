@@ -4,7 +4,10 @@ import hms.controller.CatagoryController;
 import hms.controller.RoomController;
 import hms.controller.PackageContoller;
 import hms.dto.CatagoryDto;
+import hms.dto.CustomerDto;
 import hms.dto.PackageDto;
+import hms.dto.ReservationDetailDto;
+import hms.dto.ReservationDto;
 import hms.dto.RoomDto;
 import java.awt.Color;
 
@@ -29,6 +32,9 @@ public class MakeReservationView extends javax.swing.JFrame {
     private final RoomController ROOM_CONTROLLER;
     private final PackageContoller PACKAGE_CONTROLER;
     private List<Integer> roomIds;
+    private CustomerDto customerDto;
+    private ReservationDto reservationDto;
+    private List<ReservationDetailDto>   reservationDetailDtos;
     
 
     public MakeReservationView() {
@@ -36,6 +42,7 @@ public class MakeReservationView extends javax.swing.JFrame {
         CATAGORY_CONTROLLER = new CatagoryController();
         ROOM_CONTROLLER = new RoomController();
         PACKAGE_CONTROLER = new PackageContoller();
+         reservationDetailDtos=new ArrayList<>();
 
         initComponents();
         loadPackageCombpBoxes();

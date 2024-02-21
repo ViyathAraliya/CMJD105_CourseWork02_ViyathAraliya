@@ -3,7 +3,7 @@ package hms.repository.custom.implementation;
 
 import hms.entity.CatagoryEntity;
 import hms.repository.custom.CatagoryRepository;
-import hms.service.util.SessionFactoryConfiguration;
+import hms.util.SessionFactoryConfiguration;
 import org.hibernate.Session;
 import java.util.List;
 
@@ -13,8 +13,8 @@ public class CatagoryRepositoryImplementation
     
   
    Session session=SessionFactoryConfiguration.getInstance().getSession();
-    public String save(CatagoryEntity e) throws Exception {
-        return "method not created yet";
+    public Integer save(CatagoryEntity e) throws Exception {
+         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
   
@@ -34,6 +34,11 @@ public class CatagoryRepositoryImplementation
     public List<CatagoryEntity> getAll() throws Exception {
         List<CatagoryEntity> catagoryEntities=session.createQuery("from CatagoryEntity").getResultList();
                return catagoryEntities;
+    }
+
+    @Override
+    public boolean update(CatagoryEntity e) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
    
 }

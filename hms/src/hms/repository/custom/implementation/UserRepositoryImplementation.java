@@ -3,7 +3,7 @@ package hms.repository.custom.implementation;
 
 import hms.repository.custom.UserRepository;
 import hms.entity.UserEntity;
-import hms.service.util.SessionFactoryConfiguration;
+import hms.util.SessionFactoryConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
