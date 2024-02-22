@@ -24,4 +24,11 @@ public class PackageServiceImplementation implements PackageService{
         
     }
 
+    @Override
+    public PackageDto getByDescription(String description) throws Exception {
+      
+           PackageEntity e= packageRepository.getByName(description);
+           return  new PackageDto(e.getId(), e.getDescription(), e.getCharge());
+    }
+
 }

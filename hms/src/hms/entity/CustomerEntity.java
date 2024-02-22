@@ -58,6 +58,13 @@ public class CustomerEntity {
         this.email=email;
         this.address=address;
     }
+       public CustomerEntity(Integer id,String name,String nic, String phoneNumber,String email, String address ){
+        this.name=name;
+        this.nic=nic;
+        this.phoneNumber=phoneNumber;
+        this.email=email;
+        this.address=address;
+    }
    
     @Transient
     @OneToMany(mappedBy = "customerEntity",targetEntity = ReservationEntity.class)

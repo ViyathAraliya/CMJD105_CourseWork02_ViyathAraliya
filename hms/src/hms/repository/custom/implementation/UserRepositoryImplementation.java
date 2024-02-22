@@ -29,17 +29,12 @@ Session session=SessionFactoryConfiguration.getInstance().getSession();
     }
 
     public UserEntity getByName(String userName) {
-        try {
-            System.out.print(userName);
+       
             String hql = "FROM UserEntity WHERE userName='" + userName + "'";
             List list = session.createQuery(hql).getResultList();
             UserEntity userEntity = (UserEntity) list.get(0);
             return userEntity;
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
     }
 
     public boolean doesNameExist(String name) {
@@ -59,5 +54,15 @@ Session session=SessionFactoryConfiguration.getInstance().getSession();
 
     public ArrayList<UserEntity> getAll() {
         return null;
+    }
+
+    @Override
+    public boolean update(UserEntity e) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+    @Override
+    public UserEntity getByID(String id) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

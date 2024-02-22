@@ -25,7 +25,7 @@ public class CatagoryServiceImplementation implements CatagoryService {
     }
    
     public CatagoryDto getById(Integer id) throws Exception{
-       CatagoryEntity catagoryEntity=catagoryRepository.getByName(id);
+       CatagoryEntity catagoryEntity=catagoryRepository.getByID(id);
        return new CatagoryDto(catagoryEntity.getId(), catagoryEntity.getName(), 
                catagoryEntity.getDescription(), catagoryEntity.getChargeForCatagory());
     }

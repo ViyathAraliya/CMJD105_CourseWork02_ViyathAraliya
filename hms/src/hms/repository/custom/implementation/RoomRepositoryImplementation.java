@@ -16,12 +16,12 @@ public class RoomRepositoryImplementation implements RoomRepository {
         return (Integer)session.save(roomEntity);
     }
 
-    public RoomEntity getByName(Integer name) throws Exception {
+    public RoomEntity getByName(String name) throws Exception {
         return null;
     }
 
     ;
-  public boolean doesNameExist(Integer name) throws Exception {
+  public boolean doesNameExist(String name) throws Exception {
         return false;
     }
 
@@ -47,6 +47,11 @@ public class RoomRepositoryImplementation implements RoomRepository {
                    && check_out_date.equals(entityFromTable.getCheck_out_date());
         
     
+    }
+
+    @Override
+    public RoomEntity getByID(Integer id) throws Exception {
+        return session.get(RoomEntity.class, id);
     }
 
 }

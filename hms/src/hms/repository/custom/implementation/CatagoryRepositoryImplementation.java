@@ -18,11 +18,8 @@ public class CatagoryRepositoryImplementation
     }
 
   
-    public CatagoryEntity getByName(Integer name) throws Exception {
-      return  session.get(CatagoryEntity.class, name);
-    }
-
-    public boolean doesNameExist(Integer name) throws Exception {
+    
+    public boolean doesNameExist(String name) throws Exception {
       return false;
     }
 
@@ -38,6 +35,16 @@ public class CatagoryRepositoryImplementation
 
     @Override
     public boolean update(CatagoryEntity e) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+    @Override
+    public CatagoryEntity getByID(Integer id) throws Exception {
+       return session.get(CatagoryEntity.class, id);
+    }
+
+    @Override
+    public CatagoryEntity getByName(String name) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
    

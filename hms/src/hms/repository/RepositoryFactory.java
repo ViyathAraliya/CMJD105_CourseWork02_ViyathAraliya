@@ -3,7 +3,10 @@ package hms.repository;
 
 
 import hms.repository.custom.implementation.CatagoryRepositoryImplementation;
+import hms.repository.custom.implementation.CustomerRepositoryImplementation;
 import hms.repository.custom.implementation.PackageRepositoryImplementation;
+import hms.repository.custom.implementation.ReservationDetailRepositoryImplementation;
+import hms.repository.custom.implementation.ReservationRepositoryImplementation;
 import hms.repository.custom.implementation.RoomRepositoryImplementation;
 import hms.repository.custom.implementation.UserRepositoryImplementation;
 
@@ -30,13 +33,19 @@ public class RepositoryFactory {
                 return new CatagoryRepositoryImplementation();
             case PACKAGE:
                 return new PackageRepositoryImplementation();
+            case RESERVATION:
+                return new ReservationRepositoryImplementation();
+            case CUSTOMER:
+                return new CustomerRepositoryImplementation();
+            case RESERVATION_DETAIL:
+                return new ReservationDetailRepositoryImplementation();
             default:
                 return null;
         }
     }
 
     public enum RepositoryType {
-        USER,ROOM,CATAGORY,PACKAGE
+        USER,ROOM,CATAGORY,PACKAGE,RESERVATION,CUSTOMER,RESERVATION_DETAIL
     }
 
 }

@@ -14,6 +14,16 @@ import lombok.Setter;
 @Setter
 public class ReservationDetailDto {
 
+    private Integer reservationId;
     private Integer packageID;
     private Integer roomID;
-}
+    
+    //public ReservationDetailDto(){}
+
+    public ReservationDetailDto(Integer packageID, Integer roomID) {
+        this.packageID = packageID;
+        this.roomID = roomID;
+    }
+    
+    
+    }
