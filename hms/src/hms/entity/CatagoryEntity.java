@@ -46,7 +46,8 @@ public class CatagoryEntity {
     @Column(name="chargeforcatagory")
     private Integer chargeForCatagory;
     
-public CatagoryEntity(String name, String description, Integer chargeForCatagory) {
+public CatagoryEntity(Integer id,String name, String description, Integer chargeForCatagory) {
+        this.id=id;
         this.name = name;
         this.description = description;
         this.chargeForCatagory = chargeForCatagory;

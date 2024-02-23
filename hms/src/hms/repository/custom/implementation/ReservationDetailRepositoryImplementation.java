@@ -4,61 +4,59 @@ package hms.repository.custom.implementation;
 import hms.entity.ReservationDetailEntity;
 import hms.entity.ReservationDetailEntityID;
 import hms.repository.custom.ReservationDetailRepository;
-import hms.util.SessionFactoryConfiguration;
+
 import java.util.List;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+
 
 
 public class ReservationDetailRepositoryImplementation implements ReservationDetailRepository{
 
-    Session session=SessionFactoryConfiguration.getInstance().getSession();
+   
     
-    public ReservationDetailEntityID saveReservationDetail(ReservationDetailEntity reservationDetailEntity) throws Exception {
-        Transaction transaction=session.beginTransaction();
-        try{
+    public ReservationDetailEntityID saveReservationDetail(ReservationDetailEntity reservationDetailEntity,Session session) throws Exception {
+       
            ReservationDetailEntityID id=(ReservationDetailEntityID)session.save(reservationDetailEntity);
-            transaction.commit();
+           
+          
             return id ;
-        }catch(Exception e ){
-        transaction.rollback();
-        return null;}
+      
     }
     
 
     @Override
-    public ReservationDetailEntity getByName(String name) throws Exception {
+    public ReservationDetailEntity getByName(String name,Session session) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
-    public boolean doesNameExist(String name) throws Exception {
+    public boolean doesNameExist(String name,Session session) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean isEmpty(Session session) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public List<ReservationDetailEntity> getAll() throws Exception {
+    public List<ReservationDetailEntity> getAll(Session session) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
-    public boolean update(ReservationDetailEntity e) throws Exception {
+    public boolean update(ReservationDetailEntity e,Session session) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
-    public ReservationDetailEntity getByID(Integer id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ReservationDetailEntity getByID(Integer id,Session session) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
-    public Integer save(ReservationDetailEntity e) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Integer save(ReservationDetailEntity e,Session session) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
     
 

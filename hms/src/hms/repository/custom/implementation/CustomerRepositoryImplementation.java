@@ -2,37 +2,32 @@
 package hms.repository.custom.implementation;
 
 import hms.entity.CustomerEntity;
-import hms.entity.UserEntity;
+
 import hms.repository.custom.CustomerRepository;
-import hms.util.SessionFactoryConfiguration;
+
 import java.util.List;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+
 
 
 public class CustomerRepositoryImplementation implements CustomerRepository{
 
-    Session session=SessionFactoryConfiguration.getInstance().getSession();
-    
+ 
     
     @Override
-    public Integer save(CustomerEntity customerEntity) throws Exception {
-        Transaction transaction=session.beginTransaction();
-        try {
+    public Integer save(CustomerEntity customerEntity,Session session) throws Exception {
+        
             Integer id = (Integer) session.save(customerEntity);
-            transaction.commit();
+           
             return id;
-        } catch (Exception e) {
-            transaction.rollback();
-            return -1;
-        }
+       
     }
 
     @Override
-    public CustomerEntity getByName(String nic) throws Exception {
+    public CustomerEntity getByName(String nic,Session session) throws Exception {
          throw new UnsupportedOperationException("Not supported yet."); 
     }
-    public CustomerEntity getByNic(String nic) throws Exception{
+    public CustomerEntity getByNic(String nic,Session session) throws Exception{
         String hql = "FROM CustomerEntity WHERE nic='" + nic + "'";
             List list = session.createQuery(hql).getResultList();
             CustomerEntity customerEntity = (CustomerEntity) list.get(0);
@@ -40,32 +35,32 @@ public class CustomerRepositoryImplementation implements CustomerRepository{
     }
 
     @Override
-    public boolean doesNameExist(String name) throws Exception {
+    public boolean doesNameExist(String name,Session session) throws Exception {
       throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean isEmpty(Session session) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
-    public List<CustomerEntity> getAll() throws Exception {
+    public List<CustomerEntity> getAll(Session session) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
-    public boolean update(CustomerEntity e) throws Exception {
+    public boolean update(CustomerEntity e,Session session) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
-    public CustomerEntity getByID(Integer id) throws Exception {
+    public CustomerEntity getByID(Integer id,Session session) throws Exception {
        throw new UnsupportedOperationException("Not supported yet.");   
     }
 
     @Override
-    public boolean doesCustomerExists(String nic) throws Exception {
+    public boolean doesCustomerExists(String nic,Session session) throws Exception {
        String hql = "select 1 from CustomerEntity where exists (select 1 from CustomerEntity  where nic='"
                 + nic + "')";
         return session.createQuery(hql).uniqueResult() != null;

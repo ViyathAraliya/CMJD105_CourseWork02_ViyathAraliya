@@ -17,4 +17,6 @@ public class CatagoryController {
     public CatagoryDto getById(Integer id)throws Exception{
         return catagoryService.getById(id);
     }
+    public CatagoryDto getByName(String name) throws Exception{
+        return catagoryService.getByName(name);}
 }

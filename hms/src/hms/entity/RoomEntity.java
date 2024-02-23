@@ -37,21 +37,21 @@ public class RoomEntity {
     @Column(name="RoomID")
     private Integer id;
     
-   
   
-    @Column(name="catagory")
-    private String catagory;
-
-    @Column(name="check_in")
+    @Column(name="booked_from")
     private Date check_in_date;
     
-    @Column(name="check_outl")
+    @Column(name="booked_till")
     private Date check_out_date;
-    
-    
-    public RoomEntity(String catagory) {
-        this.catagory = catagory;
+
+    public RoomEntity(Integer id, Date check_in_date, Date check_out_date, CatagoryEntity catagoryEntity) {
+        this.id = id;
+        this.check_in_date = check_in_date;
+        this.check_out_date = check_out_date;
+        this.catagoryEntity = catagoryEntity;
     }
+    
+   
     
     
  @ManyToOne

@@ -42,7 +42,8 @@ public class PackageEntity {
     @Column(name="chargeForPackage")
     private Integer charge;
 
-    public PackageEntity(String description, Integer charge) {
+    public PackageEntity(Integer id,String description, Integer charge) {
+        this.id=id;
         this.description = description;
         this.charge = charge;
     }

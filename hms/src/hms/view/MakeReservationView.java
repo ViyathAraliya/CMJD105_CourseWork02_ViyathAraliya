@@ -28,7 +28,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 public class MakeReservationView extends javax.swing.JFrame {
-   
+
     private final CatagoryController CATAGORY_CONTROLLER;
     private final RoomController ROOM_CONTROLLER;
     private final PackageContoller PACKAGE_CONTROLER;
@@ -36,10 +36,10 @@ public class MakeReservationView extends javax.swing.JFrame {
     // private List<Integer> roomIds;
 
     private List<ReservationDetailDto> reservationDetailDtos;
-    private String reservationDetailsString = "<html>reservation details : <br> ";
+    private String reservationDetailsString="<html> reservation details <br>";
 
     public MakeReservationView() {
-       
+
         // roomIds = new ArrayList<>();
         CATAGORY_CONTROLLER = new CatagoryController();
         ROOM_CONTROLLER = new RoomController();
@@ -48,7 +48,7 @@ public class MakeReservationView extends javax.swing.JFrame {
         reservationDetailDtos = new ArrayList<>();
 
         initComponents();
-         setFieldsAndDates();
+        setFieldsAndDates();
         loadPackageCombpBoxes();
         try {
             loadTable_dates_are_not_validated();
@@ -358,12 +358,13 @@ public class MakeReservationView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(addressLbl)
-                            .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(addRoomBtn)
-                            .addComponent(packageLbl)
-                            .addComponent(packageComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(addressLbl)
+                                .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(packageLbl)
+                                .addComponent(packageComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -435,7 +436,7 @@ public class MakeReservationView extends javax.swing.JFrame {
         DefaultTableModel dtm = new DefaultTableModel(null, titles);
         for (int i = 0; i < roomDtos.size(); i++) {
             RoomDto roomDto = roomDtos.get(i);
-            CatagoryDto catagoryDto = CATAGORY_CONTROLLER.getById(roomDto.getCatagoryID());
+            CatagoryDto catagoryDto = CATAGORY_CONTROLLER.getById(roomDto.getCatagoryDto().getId());
             String catagoyName = catagoryDto.getCatagoryName();
             Integer chargeForCatgory = catagoryDto.getChargeForCatagory();
 
@@ -473,7 +474,7 @@ public class MakeReservationView extends javax.swing.JFrame {
         DefaultTableModel dtm = new DefaultTableModel(null, titles);
         for (int i = 0; i < roomDtos.size(); i++) {
             RoomDto roomDto = roomDtos.get(i);
-            CatagoryDto catagoryDto = CATAGORY_CONTROLLER.getById(roomDto.getCatagoryID());
+            CatagoryDto catagoryDto = CATAGORY_CONTROLLER.getById(roomDto.getCatagoryDto().getId());
             String catagoyName = catagoryDto.getCatagoryName();
             Integer chargeForCatgory = catagoryDto.getChargeForCatagory();
 
@@ -611,25 +612,35 @@ public class MakeReservationView extends javax.swing.JFrame {
                     + "for your prefered dates");
             return;
         }
+       
         Integer roomId = (Integer) room_table.getValueAt(room_table.getSelectedRow(), 0);
         for (ReservationDetailDto dto : reservationDetailDtos) {
-            if (dto.getRoomID() == roomId) {
+            if (dto.getRoom().getId() == roomId) {
                 JOptionPane.showMessageDialog(this, "This room has already been added");
                 return;
             }
         }
-
+ 
         if (((String) packageComboBox.getSelectedItem()).equals("-select a package")) {
             JOptionPane.showMessageDialog(this, "Please select a package for this room");
             return;
         }
+     
         String packageDescription = (String) packageComboBox
                 .getSelectedItem();
+
+        /*new*/   
+        Date check_in_date = new SimpleDateFormat("MM/dd/yyyy").parse(checkInDateField.getText());
+        Date check_out_date = new SimpleDateFormat("MM/dd/yyyy").parse(checkOutDateField.getText());
+        String catogoryName=(String)room_table.getValueAt(room_table.getSelectedRow(),1);//error here
+      
+        CatagoryDto catagoryDto=CATAGORY_CONTROLLER.getByName(catogoryName);
+        RoomDto roomDto = new RoomDto(roomId, check_in_date, check_out_date, catagoryDto);
         ReservationDetailDto reservationDetailDto
                 = new ReservationDetailDto(PACKAGE_CONTROLER
-                        .getByDescription(packageDescription).getPackageID(),
-                        roomId);
-
+                        .getByDescription(packageDescription),
+                        roomDto);
+   
         reservationDetailDtos.add(reservationDetailDto);
 
         reservationDetailsString = reservationDetailsString + " Room No : " + roomId
@@ -699,13 +710,15 @@ public class MakeReservationView extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(this, RESEERVATION_CONTROLLER.makeReservation(reservationDto));
     }
-    public void setFieldsAndDates(){
+
+    public void setFieldsAndDates() {
         customerNameField.setText("Viyath");
         nicField.setText("933554520V");
         phoneNumberField.setText("0702476555");
         emailField.setText("viyatharaliya@gmail.com");
         addressField.setText("240/41D,yatiwawela katugastota");
-        checkInDateField.setText(("02/23/2024"));
-        checkOutDateField.setText("02/25/2024");}
+        checkInDateField.setText(("02/24/2024"));
+        checkOutDateField.setText("02/25/2024");
+    }
 
 }

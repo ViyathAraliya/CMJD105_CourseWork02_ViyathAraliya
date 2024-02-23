@@ -3,8 +3,6 @@ package hms.repository.custom.implementation;
 
 import hms.repository.custom.UserRepository;
 import hms.entity.UserEntity;
-import hms.util.SessionFactoryConfiguration;
-
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
@@ -14,8 +12,8 @@ import org.hibernate.Transaction;
 
 public class UserRepositoryImplementation implements UserRepository {
 
-Session session=SessionFactoryConfiguration.getInstance().getSession();
-    public String save(UserEntity userEntity) {
+
+    public String save(UserEntity userEntity,Session session) {
         Transaction transaction = session.beginTransaction();
         try {
             Integer id = (Integer) session.save(userEntity);
@@ -28,7 +26,7 @@ Session session=SessionFactoryConfiguration.getInstance().getSession();
         }
     }
 
-    public UserEntity getByName(String userName) {
+    public UserEntity getByName(String userName,Session session) {
        
             String hql = "FROM UserEntity WHERE userName='" + userName + "'";
             List list = session.createQuery(hql).getResultList();
@@ -37,14 +35,14 @@ Session session=SessionFactoryConfiguration.getInstance().getSession();
 
     }
 
-    public boolean doesNameExist(String name) {
+    public boolean doesNameExist(String name,Session session) {
 
         String hql = "select 1 from UserEntity where exists (select 1 from UserEntity  where userName='"
                 + name + "')";
         return session.createQuery(hql).uniqueResult() != null;
     }
 
-    public boolean isEmpty() {
+    public boolean isEmpty(Session session) {
 
         List list = session.createQuery("from UserEntity").getResultList();
         System.out.println("size : " + list.size());
@@ -52,17 +50,17 @@ Session session=SessionFactoryConfiguration.getInstance().getSession();
 
     }
 
-    public ArrayList<UserEntity> getAll() {
+    public ArrayList<UserEntity> getAll(Session session) {
         return null;
     }
 
     @Override
-    public boolean update(UserEntity e) throws Exception {
+    public boolean update(UserEntity e,Session session) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
-    public UserEntity getByID(String id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public UserEntity getByID(String id,Session session) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 }

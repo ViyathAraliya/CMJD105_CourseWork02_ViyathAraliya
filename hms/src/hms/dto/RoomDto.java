@@ -14,7 +14,7 @@ public class RoomDto {
     private Integer id;
     private Date check_in_date;
     private Date check_out_date;
-   private Integer catagoryID;
+   private CatagoryDto catagoryDto;
 
     public RoomDto(String catagoryName, Date check_in_date, Date check_out_date) {
         

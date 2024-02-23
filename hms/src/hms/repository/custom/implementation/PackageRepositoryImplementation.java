@@ -2,24 +2,23 @@
 package hms.repository.custom.implementation;
 
 import hms.entity.PackageEntity;
-import hms.entity.UserEntity;
+
 import hms.repository.custom.PackageRepository;
-import hms.util.SessionFactoryConfiguration;
+
 import java.util.List;
 import org.hibernate.Session;
 
 
 public class PackageRepositoryImplementation implements PackageRepository{
     
-    Session session=SessionFactoryConfiguration.getInstance().getSession();
-
+    
     @Override
-    public Integer save(PackageEntity e) throws Exception {
+    public Integer save(PackageEntity e,Session session) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
-    public PackageEntity getByName(String description) throws Exception {
+    public PackageEntity getByName(String description,Session session) throws Exception {
          String hql = "FROM PackageEntity WHERE description='" + description + "'";
             List list = session.createQuery(hql).getResultList();
            PackageEntity packageEntity = (PackageEntity) list.get(0);
@@ -27,16 +26,16 @@ public class PackageRepositoryImplementation implements PackageRepository{
     }
 
     @Override
-    public boolean doesNameExist(String name) throws Exception {
+    public boolean doesNameExist(String name,Session session) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean isEmpty(Session session) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
     @Override
-    public List<PackageEntity> getAll() throws Exception {
+    public List<PackageEntity> getAll(Session session) throws Exception {
      
        return session.createQuery("from PackageEntity").getResultList();
          
@@ -44,12 +43,12 @@ public class PackageRepositoryImplementation implements PackageRepository{
     }
 
     @Override
-    public boolean update(PackageEntity e) throws Exception {
+    public boolean update(PackageEntity e,Session session) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
-    public PackageEntity getByID(Integer id) throws Exception {
+    public PackageEntity getByID(Integer id,Session session) throws Exception {
        return session.get(PackageEntity.class, id);
     }
     
