@@ -16,6 +16,6 @@ import lombok.Getter;
 public class ReservationDetailEntity{
     @EmbeddedId
   //  @Column(name="ij")
-    private ReservationDetailEntityID id;
+    private ReservationDetailID id;
 
 }

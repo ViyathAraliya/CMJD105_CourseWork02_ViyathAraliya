@@ -4,6 +4,7 @@ import hms.controller.CatagoryController;
 import hms.controller.RoomController;
 import hms.controller.PackageContoller;
 import hms.controller.ReservationController;
+import hms.dto.BookingDatesDto;
 import hms.dto.CatagoryDto;
 import hms.dto.CustomerDto;
 import hms.dto.PackageDto;
@@ -36,7 +37,7 @@ public class MakeReservationView extends javax.swing.JFrame {
     // private List<Integer> roomIds;
 
     private List<ReservationDetailDto> reservationDetailDtos;
-    private String reservationDetailsString="<html> reservation details <br>";
+    private String reservationDetailsString = "<html> reservation details <br>";
 
     public MakeReservationView() {
 
@@ -167,6 +168,7 @@ public class MakeReservationView extends javax.swing.JFrame {
                 }
             }
         });
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -440,25 +442,37 @@ public class MakeReservationView extends javax.swing.JFrame {
             String catagoyName = catagoryDto.getCatagoryName();
             Integer chargeForCatgory = catagoryDto.getChargeForCatagory();
 
-            String isAvailable;
-            String description;
+            String availabilty="";
+            String description="";
             Date checkInDate = new SimpleDateFormat("MM/dd/yyyy").parse(checkInDateField.getText());
             Date checkOutDate = new SimpleDateFormat("MM/dd/yyyy").parse(checkOutDateField.getText());
-            l1:
-            if (roomDto.getCheck_in_date() == null && roomDto.getCheck_out_date() == null) {
-                isAvailable = "available";//true;
-                description = "-";
-                break l1;
-            } else if ((checkInDate.before(roomDto.getCheck_in_date()) && checkOutDate.before(roomDto.getCheck_in_date()))
-                    || (checkInDate.after(roomDto.getCheck_out_date()) && checkOutDate.after(roomDto.getCheck_out_date()))) {
-                isAvailable = "available";//true;
+            /*_____checking booking dates__________*/
+            List<BookingDatesDto> bookingDatesDtos = roomDto.getBookingDatesDtos();
+            if (bookingDatesDtos.size() == 0) {
+                availabilty="available";
                 description = "-";
             } else {
-                isAvailable = "booked";//false;
-                description = "<html>booked during<br>" + new SimpleDateFormat("MM/dd/yyyy").format(roomDto.getCheck_in_date())
-                        + " to<br>" + new SimpleDateFormat("MM/dd/yyyy").format(roomDto.getCheck_out_date()) + "</html>";
+                l2:
+                for (BookingDatesDto bookingDatesDto : bookingDatesDtos) {
+                    Date checkInDate_inBookingDates = bookingDatesDto.getCheckInDate();
+                    Date checkOutDate_inBookingDates = bookingDatesDto.getCheckOutDate();
+
+                    if ((checkInDate.before(checkInDate_inBookingDates) && checkOutDate.before(checkInDate_inBookingDates))
+                            || checkInDate.after(checkOutDate_inBookingDates) && checkOutDate.after(checkOutDate_inBookingDates)) {
+                        availabilty="available";
+                        description = "-";
+                    } else {
+                        availabilty="booked";
+                        description = "<html> booked for <br>" + new SimpleDateFormat("MM/dd/yyyy").format(checkInDate_inBookingDates)
+                                + "-<br>" + new SimpleDateFormat("MM/dd/yyyy").format(checkOutDate_inBookingDates);
+                        
+                        break l2;
+                    }
+
+                }
             }
-            Object[] row = {roomDto.getId(), catagoyName, chargeForCatgory, isAvailable, description};
+            /*______end check in booking dates_______*/
+            Object[] row = {roomDto.getRoomId(), catagoyName, chargeForCatgory, availabilty, description};
             dtm.addRow(row);
         }
         room_table.setModel(dtm);
@@ -481,11 +495,12 @@ public class MakeReservationView extends javax.swing.JFrame {
             String isAvailable = "select dates first";
             String description = "-";
 
-            Object[] row = {roomDto.getId(), catagoyName, chargeForCatgory, isAvailable, description};
+            Object[] row = {roomDto.getRoomId(), catagoyName, chargeForCatgory, isAvailable, description};
             dtm.addRow(row);
         }
 
         room_table.setModel(dtm);
+        
 
     }
 
@@ -608,39 +623,39 @@ public class MakeReservationView extends javax.swing.JFrame {
         }
 
         if (((String) room_table.getValueAt(room_table.getSelectedRow(), 3)).equals("booked")) {
-            JOptionPane.showMessageDialog(this, "The room you selected is unavailalble"
-                    + "for your prefered dates");
+            JOptionPane.showMessageDialog(this, "The room you selected is already booked"
+                   );
             return;
         }
-       
+
         Integer roomId = (Integer) room_table.getValueAt(room_table.getSelectedRow(), 0);
         for (ReservationDetailDto dto : reservationDetailDtos) {
-            if (dto.getRoom().getId() == roomId) {
+            if (dto.getRoomDto().getRoomId() == roomId) {
                 JOptionPane.showMessageDialog(this, "This room has already been added");
                 return;
             }
         }
- 
+
         if (((String) packageComboBox.getSelectedItem()).equals("-select a package")) {
             JOptionPane.showMessageDialog(this, "Please select a package for this room");
             return;
         }
-     
+
         String packageDescription = (String) packageComboBox
                 .getSelectedItem();
 
-        /*new*/   
+        /*new*/
         Date check_in_date = new SimpleDateFormat("MM/dd/yyyy").parse(checkInDateField.getText());
         Date check_out_date = new SimpleDateFormat("MM/dd/yyyy").parse(checkOutDateField.getText());
-        String catogoryName=(String)room_table.getValueAt(room_table.getSelectedRow(),1);//error here
-      
-        CatagoryDto catagoryDto=CATAGORY_CONTROLLER.getByName(catogoryName);
-        RoomDto roomDto = new RoomDto(roomId, check_in_date, check_out_date, catagoryDto);
+        String catogoryName = (String) room_table.getValueAt(room_table.getSelectedRow(), 1);//error here
+
+        CatagoryDto catagoryDto = CATAGORY_CONTROLLER.getByName(catogoryName);
+        RoomDto roomDto = ROOM_CONTROLLER.getById(roomId);
         ReservationDetailDto reservationDetailDto
                 = new ReservationDetailDto(PACKAGE_CONTROLER
                         .getByDescription(packageDescription),
                         roomDto);
-   
+
         reservationDetailDtos.add(reservationDetailDto);
 
         reservationDetailsString = reservationDetailsString + " Room No : " + roomId

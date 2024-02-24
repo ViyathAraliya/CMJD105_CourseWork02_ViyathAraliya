@@ -63,12 +63,12 @@ public class ReservationEntity {
     @OneToMany(mappedBy = "reservationDetailEntity", targetEntity = ReservationDetailEntity.class)
     private List<ReservationDetailEntity>  reservationDetails;
 
-    public ReservationEntity(Date time_of_booking, Date check_in_Date, Date check_out_date, CustomerEntity customerEntity, List<ReservationDetailEntity> reservationDetails) {
+    public ReservationEntity(Date time_of_booking, Date check_in_Date, Date check_out_date, CustomerEntity customerEntity) {
         this.time_of_booking = time_of_booking;
         this.check_in_Date = check_in_Date;
         this.check_out_date = check_out_date;
         this.customerEntity = customerEntity;
-        this.reservationDetails = reservationDetails;
+        
     }
     
     

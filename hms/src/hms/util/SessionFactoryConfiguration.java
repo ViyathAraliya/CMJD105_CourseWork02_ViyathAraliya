@@ -2,8 +2,9 @@ package hms.util;
 
 import hms.entity.CatagoryEntity;
 import hms.entity.CustomerEntity;
+import hms.entity.BookingDatesEntity;
 import hms.entity.PackageEntity;
-import hms.entity.ReservationDetailEntityID;
+import hms.entity.ReservationDetailID;
 import hms.entity.ReservationDetailEntity;
 import hms.entity.ReservationEntity;
 
@@ -22,11 +23,12 @@ public class SessionFactoryConfiguration {
                 .addAnnotatedClass(CatagoryEntity.class)
                 .addAnnotatedClass(CustomerEntity.class)
                 .addAnnotatedClass(ReservationEntity.class)
-                .addAnnotatedClass(ReservationDetailEntityID.class)
+                .addAnnotatedClass(ReservationDetailID.class)
               .addAnnotatedClass(ReservationDetailEntity.class)
               .addAnnotatedClass(PackageEntity.class)
                .addAnnotatedClass(RoomEntity.class)
-                ;
+                .addAnnotatedClass(BookingDatesEntity.class);
+                
         sessionFactory = configuration.buildSessionFactory();
     }
 

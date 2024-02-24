@@ -1,126 +1,125 @@
 package hms.service.custom.implementation;
 
 import hms.dto.CatagoryDto;
+import hms.dto.BookingDatesDto;
 import hms.dto.CustomerDto;
 import hms.dto.PackageDto;
 import hms.dto.ReservationDetailDto;
 import hms.dto.ReservationDto;
 import hms.dto.RoomDto;
 import hms.entity.CatagoryEntity;
+import hms.entity.BookingDatesEntity;
+import hms.entity.BookingDatesEntityID;
 import hms.entity.CustomerEntity;
 import hms.entity.PackageEntity;
 import hms.entity.ReservationDetailEntity;
-import hms.entity.ReservationDetailEntityID;
+import hms.entity.ReservationDetailID;
 import hms.entity.ReservationEntity;
 import hms.entity.RoomEntity;
 import hms.repository.RepositoryFactory;
+import hms.repository.custom.CatagoryRepository;
 import hms.repository.custom.CustomerRepository;
 import hms.repository.custom.PackageRepository;
-import hms.repository.custom.ReservationDetailRepository;
+
 import hms.repository.custom.ReservationRepository;
 import hms.repository.custom.RoomRepository;
+
 import hms.service.custom.ReservationService;
 import hms.util.SessionFactoryConfiguration;
 import java.util.ArrayList;
+
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class ReservationServiceImplementation implements ReservationService {
-   // Session session=SessionFactoryConfiguration.getInstance().getSession();
+    // Session session=SessionFactoryConfiguration.getInstance().getSession();
+
     @Override
     public String saveReservation(ReservationDto reservationDto) throws Exception {
 
         Session session = SessionFactoryConfiguration.getInstance().getSession();
-     System.out.println("ooooooo");
-       Transaction transcation = session.beginTransaction();
-  System.out.println("xxxxxxxx");
+
+        Transaction transcation = session.beginTransaction();
+
         CustomerRepository customerRepository = (CustomerRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.CUSTOMER);
         ReservationRepository reservationRepository = (ReservationRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.RESERVATION);
-        ReservationDetailRepository reservationDetailRepository = (ReservationDetailRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.RESERVATION_DETAIL);
-        PackageRepository packageRepository = (PackageRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.PACKAGE);
         RoomRepository roomRepository = (RoomRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.ROOM);
+        PackageRepository packageRepository = (PackageRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.PACKAGE);
+        CatagoryRepository catagoryRepository = (CatagoryRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.CATAGORY);
 
-        CustomerDto customerDto = reservationDto.getCustomerDto();
-
-        List<ReservationDetailDto> reservationDetailDtos = reservationDto.getReservationDetailDtos();
-        List<ReservationDetailEntity> reservationDetailEntities = new ArrayList<>();
-
-        CustomerEntity customerEntity;
         try {
-            boolean customer_already_exists = customerRepository.doesCustomerExists(customerDto.getNic(),session);
-
+            CustomerDto customerDto = reservationDto.getCustomerDto();
+            CustomerEntity customerEntity;
+            /*saving  customerEntity____________*/
+            boolean customer_already_exists = customerRepository.doesCustomerExists(customerDto.getNic(), session);
             if (customer_already_exists) {
-                customerEntity = customerRepository.getByNic(customerDto.getNic(),session);
+                customerEntity = customerRepository.getByNic(customerDto.getNic(), session);
             } else {
                 customerEntity = new CustomerEntity(customerDto.getName(), customerDto.getNic(), customerDto.getPhoneNumber(), customerDto.getEmail(), customerDto.getAddress());
-                Integer customerID = customerRepository.save(customerEntity,session);
-                if (customerID == null) {
+                Integer cutomerID = (Integer) session.save(customerEntity);
+                if (cutomerID == null || cutomerID == -1) {
                     transcation.rollback();
-                    return "customer saving error";
+                    return "error in saving customer";
                 }
-                customerEntity.setId(customerID);
+                customerEntity.setId(cutomerID);
             }
+            /*_____________________________________end_customer saving________*/
 
-            ReservationEntity reservationEntity = new ReservationEntity();
-
-            reservationEntity.setTime_of_booking(reservationDto.getTime_of_booking());
-            reservationEntity.setCheck_in_Date(reservationDto.getCheck_in_date());
-            reservationEntity.setCheck_out_date(reservationDto.getChecj_out_date());
-            reservationEntity.setCustomerEntity(customerEntity);
-
-            Integer reservationEntity_id = reservationRepository.save(reservationEntity,session);
- 
-               
-               
-            if (reservationEntity_id == null) {
+            ReservationEntity reservationEntity = new ReservationEntity(reservationDto.getTime_of_booking(), reservationDto.getCheck_in_date(), reservationDto.getChecj_out_date(), customerEntity);
+            List<ReservationDetailEntity> reservationDetailEntities=new ArrayList<>();
+                   
+            Integer reservationEntityID = (Integer) session.save(reservationEntity);
+            if (reservationEntityID == null || reservationEntityID == -1) {
                 transcation.rollback();
-                return "reservation save error";
+                return "error savinf reservation";
             }
-            reservationEntity.setId(reservationEntity_id);
 
-            for (ReservationDetailDto reservationDetailDto : reservationDetailDtos) {
+            for (ReservationDetailDto reservationDetailDto : reservationDto.getReservationDetailDtos()) {
+                RoomDto roomDto = reservationDetailDto.getRoomDto();
+                CatagoryEntity catagoryEntity = catagoryRepository.getByID(roomDto.getCatagoryDto().getId(), session);
+                RoomEntity roomEntity = roomRepository.getByID(reservationDetailDto.getRoomDto().getRoomId(), session);
 
-                PackageDto packageDto = reservationDetailDto.getPackage_();
-                PackageEntity packageEntity = new PackageEntity(packageDto.getPackageID(),packageDto.getDescription(), packageDto.getCharge_for_package());
+                PackageDto packageDto = reservationDetailDto.getPackageDto();
+                PackageEntity packageEntity = packageRepository.getByID(packageDto.getPackageID(), session);
 
-                CatagoryDto catagoryDto = reservationDetailDto.getRoom().getCatagoryDto();
-                CatagoryEntity catagoryEntity = new CatagoryEntity(catagoryDto.getId(), catagoryDto.getCatagoryName(), catagoryDto.getDescription(), catagoryDto.getChargeForCatagory());
+                ReservationDetailID reservationDetailID = new ReservationDetailID(reservationEntity, packageEntity, roomEntity);
+                ReservationDetailEntity reservationDetailEntity = new ReservationDetailEntity(reservationDetailID);
 
-                RoomDto roomDto = reservationDetailDto.getRoom();
-                RoomEntity roomEntity = new RoomEntity(roomDto.getId(), roomDto.getCheck_in_date(), roomDto.getCheck_out_date(), catagoryEntity);
-
-                ReservationDetailEntityID reservationDetailEntityID = new ReservationDetailEntityID(reservationEntity, packageEntity, roomEntity);
-                ReservationDetailEntity reservationDetailEntity = new ReservationDetailEntity(reservationDetailEntityID);
                 reservationDetailEntities.add(reservationDetailEntity);
-            }
-            
-            for (ReservationDetailEntity reservationDetailEntity : reservationDetailEntities) {
-                
-                ReservationDetailEntityID reservationDetail_id = reservationDetailRepository.saveReservationDetail(reservationDetailEntity,session);
-
-                if (reservationDetail_id == null) {
-                   transcation.rollback();
-                    return "reservationDetail saving error";
-                }
-              
-                /*updating room(booked_from  and booked_till detials)*/
-                boolean room_update= roomRepository.update(reservationDetail_id.getRoomEntity(),session);
-               
-                if (room_update == false) {
+                ReservationDetailID reservationDetailID_saved = (ReservationDetailID) session.save(reservationDetailEntity);
+                if (reservationDetailID_saved == null) {
                     transcation.rollback();
-                    return "room updating error";
+                    return "error in saving reservation detail";
                 }
 
-            }
-          
-         transcation.commit();
+                List<BookingDatesDto> dateDtos = roomDto.getBookingDatesDtos();
+                List<BookingDatesEntity> bookingDateEntities=new ArrayList<>();
 
-            return "succesfully saved";
+                for (BookingDatesDto dateDto : dateDtos) {
+                    BookingDatesEntityID bookingDateEntityID = new BookingDatesEntityID(roomEntity, dateDto.getCheckInDate(), dateDto.getCheckOutDate());
+                    BookingDatesEntity bookingDateEntity = new BookingDatesEntity(bookingDateEntityID);
+                    bookingDateEntities.add(bookingDateEntity);
+                    BookingDatesEntityID bookingDateEntityID_saved = (BookingDatesEntityID) session.save(bookingDateEntity);
+                    if (bookingDateEntityID_saved == null) {
+                        transcation.rollback();
+                        return "error saving bookingDates";
+                    }
+
+                }
+                roomEntity.setBookingDateEntities(bookingDateEntities);
+                roomRepository.update(roomEntity, session);
+            }
+            reservationEntity.setReservationDetails( reservationDetailEntities);
+            reservationRepository.update(reservationEntity, session);
+            transcation.commit();
+           
+            return "success";
+
         } catch (Exception ex) {
-          transcation.rollback();
-            ex.printStackTrace();
-            throw ex;
+            transcation.rollback();
+            return ex.getMessage();
+
         }
 
     }

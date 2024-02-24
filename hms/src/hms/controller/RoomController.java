@@ -12,5 +12,8 @@ public class RoomController {
     public List<RoomDto> getAll() throws Exception {
         return roomService.getAll();
     }
+    public RoomDto getById(Integer roomID) throws Exception{
+     return    roomService.getByID(roomID);
+    }
 
 }

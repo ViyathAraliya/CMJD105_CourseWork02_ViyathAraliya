@@ -2,7 +2,7 @@
 package hms.repository.custom.implementation;
 
 import hms.entity.ReservationDetailEntity;
-import hms.entity.ReservationDetailEntityID;
+import hms.entity.ReservationDetailID;
 import hms.repository.custom.ReservationDetailRepository;
 
 import java.util.List;
@@ -14,9 +14,9 @@ public class ReservationDetailRepositoryImplementation implements ReservationDet
 
    
     
-    public ReservationDetailEntityID saveReservationDetail(ReservationDetailEntity reservationDetailEntity,Session session) throws Exception {
+    public ReservationDetailID saveReservationDetail(ReservationDetailEntity reservationDetailEntity,Session session) throws Exception {
        
-           ReservationDetailEntityID id=(ReservationDetailEntityID)session.save(reservationDetailEntity);
+           ReservationDetailID id=(ReservationDetailID)session.save(reservationDetailEntity);
            
           
             return id ;

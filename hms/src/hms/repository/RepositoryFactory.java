@@ -4,6 +4,7 @@ package hms.repository;
 
 import hms.repository.custom.implementation.CatagoryRepositoryImplementation;
 import hms.repository.custom.implementation.CustomerRepositoryImplementation;
+import hms.repository.custom.implementation.BookingDateImplementation;
 import hms.repository.custom.implementation.PackageRepositoryImplementation;
 import hms.repository.custom.implementation.ReservationDetailRepositoryImplementation;
 import hms.repository.custom.implementation.ReservationRepositoryImplementation;
@@ -39,13 +40,16 @@ public class RepositoryFactory {
                 return new CustomerRepositoryImplementation();
             case RESERVATION_DETAIL:
                 return new ReservationDetailRepositoryImplementation();
+            case BOOKING_DETAIL:
+                return new BookingDateImplementation();
+                
             default:
                 return null;
         }
     }
 
     public enum RepositoryType {
-        USER,ROOM,CATAGORY,PACKAGE,RESERVATION,CUSTOMER,RESERVATION_DETAIL
+        USER,ROOM,CATAGORY,PACKAGE,RESERVATION,CUSTOMER,RESERVATION_DETAIL,BOOKING_DETAIL
     }
 
 }

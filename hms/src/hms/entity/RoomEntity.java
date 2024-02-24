@@ -1,6 +1,4 @@
-
 package hms.entity;
-
 
 import java.util.Date;
 import java.util.List;
@@ -30,38 +28,36 @@ import lombok.ToString;
 @ToString
 
 @Entity
-@Table(name="Room")
+@Table(name = "Room")
 public class RoomEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="RoomID")
+    @Column(name = "RoomID")
     private Integer id;
     
-  
-    @Column(name="booked_from")
-    private Date check_in_date;
+    @Column
+    private String status;
     
-    @Column(name="booked_till")
-    private Date check_out_date;
+    
+    @ManyToOne
+    @JoinColumn(name = "catagory_id", nullable = false)
+    private CatagoryEntity catagoryEntity;
 
-    public RoomEntity(Integer id, Date check_in_date, Date check_out_date, CatagoryEntity catagoryEntity) {
+    @Transient
+    @OneToMany(mappedBy ="bookedForDates",targetEntity = BookingDatesEntity.class)
+    List<BookingDatesEntity> bookingDateEntities;
+
+    @Transient //untested
+    @OneToMany(mappedBy = "reservation_Detail", targetEntity = ReservationDetailEntity.class)
+    List<ReservationDetailEntity> reservationDetailsEntities;
+
+    public RoomEntity(Integer id, String status, CatagoryEntity catagoryEntity) {
         this.id = id;
-        this.check_in_date = check_in_date;
-        this.check_out_date = check_out_date;
+        this.status = status;
         this.catagoryEntity = catagoryEntity;
     }
+
     
-   
     
-    
- @ManyToOne
- @JoinColumn(name="catagory_id", nullable=false)
- private CatagoryEntity catagoryEntity;
- 
- @Transient //untested
-    @OneToMany(mappedBy = "reservation_Detail", targetEntity = ReservationDetailEntity.class)
-    List<ReservationDetailEntity> reservationDetails;
-    
- 
- 
 }

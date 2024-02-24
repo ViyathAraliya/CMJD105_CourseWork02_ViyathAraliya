@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface RoomService extends  SuperService{
      public List<RoomDto> getAll() throws Exception;
+     public RoomDto getByID(Integer roomID) throws Exception;
   }
  
 

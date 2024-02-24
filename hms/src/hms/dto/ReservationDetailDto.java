@@ -15,8 +15,8 @@ import lombok.Setter;
 public class ReservationDetailDto {
 
     //private ReservationDto reservation;
-    private PackageDto package_;
-    private RoomDto room;
+    private PackageDto packageDto;
+    private RoomDto roomDto;
     
     
     

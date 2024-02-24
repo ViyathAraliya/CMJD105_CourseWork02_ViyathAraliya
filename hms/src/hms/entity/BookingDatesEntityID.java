@@ -1,9 +1,8 @@
 
-
 package hms.entity;
 
-
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,21 +17,12 @@ import lombok.Setter;
 @NoArgsConstructor
 
 @Embeddable
-public class ReservationDetailID implements Serializable{
-    
-    @ManyToOne
-    @JoinColumn(name="reservationID")
-    private ReservationEntity reservationEntity;
-    
-    
-     @ManyToOne 
-    @JoinColumn(name="packageId")
-    private PackageEntity pacakageEntity;
-    
-
-    @ManyToOne 
-    @JoinColumn(name="roomId")
+public class BookingDatesEntityID implements Serializable{
+     @ManyToOne
+    @JoinColumn(name="roomID")
     private RoomEntity roomEntity;
-    
-  
+     
+     private Date check_in_Date;
+     private Date check_out_Date;
+ 
 }
