@@ -24,5 +24,6 @@ public class BookingDatesEntityID implements Serializable{
      
      private Date check_in_Date;
      private Date check_out_Date;
+    
  
 }

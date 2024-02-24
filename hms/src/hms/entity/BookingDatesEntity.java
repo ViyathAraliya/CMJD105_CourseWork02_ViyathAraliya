@@ -2,6 +2,7 @@
 
 package hms.entity;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -18,4 +19,7 @@ public class BookingDatesEntity {
 
      @EmbeddedId
      private BookingDatesEntityID bookingDateID;
+     
+     @Column(name="reservationID")
+     private Integer reservationID;
 }

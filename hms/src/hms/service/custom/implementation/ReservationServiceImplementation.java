@@ -105,7 +105,7 @@ public class ReservationServiceImplementation implements ReservationService {
             for(BookingDatesDto bookingDatesDto:bookingDatesDtos){
                     RoomEntity roomEntity=roomRepository.getByID(bookingDatesDto.getRoomId(), session);
                 BookingDatesEntityID bookingDatesEntityID=new BookingDatesEntityID(roomEntity, bookingDatesDto.getCheckInDate(), bookingDatesDto.getCheckOutDate());
-                BookingDatesEntity bookingDatesEntity=new BookingDatesEntity(bookingDatesEntityID);
+                BookingDatesEntity bookingDatesEntity=new BookingDatesEntity(bookingDatesEntityID,reservationEntityID);
                 BookingDatesEntityID saved_bookingDatesEntityID=bookingDateRepository.saveBooking(bookingDatesEntity, session);
                if(saved_bookingDatesEntityID==null){
                    return "booking saving error";}
