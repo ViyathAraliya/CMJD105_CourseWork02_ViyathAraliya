@@ -38,9 +38,10 @@ public class MakeReservationView extends javax.swing.JFrame {
 
     private List<ReservationDetailDto> reservationDetailDtos;
     private String reservationDetailsString = "<html> reservation details <br>";
+    private List<BookingDatesDto> bookingDatesDtos=new ArrayList<>();
 
     public MakeReservationView() {
-
+             
         // roomIds = new ArrayList<>();
         CATAGORY_CONTROLLER = new CatagoryController();
         ROOM_CONTROLLER = new RoomController();
@@ -651,6 +652,13 @@ public class MakeReservationView extends javax.swing.JFrame {
 
         CatagoryDto catagoryDto = CATAGORY_CONTROLLER.getByName(catogoryName);
         RoomDto roomDto = ROOM_CONTROLLER.getById(roomId);
+        
+        /*---seting booking detailDto----*/
+        BookingDatesDto bookingDatesDto=new BookingDatesDto(roomId,check_in_date, check_out_date);
+        bookingDatesDtos.add(bookingDatesDto);
+        roomDto.setBookingDatesDtos(bookingDatesDtos);
+        
+        
         ReservationDetailDto reservationDetailDto
                 = new ReservationDetailDto(PACKAGE_CONTROLER
                         .getByDescription(packageDescription),
@@ -721,6 +729,7 @@ public class MakeReservationView extends javax.swing.JFrame {
         ReservationDto reservationDto = new ReservationDto(new Date(),
                 new SimpleDateFormat("MM/dd/yyyy").parse(checkInDateField.getText()),
                 new SimpleDateFormat("MM/dd/yyyy").parse(checkOutDateField.getText()),
+                bookingDatesDtos,
                 customerDto, reservationDetailDtos);
 
         JOptionPane.showMessageDialog(this, RESEERVATION_CONTROLLER.makeReservation(reservationDto));
@@ -732,8 +741,8 @@ public class MakeReservationView extends javax.swing.JFrame {
         phoneNumberField.setText("0702476555");
         emailField.setText("viyatharaliya@gmail.com");
         addressField.setText("240/41D,yatiwawela katugastota");
-        checkInDateField.setText(("02/24/2024"));
-        checkOutDateField.setText("02/25/2024");
+        checkInDateField.setText(("03/09/2024"));
+        checkOutDateField.setText("03/11/2024");
     }
 
 }

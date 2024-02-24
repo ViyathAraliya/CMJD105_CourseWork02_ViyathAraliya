@@ -1,4 +1,3 @@
-
 package hms.dto;
 
 import java.util.Date;
@@ -7,13 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 
 public class BookingDatesDto {
-private Date checkInDate;
-private Date checkOutDate;
+
+    private Integer roomId;
+    private Date checkInDate;
+    private Date checkOutDate;
 }

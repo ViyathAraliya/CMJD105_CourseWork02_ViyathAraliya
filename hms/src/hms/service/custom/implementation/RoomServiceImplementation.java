@@ -38,7 +38,7 @@ public class RoomServiceImplementation implements RoomService {
             List<BookingDatesEntity> bookingDateEntities = e.getBookingDateEntities();
             for (BookingDatesEntity bookingDatesEntity : bookingDateEntities) {
                 BookingDatesEntityID bookingDatesEntityID = bookingDatesEntity.getBookingDateID();
-                BookingDatesDto datesDto = new BookingDatesDto(bookingDatesEntityID.getCheck_in_Date(), bookingDatesEntityID.getCheck_out_Date());
+                BookingDatesDto datesDto = new BookingDatesDto(e.getId(),bookingDatesEntityID.getCheck_in_Date(), bookingDatesEntityID.getCheck_out_Date());
                 datesDtos.add(datesDto);
             }
             RoomDto roomDto = new RoomDto(e.getId(), catagoryDto, datesDtos, e.getStatus());
@@ -56,7 +56,7 @@ public class RoomServiceImplementation implements RoomService {
         List<BookingDatesEntity> bookingDatesEntities = roomEntity.getBookingDateEntities();
         for (BookingDatesEntity bookingDatesEntity : bookingDatesEntities) {
             BookingDatesEntityID bookingDatesEntityID = bookingDatesEntity.getBookingDateID();
-            BookingDatesDto bookingDatesDto = new BookingDatesDto(bookingDatesEntityID.getCheck_in_Date(), bookingDatesEntityID.getCheck_out_Date());
+            BookingDatesDto bookingDatesDto = new BookingDatesDto(roomId,bookingDatesEntityID.getCheck_in_Date(), bookingDatesEntityID.getCheck_out_Date());
             bookingDatesDtos.add(bookingDatesDto);
         }
         return new RoomDto(roomId, catagoryDto, bookingDatesDtos, roomEntity.getStatus());

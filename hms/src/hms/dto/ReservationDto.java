@@ -20,6 +20,7 @@ public class ReservationDto {
      private Date time_of_booking;
     private Date check_in_date;
     private Date checj_out_date;
+    private List<BookingDatesDto> bookingDatesDtos;
     
     private CustomerDto customerDto;
     

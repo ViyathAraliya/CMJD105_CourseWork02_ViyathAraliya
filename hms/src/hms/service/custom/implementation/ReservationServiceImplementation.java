@@ -23,6 +23,7 @@ import hms.repository.custom.PackageRepository;
 
 import hms.repository.custom.ReservationRepository;
 import hms.repository.custom.RoomRepository;
+import hms.repository.custom.implementation.BookingDatesRepositoryImplementation;
 
 import hms.service.custom.ReservationService;
 import hms.util.SessionFactoryConfiguration;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import hms.repository.custom.BookingDateRepository;
 
 public class ReservationServiceImplementation implements ReservationService {
     // Session session=SessionFactoryConfiguration.getInstance().getSession();
@@ -47,7 +49,8 @@ public class ReservationServiceImplementation implements ReservationService {
         RoomRepository roomRepository = (RoomRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.ROOM);
         PackageRepository packageRepository = (PackageRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.PACKAGE);
         CatagoryRepository catagoryRepository = (CatagoryRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.CATAGORY);
-
+        BookingDateRepository bookingDateRepository=(BookingDateRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.BOOKING_DATES);
+        
         try {
             CustomerDto customerDto = reservationDto.getCustomerDto();
             CustomerEntity customerEntity;
@@ -67,13 +70,15 @@ public class ReservationServiceImplementation implements ReservationService {
             /*_____________________________________end_customer saving________*/
 
             ReservationEntity reservationEntity = new ReservationEntity(reservationDto.getTime_of_booking(), reservationDto.getCheck_in_date(), reservationDto.getChecj_out_date(), customerEntity);
-            List<ReservationDetailEntity> reservationDetailEntities=new ArrayList<>();
-                   
+            List<ReservationDetailEntity> reservationDetailEntities = new ArrayList<>();
+
             Integer reservationEntityID = (Integer) session.save(reservationEntity);
             if (reservationEntityID == null || reservationEntityID == -1) {
                 transcation.rollback();
                 return "error savinf reservation";
             }
+
+            /*----saving reservationdetails----*/
 
             for (ReservationDetailDto reservationDetailDto : reservationDto.getReservationDetailDtos()) {
                 RoomDto roomDto = reservationDetailDto.getRoomDto();
@@ -92,28 +97,22 @@ public class ReservationServiceImplementation implements ReservationService {
                     transcation.rollback();
                     return "error in saving reservation detail";
                 }
-
-                List<BookingDatesDto> dateDtos = roomDto.getBookingDatesDtos();
-                List<BookingDatesEntity> bookingDateEntities=new ArrayList<>();
-
-                for (BookingDatesDto dateDto : dateDtos) {
-                    BookingDatesEntityID bookingDateEntityID = new BookingDatesEntityID(roomEntity, dateDto.getCheckInDate(), dateDto.getCheckOutDate());
-                    BookingDatesEntity bookingDateEntity = new BookingDatesEntity(bookingDateEntityID);
-                    bookingDateEntities.add(bookingDateEntity);
-                    BookingDatesEntityID bookingDateEntityID_saved = (BookingDatesEntityID) session.save(bookingDateEntity);
-                    if (bookingDateEntityID_saved == null) {
-                        transcation.rollback();
-                        return "error saving bookingDates";
-                    }
-
-                }
-                roomEntity.setBookingDateEntities(bookingDateEntities);
-                roomRepository.update(roomEntity, session);
+               
+                
             }
-            reservationEntity.setReservationDetails( reservationDetailEntities);
-            reservationRepository.update(reservationEntity, session);
+            
+            List<BookingDatesDto> bookingDatesDtos=reservationDto.getBookingDatesDtos();
+            for(BookingDatesDto bookingDatesDto:bookingDatesDtos){
+                    RoomEntity roomEntity=roomRepository.getByID(bookingDatesDto.getRoomId(), session);
+                BookingDatesEntityID bookingDatesEntityID=new BookingDatesEntityID(roomEntity, bookingDatesDto.getCheckInDate(), bookingDatesDto.getCheckOutDate());
+                BookingDatesEntity bookingDatesEntity=new BookingDatesEntity(bookingDatesEntityID);
+                BookingDatesEntityID saved_bookingDatesEntityID=bookingDateRepository.saveBooking(bookingDatesEntity, session);
+               if(saved_bookingDatesEntityID==null){
+                   return "booking saving error";}
+            }
+            
             transcation.commit();
-           
+
             return "success";
 
         } catch (Exception ex) {

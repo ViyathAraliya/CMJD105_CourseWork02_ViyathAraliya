@@ -36,7 +36,7 @@ public class RoomRepositoryImplementation implements RoomRepository {
         List<RoomEntity> roomEntities = session.createQuery("FROM RoomEntity").getResultList();
 
         for (RoomEntity roomEntity : roomEntities) {
-             System.out.println("here error");
+            
             List<BookingDatesEntity> bookingDatesEntities = session.createQuery(
                     "FROM BookingDatesEntity WHERE roomID='" + roomEntity.getId() + "'").getResultList();
             roomEntity.setBookingDateEntities(bookingDatesEntities);
