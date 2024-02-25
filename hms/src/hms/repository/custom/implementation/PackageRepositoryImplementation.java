@@ -51,6 +51,11 @@ public class PackageRepositoryImplementation implements PackageRepository{
     public PackageEntity getByID(Integer id,Session session) throws Exception {
        return session.get(PackageEntity.class, id);
     }
+
+    @Override
+    public Integer deleteByID(Integer id, Session session) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
    
     

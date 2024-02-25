@@ -23,7 +23,6 @@ import hms.repository.custom.PackageRepository;
 
 import hms.repository.custom.ReservationRepository;
 import hms.repository.custom.RoomRepository;
-import hms.repository.custom.implementation.BookingDatesRepositoryImplementation;
 
 import hms.service.custom.ReservationService;
 import hms.util.SessionFactoryConfiguration;
@@ -33,24 +32,27 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import hms.repository.custom.BookingDateRepository;
+import hms.repository.custom.ReservationDetailRepository;
 
 public class ReservationServiceImplementation implements ReservationService {
+
     // Session session=SessionFactoryConfiguration.getInstance().getSession();
+    Session session = SessionFactoryConfiguration.getInstance().getSession();
+    ReservationRepository reservationRepository = (ReservationRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.RESERVATION);
+    ReservationDetailRepository reservationDetailRepository = (ReservationDetailRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.RESERVATION_DETAIL);
+    BookingDateRepository bookingDateRepository = (BookingDateRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.BOOKING_DATES);
 
     @Override
     public String saveReservation(ReservationDto reservationDto) throws Exception {
 
-        Session session = SessionFactoryConfiguration.getInstance().getSession();
-
         Transaction transcation = session.beginTransaction();
 
         CustomerRepository customerRepository = (CustomerRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.CUSTOMER);
-        ReservationRepository reservationRepository = (ReservationRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.RESERVATION);
+
         RoomRepository roomRepository = (RoomRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.ROOM);
         PackageRepository packageRepository = (PackageRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.PACKAGE);
         CatagoryRepository catagoryRepository = (CatagoryRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.CATAGORY);
-        BookingDateRepository bookingDateRepository=(BookingDateRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.BOOKING_DATES);
-        
+
         try {
             CustomerDto customerDto = reservationDto.getCustomerDto();
             CustomerEntity customerEntity;
@@ -69,7 +71,7 @@ public class ReservationServiceImplementation implements ReservationService {
             }
             /*_____________________________________end_customer saving________*/
 
-            ReservationEntity reservationEntity = new ReservationEntity(reservationDto.getTime_of_booking(), reservationDto.getCheck_in_date(), reservationDto.getChecj_out_date(), customerEntity);
+            ReservationEntity reservationEntity = new ReservationEntity(reservationDto.getTime_of_booking(), reservationDto.getCheck_in_date(), reservationDto.getCheck_out_date(), customerEntity);
             List<ReservationDetailEntity> reservationDetailEntities = new ArrayList<>();
 
             Integer reservationEntityID = (Integer) session.save(reservationEntity);
@@ -79,7 +81,6 @@ public class ReservationServiceImplementation implements ReservationService {
             }
 
             /*----saving reservationdetails----*/
-
             for (ReservationDetailDto reservationDetailDto : reservationDto.getReservationDetailDtos()) {
                 RoomDto roomDto = reservationDetailDto.getRoomDto();
                 CatagoryEntity catagoryEntity = catagoryRepository.getByID(roomDto.getCatagoryDto().getId(), session);
@@ -92,25 +93,25 @@ public class ReservationServiceImplementation implements ReservationService {
                 ReservationDetailEntity reservationDetailEntity = new ReservationDetailEntity(reservationDetailID);
 
                 reservationDetailEntities.add(reservationDetailEntity);
-                ReservationDetailID reservationDetailID_saved = (ReservationDetailID) session.save(reservationDetailEntity);
+                ReservationDetailID reservationDetailID_saved = (ReservationDetailID) reservationDetailRepository.saveReservationDetail(reservationDetailEntity, session);
                 if (reservationDetailID_saved == null) {
                     transcation.rollback();
                     return "error in saving reservation detail";
                 }
-               
-                
+
             }
-            
-            List<BookingDatesDto> bookingDatesDtos=reservationDto.getBookingDatesDtos();
-            for(BookingDatesDto bookingDatesDto:bookingDatesDtos){
-                    RoomEntity roomEntity=roomRepository.getByID(bookingDatesDto.getRoomId(), session);
-                BookingDatesEntityID bookingDatesEntityID=new BookingDatesEntityID(roomEntity, bookingDatesDto.getCheckInDate(), bookingDatesDto.getCheckOutDate());
-                BookingDatesEntity bookingDatesEntity=new BookingDatesEntity(bookingDatesEntityID,reservationEntityID);
-                BookingDatesEntityID saved_bookingDatesEntityID=bookingDateRepository.saveBooking(bookingDatesEntity, session);
-               if(saved_bookingDatesEntityID==null){
-                   return "booking saving error";}
+
+            List<BookingDatesDto> bookingDatesDtos = reservationDto.getBookingDatesDtos();
+            for (BookingDatesDto bookingDatesDto : bookingDatesDtos) {
+                RoomEntity roomEntity = roomRepository.getByID(bookingDatesDto.getRoomId(), session);
+                BookingDatesEntityID bookingDatesEntityID = new BookingDatesEntityID(roomEntity, bookingDatesDto.getCheckInDate(), bookingDatesDto.getCheckOutDate());
+                BookingDatesEntity bookingDatesEntity = new BookingDatesEntity(bookingDatesEntityID, reservationEntityID);
+                BookingDatesEntityID saved_bookingDatesEntityID = bookingDateRepository.saveBooking(bookingDatesEntity, session);
+                if (saved_bookingDatesEntityID == null) {
+                    return "booking saving error";
+                }
             }
-            
+
             transcation.commit();
 
             return "success";
@@ -121,5 +122,47 @@ public class ReservationServiceImplementation implements ReservationService {
 
         }
 
+    }
+
+    @Override
+    public List<ReservationDto> getAll() throws Exception {
+
+        List<ReservationEntity> entities = reservationRepository.getAll(session);
+        List<ReservationDto> dtos = new ArrayList<>();
+        for (ReservationEntity e : entities) {
+
+            CustomerEntity cE = e.getCustomerEntity();
+            CustomerDto customerDto = new CustomerDto(cE.getName(), cE.getNic(), cE.getPhoneNumber(), cE.getEmail(), cE.getAddress());
+
+            ReservationDto dto = new ReservationDto();
+            dto.setReservationID(e.getId());
+            dto.setTime_of_booking(e.getTime_of_booking());
+            dto.setCheck_in_date(e.getCheck_in_Date());
+            dto.setCheck_out_date(e.getCheck_out_date());
+            dto.setCustomerDto(customerDto);
+            dtos.add(dto);
+        }
+        return dtos;
+    }
+
+    public String deleteReservation(Integer reservationID) throws Exception {
+        Transaction transaction=session.beginTransaction();
+        Integer deleted_bookingDates = bookingDateRepository.deleteByID(reservationID, session);
+        if (deleted_bookingDates == 0) {
+            transaction.rollback();
+            return "error  at deleting booking dates";
+        }
+        Integer deleted_reservationDetails = reservationDetailRepository.deleteByID(reservationID, session);
+        if (deleted_reservationDetails == 0) {
+            transaction.rollback();
+            return "error  at deleting reservation details";
+        }
+        Integer deleted_reservation = reservationRepository.deleteByID(reservationID, session);
+        if (deleted_reservation == 0) {
+            transaction.rollback();
+            return "error  at deleting reservation";
+        }
+        transaction.commit();
+        return "success";
     }
 }

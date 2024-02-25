@@ -37,7 +37,7 @@ public class ReservationRepositoryImplementation implements ReservationRepositor
     }
     @Override
     public List<ReservationEntity> getAll(Session session) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); 
+      return session.createQuery("from ReservationEntity").getResultList();
     }
 
     @Override
@@ -48,6 +48,11 @@ public class ReservationRepositoryImplementation implements ReservationRepositor
     @Override
     public ReservationEntity getByID(Integer id,Session session) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+    @Override
+    public Integer deleteByID(Integer id, Session session) throws Exception {
+      return session.createQuery("DELETE FROM  ReservationEntity WHERE ReservationID='"+id+"'").executeUpdate();
     }
 
 }

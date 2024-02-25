@@ -53,4 +53,14 @@ public class BookingDatesRepositoryImplementation implements BookingDateReposito
         return (BookingDatesEntityID)session.save(bookingDatesEntity);
     }
 
+    @Override
+    public Integer deleteByID(Integer reservationID,Session session) throws Exception {
+    return  session.createQuery("DELETE FROM BookingDatesEntity WHERE reservationID='"+reservationID+"'").executeUpdate();
+      
+    }
+
+   
+    
+    
+
 }

@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import hms.repository.RepositoryFactory;
 import hms.repository.custom.CustomerRepository;
 import hms.util.SessionFactoryConfiguration;
+import hms.view.CancelReservationView;
 import hms.view.LoginView;
 import hms.view.MakeReservationView;
 
@@ -20,13 +21,8 @@ public class Hms {
     //SessionFactoryConfiguration.getSessionFactoryConfiguration().getSession();
     //new LoginView().setVisible(true);
    new MakeReservationView().setVisible(true);
+  // new CancelReservationView().setVisible(true);
   
     
-   // Session session=SessionFactoryConfiguration.getInstance().getSession();
-   // Transaction transaction=session.beginTransaction();
-       
-       
-             
-             
-    //new LoginView().setVisible(true);
+ 
 }}

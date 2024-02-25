@@ -58,6 +58,12 @@ public class ReservationDetailRepositoryImplementation implements ReservationDet
     public Integer save(ReservationDetailEntity e,Session session) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
+
+    @Override
+    public Integer deleteByID(Integer id, Session session) throws Exception {
+      return session.createQuery("delete from ReservationDetailEntity where reservationID='"+id+"'").executeUpdate();
+      
+    }
     
 
 }

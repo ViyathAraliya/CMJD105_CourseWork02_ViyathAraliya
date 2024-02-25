@@ -9,4 +9,5 @@ import org.hibernate.Session;
 
 public interface BookingDateRepository extends  CrudRepository<BookingDatesEntity, Integer>{
     BookingDatesEntityID saveBooking(BookingDatesEntity bookingDatesEntity,Session session)throws Exception;
+    
 }

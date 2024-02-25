@@ -14,5 +14,6 @@ public interface CrudRepository<Entity,ID> extends SuperRepository{
   boolean isEmpty(Session session);
   List<Entity> getAll(Session session) throws Exception;
   boolean update(Entity e,Session session) throws Exception;
+  Integer deleteByID(ID id,Session session) throws Exception;
     
 }

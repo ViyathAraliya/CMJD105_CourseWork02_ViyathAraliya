@@ -50,5 +50,10 @@ public class CatagoryRepositoryImplementation  implements CatagoryRepository
             CatagoryEntity catagoryEntity = (CatagoryEntity) list.get(0);
             return catagoryEntity; 
     }
+
+    @Override
+    public Integer deleteByID(Integer id, Session session) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
    
 }
