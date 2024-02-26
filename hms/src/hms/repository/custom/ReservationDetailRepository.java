@@ -11,5 +11,6 @@ import org.hibernate.Session;
 
 public interface ReservationDetailRepository extends CrudRepository<ReservationDetailEntity, Integer>{
    ReservationDetailID saveReservationDetail(ReservationDetailEntity reservationDetailEntity,Session session) throws Exception;
-    List<ReservationDetailEntity> getByReservationID(Integer reservationID,Session session) throws Exception;
+    List<ReservationDetailEntity> getListByReservationID(Integer reservationID,Session session) throws Exception;
+    List<ReservationDetailEntity> getListByPackageID(Integer packageID,Session session) throws Exception;
 }

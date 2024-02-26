@@ -168,7 +168,7 @@ public class ReservationServiceImplementation implements ReservationService {
 
     @Override
     public List<ReservationDetailDto> getReservationDetailsByID(Integer id) throws Exception {
-       List<ReservationDetailEntity> entities=reservationDetailRepository.getByReservationID(id, session);
+       List<ReservationDetailEntity> entities=reservationDetailRepository.getListByReservationID(id, session);
        List<ReservationDetailDto> reservationDetailDtos=new ArrayList<>();
        for(ReservationDetailEntity e:entities){
         

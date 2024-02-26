@@ -146,7 +146,7 @@ public class PackageView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        // TODO add your handling code here:
+        update();// TODO add your handling code here:
     }//GEN-LAST:event_updateBtnActionPerformed
 
     /**
@@ -198,7 +198,7 @@ public class PackageView extends javax.swing.JFrame {
     public void update() {
         PackageDto dto = new PackageDto(Integer.parseInt(packageIdField.getText()), descriptionField.getText(), Integer.parseInt(chageField.getText()));
         try {
-            PACKAGE_CONTROLLER.update(dto);
+           JOptionPane.showMessageDialog(this,PACKAGE_CONTROLLER.update(dto));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }

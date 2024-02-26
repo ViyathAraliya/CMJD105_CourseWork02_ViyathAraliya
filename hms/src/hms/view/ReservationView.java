@@ -16,14 +16,14 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class CancelReservationView extends javax.swing.JFrame {
+public class ReservationView extends javax.swing.JFrame {
     
     private ReservationController RESERVATION_CONTROLLER;
     String[] columnHeads_reservation = {"customer NIC", "reservaionID", "time of booking"};
     String[] columnHeads_reservationDetails = {"<html><br>roomID<br> &nbsp; </html>", "room_catgory", "package", "<html>charge<br>for<br>package</html>",
         "<html>charge<br>for<br>roomCatagory</html>", "checkIn", "checkout", "<html>no Of<br>days</html>", "sum"};
     
-    public CancelReservationView() {
+    public ReservationView() {
         RESERVATION_CONTROLLER = new ReservationController();
         initComponents();
         

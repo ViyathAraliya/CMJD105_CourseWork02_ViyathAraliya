@@ -2,8 +2,11 @@ package hms.service.custom.implementation;
 
 import hms.dto.PackageDto;
 import hms.entity.PackageEntity;
+import hms.entity.ReservationDetailEntity;
 import hms.repository.RepositoryFactory;
 import hms.repository.custom.PackageRepository;
+import hms.repository.custom.ReservationDetailRepository;
+import hms.repository.custom.ReservationRepository;
 import hms.service.custom.PackageService;
 import hms.util.SessionFactoryConfiguration;
 import java.util.ArrayList;
@@ -27,14 +30,19 @@ public class PackageServiceImplementation implements PackageService {
 
     @Override
     public PackageDto getByDescription(String description) throws Exception {
-
         PackageEntity e = packageRepository.getByName(description,session);
         return new PackageDto(e.getId(), e.getDescription(), e.getCharge());
     }
     
     public String update(PackageDto dto)throws Exception{
+         ReservationDetailRepository reservationDetailRepository=(ReservationDetailRepository)RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.RESERVATION_DETAIL);
         PackageEntity pkgE=new PackageEntity(dto.getPackageID(), dto.getDescription(), dto.getCharge_for_package());
-        boolean =packageRepository.update(pkgE, session);
+       
+        if(packageRepository.update(pkgE, session)==false){
+            return "error in updating package";
+        }
+
+        return "update succesful";
         
         }
 

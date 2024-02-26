@@ -236,6 +236,11 @@ public class MakeReservationView extends javax.swing.JFrame {
         });
 
         homeMenuBtn.setText("back to home ");
+        homeMenuBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeMenuBtnActionPerformed(evt);
+            }
+        });
 
         checkOutLbl.setText("check out date");
 
@@ -414,12 +419,17 @@ public class MakeReservationView extends javax.swing.JFrame {
             makeReservation();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
-        };        // TODO add your handling code here:
+        }      // TODO add your handling code here:
     }//GEN-LAST:event_makeReservationBtnActionPerformed
 
     private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
         clearForm();// TODO add your handling code here:
     }//GEN-LAST:event_clearBtnActionPerformed
+
+    private void homeMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeMenuBtnActionPerformed
+        new HomeView().setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_homeMenuBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
