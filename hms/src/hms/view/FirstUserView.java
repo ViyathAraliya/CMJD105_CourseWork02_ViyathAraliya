@@ -15,6 +15,7 @@ public class FirstUserView extends javax.swing.JFrame {
     private final UserController USER_CONTROLLER;
 
     public FirstUserView() {
+          this.setResizable(false);
         USER_CONTROLLER = new UserController();
         initComponents();
         confirmPasswordField.getDocument().addDocumentListener(new DocumentListener() {

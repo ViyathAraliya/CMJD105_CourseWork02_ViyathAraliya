@@ -12,7 +12,7 @@ public class PackageRepositoryImplementation implements PackageRepository {
 
     @Override
     public Integer save(PackageEntity e, Session session) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return (Integer)session.save(e);
     }
 
     @Override

@@ -58,8 +58,14 @@ public class PackageView extends javax.swing.JFrame {
         chargeLbl = new javax.swing.JLabel();
         packageIdField = new javax.swing.JTextField();
         descriptionField = new javax.swing.JTextField();
-        chageField = new javax.swing.JTextField();
+        chargeField = new javax.swing.JTextField();
         updateBtn = new javax.swing.JButton();
+        packageNameLbl = new javax.swing.JLabel();
+        pckgChargeLbl = new javax.swing.JLabel();
+        nameField = new javax.swing.JTextField();
+        pckgChargeField = new javax.swing.JTextField();
+        saveBtn = new javax.swing.JButton();
+        homeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,7 +84,7 @@ public class PackageView extends javax.swing.JFrame {
 
         packageIDLbl.setText("package ID");
 
-        packageLbl.setText("Description");
+        packageLbl.setText("package name");
 
         chargeLbl.setText("charge");
 
@@ -89,40 +95,85 @@ public class PackageView extends javax.swing.JFrame {
             }
         });
 
+        packageNameLbl.setText("package name");
+
+        pckgChargeLbl.setText("charge");
+
+        saveBtn.setText("add ");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
+
+        homeBtn.setText("home");
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(packageIDLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(packageIdField))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(packageIDLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                                .addComponent(packageIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(updateBtn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(packageLbl)
+                                        .addGap(40, 40, 40))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(chargeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(44, 44, 44)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(chargeField)
+                                    .addComponent(descriptionField, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(homeBtn)
+                                .addGap(25, 25, 25))))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(packageNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pckgChargeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(updateBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(chargeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(chageField))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(packageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pckgChargeField, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap(55, Short.MAX_VALUE))
+                                .addComponent(saveBtn))
+                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(172, 172, 172)
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(packageNameLbl)
+                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pckgChargeLbl)
+                    .addComponent(pckgChargeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveBtn))
+                .addGap(79, 79, 79)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(185, Short.MAX_VALUE)
@@ -136,10 +187,12 @@ public class PackageView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chargeLbl)
-                    .addComponent(chageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chargeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(updateBtn)
-                .addGap(74, 74, 74))
+                .addGap(30, 30, 30)
+                .addComponent(homeBtn)
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -149,19 +202,34 @@ public class PackageView extends javax.swing.JFrame {
         update();// TODO add your handling code here:
     }//GEN-LAST:event_updateBtnActionPerformed
 
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        add();// TODO add your handling code here:
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+    this.dispose();
+    new HomeView().setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_homeBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField chageField;
+    private javax.swing.JTextField chargeField;
     private javax.swing.JLabel chargeLbl;
     private javax.swing.JTextField descriptionField;
+    private javax.swing.JButton homeBtn;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField nameField;
     private javax.swing.JLabel packageIDLbl;
     private javax.swing.JTextField packageIdField;
     private javax.swing.JLabel packageLbl;
+    private javax.swing.JLabel packageNameLbl;
     private javax.swing.JTable packageTable;
+    private javax.swing.JTextField pckgChargeField;
+    private javax.swing.JLabel pckgChargeLbl;
+    private javax.swing.JButton saveBtn;
     private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
 
@@ -191,14 +259,28 @@ public class PackageView extends javax.swing.JFrame {
 
         packageIdField.setText(packageID.toString());
         descriptionField.setText(description);
-        chageField.setText(charge.toString());
+        chargeField.setText(charge.toString());
 
     }
 
     public void update() {
-        PackageDto dto = new PackageDto(Integer.parseInt(packageIdField.getText()), descriptionField.getText(), Integer.parseInt(chageField.getText()));
+        PackageDto dto = new PackageDto(Integer.parseInt(packageIdField.getText()), descriptionField.getText(), Integer.parseInt(chargeField.getText()));
         try {
-           JOptionPane.showMessageDialog(this,PACKAGE_CONTROLLER.update(dto));
+            JOptionPane.showMessageDialog(this, PACKAGE_CONTROLLER.update(dto));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+
+    public void add() {
+        String name = nameField.getText();
+        Integer charge = Integer.parseInt(pckgChargeField.getText());
+        PackageDto packageDto = new PackageDto();
+        packageDto.setDescription(name);
+        packageDto.setCharge_for_package(charge);
+        try {
+            PACKAGE_CONTROLLER.save(packageDto);
+            loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }

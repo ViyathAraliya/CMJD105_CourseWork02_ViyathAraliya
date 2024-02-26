@@ -43,7 +43,7 @@ public class MakeReservationView extends javax.swing.JFrame {
 
     public MakeReservationView() {
 
-        // roomIds = new ArrayList<>();
+          this.setResizable(false);
         CATAGORY_CONTROLLER = new CatagoryController();
         ROOM_CONTROLLER = new RoomController();
         PACKAGE_CONTROLER = new PackageContoller();

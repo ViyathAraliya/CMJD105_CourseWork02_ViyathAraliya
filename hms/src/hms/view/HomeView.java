@@ -1,11 +1,9 @@
-
 package hms.view;
-
 
 public class HomeView extends javax.swing.JFrame {
 
-    
     public HomeView() {
+        this.setResizable(false);
         initComponents();
     }
 
@@ -80,8 +78,8 @@ public class HomeView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void makeReservationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeReservationBtnActionPerformed
-       new MakeReservationView().setVisible(true);
-       this.dispose();
+        new MakeReservationView().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_makeReservationBtnActionPerformed
 
     private void reservationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservationBtnActionPerformed
@@ -94,7 +92,6 @@ public class HomeView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_packageBtnActionPerformed
 
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

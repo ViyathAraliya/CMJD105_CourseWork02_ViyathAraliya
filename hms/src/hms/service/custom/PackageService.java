@@ -11,5 +11,6 @@ public interface PackageService  extends SuperService{
      List<PackageDto> getAll()throws Exception;
      PackageDto getByDescription(String description) throws Exception;
      String update(PackageDto dto)throws Exception;
+     String save(PackageDto dto) throws Exception; 
     
 }

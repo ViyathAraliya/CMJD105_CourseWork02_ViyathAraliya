@@ -24,6 +24,7 @@ public class ReservationView extends javax.swing.JFrame {
         "<html>charge<br>for<br>roomCatagory</html>", "checkIn", "checkout", "<html>no Of<br>days</html>", "sum"};
     
     public ReservationView() {
+          this.setResizable(false);
         RESERVATION_CONTROLLER = new ReservationController();
         initComponents();
         

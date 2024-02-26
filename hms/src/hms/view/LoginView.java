@@ -11,6 +11,7 @@ public class LoginView extends javax.swing.JFrame {
     private final UserController USER_CONTROLLER;
     
     public LoginView() {
+          this.setResizable(false);
         USER_CONTROLLER = new UserController();
         initComponents();
         

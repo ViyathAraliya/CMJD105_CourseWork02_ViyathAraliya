@@ -18,6 +18,7 @@ public class AddNewUser extends javax.swing.JFrame {
     private final UserController USER_CONTROLLER;
 
     public AddNewUser() {
+          this.setResizable(false);
         USER_CONTROLLER = new UserController();
         initComponents();
         confirmPasswordField.getDocument().addDocumentListener(new DocumentListener() {

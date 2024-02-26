@@ -21,4 +21,7 @@ public class PackageContoller {
     }
     public String update(PackageDto dto) throws Exception{
         return packageService.update(dto);}
+    public String save(PackageDto dto)throws Exception{
+        return packageService.save(dto);
+    }
 }
