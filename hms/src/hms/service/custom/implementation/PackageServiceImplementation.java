@@ -31,5 +31,11 @@ public class PackageServiceImplementation implements PackageService {
         PackageEntity e = packageRepository.getByName(description,session);
         return new PackageDto(e.getId(), e.getDescription(), e.getCharge());
     }
+    
+    public String update(PackageDto dto)throws Exception{
+        PackageEntity pkgE=new PackageEntity(dto.getPackageID(), dto.getDescription(), dto.getCharge_for_package());
+        boolean =packageRepository.update(pkgE, session);
+        
+        }
 
 }

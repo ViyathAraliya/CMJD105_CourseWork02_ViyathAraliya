@@ -19,6 +19,12 @@ public class RoomDto {
    private List<BookingDatesDto> bookingDatesDtos;
    private String status;
 
+    public RoomDto(Integer roomId, CatagoryDto catagoryDto, String status) {
+        this.roomId = roomId;
+        this.catagoryDto = catagoryDto;
+        this.status = status;
+    }
+
    
    
    

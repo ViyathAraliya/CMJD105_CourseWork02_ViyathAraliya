@@ -165,6 +165,37 @@ public class ReservationServiceImplementation implements ReservationService {
         transaction.commit();
         return "success";
     }
+
+    @Override
+    public List<ReservationDetailDto> getReservationDetailsByID(Integer id) throws Exception {
+       List<ReservationDetailEntity> entities=reservationDetailRepository.getByReservationID(id, session);
+       List<ReservationDetailDto> reservationDetailDtos=new ArrayList<>();
+       for(ReservationDetailEntity e:entities){
+        
+         ReservationDetailID resDId=e.getId();
+        
+        PackageEntity pkgE=resDId.getPacakageEntity();
+        RoomEntity roomE=resDId.getRoomEntity();
+        CatagoryEntity catE=roomE.getCatagoryEntity();
+        
+        CatagoryDto catagoryDto=new CatagoryDto(catE.getId(), catE.getName(), catE.getDescription(), catE.getChargeForCatagory());
+        PackageDto packageDto=new PackageDto(pkgE.getId(),pkgE.getDescription(),pkgE.getCharge());
+        RoomDto roomDto=new RoomDto(roomE.getId(), catagoryDto,roomE.getStatus());
+        
+        ReservationDetailDto dto=new  ReservationDetailDto(packageDto,roomDto);
+        reservationDetailDtos.add(dto);
+       
+       }
+       return reservationDetailDtos;
+    }
+    
+    public ReservationDto getByID(Integer id)throws Exception{
+        ReservationEntity e=reservationRepository.getByID(id, session);
+        ReservationDto dto=new ReservationDto();
+        dto.setCheck_in_date(e.getCheck_in_Date());
+        dto.setCheck_out_date(e.getCheck_out_date());
+        return dto;
+    }
     
     
 }

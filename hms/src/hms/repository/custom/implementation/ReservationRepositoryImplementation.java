@@ -47,7 +47,7 @@ public class ReservationRepositoryImplementation implements ReservationRepositor
 
     @Override
     public ReservationEntity getByID(Integer id,Session session) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        return session.get(ReservationEntity.class, id);
     }
 
     @Override

@@ -1,6 +1,7 @@
 
 package hms.controller;
 
+import hms.dto.ReservationDetailDto;
 import hms.dto.ReservationDto;
 import hms.service.ServiceFactory;
 import hms.service.custom.ReservationService;
@@ -22,6 +23,10 @@ public class ReservationController {
      
     }
     
-    
+    public List<ReservationDetailDto> getReservationDetailsByID(Integer id)throws Exception{
+      return   reservationService.getReservationDetailsByID(id);
+      }
 
+    public ReservationDto getByID(Integer id)throws Exception{
+        return reservationService.getByID(id);}
 }

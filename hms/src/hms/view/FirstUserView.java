@@ -44,7 +44,7 @@ public class FirstUserView extends javax.swing.JFrame {
         phoneNumberLbl = new javax.swing.JLabel();
         passwordLbl = new javax.swing.JLabel();
         confirmPasswordLbl = new javax.swing.JLabel();
-        usernNameField = new javax.swing.JTextField();
+        userNameField = new javax.swing.JTextField();
         emailField = new javax.swing.JTextField();
         phoneNumberField = new javax.swing.JTextField();
         passwordField = new javax.swing.JPasswordField();
@@ -119,7 +119,7 @@ public class FirstUserView extends javax.swing.JFrame {
                                         .addGap(17, 17, 17)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(usernNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
                                         .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -160,7 +160,7 @@ public class FirstUserView extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(userNameLbl)
-                    .addComponent(usernNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(role)
@@ -227,13 +227,13 @@ public class FirstUserView extends javax.swing.JFrame {
     private javax.swing.JLabel phoneNumberLbl;
     private javax.swing.JLabel role;
     private javax.swing.JButton saveBtn;
+    private javax.swing.JTextField userNameField;
     private javax.swing.JLabel userNameLbl;
-    private javax.swing.JTextField usernNameField;
     // End of variables declaration//GEN-END:variables
 
     private void saveUser() {
 
-        UserDto userDto = new UserDto(userNameLbl.getText(), "admin", emailField.getText(), phoneNumberField.getText(), 
+        UserDto userDto = new UserDto(userNameField.getText(), "admin", emailField.getText(), phoneNumberField.getText(), 
                 passwordField.getPassword());
 
         try {
@@ -272,7 +272,7 @@ public class FirstUserView extends javax.swing.JFrame {
     }
 
     private void disableFields() {
-        usernNameField.setEditable(false);
+        userNameField.setEditable(false);
         emailField.setEditable(false);
         phoneNumberField.setEditable(false);
         passwordField.setEditable(false);
@@ -306,7 +306,7 @@ public class FirstUserView extends javax.swing.JFrame {
 
     public boolean hasEmptityFields() {
         
-        if (usernNameField.getText().isEmpty() || emailField.getText().isEmpty()
+        if (userNameField.getText().isEmpty() || emailField.getText().isEmpty()
                 || phoneNumberField.getText().isEmpty() || 
                 passwordField.getPassword().length==0 ||
                 confirmPasswordField.getPassword().length==0) {

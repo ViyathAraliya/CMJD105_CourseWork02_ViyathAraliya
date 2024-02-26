@@ -19,5 +19,6 @@ public class PackageContoller {
     public PackageDto  getByDescription(String description) throws Exception{
         return packageService.getByDescription(description);
     }
-
+    public String update(PackageDto dto) throws Exception{
+        return packageService.update(dto);}
 }

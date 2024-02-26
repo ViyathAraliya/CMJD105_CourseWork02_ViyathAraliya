@@ -64,6 +64,12 @@ public class ReservationDetailRepositoryImplementation implements ReservationDet
       return session.createQuery("delete from ReservationDetailEntity where reservationID='"+id+"'").executeUpdate();
       
     }
+
+    @Override
+    public List<ReservationDetailEntity> getByReservationID(Integer reservationID,Session session) throws Exception {
+       
+     return session.createQuery("FROM ReservationDetailEntity WHERE reservationID='"+reservationID+"'").getResultList();
+    }
     
 
 }

@@ -9,6 +9,7 @@ import hms.entity.ReservationDetailEntity;
 import hms.entity.ReservationEntity;
 
 import hms.entity.RoomEntity;
+import hms.entity.UserEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -27,6 +28,7 @@ public class SessionFactoryConfiguration {
               .addAnnotatedClass(ReservationDetailEntity.class)
               .addAnnotatedClass(PackageEntity.class)
                .addAnnotatedClass(RoomEntity.class)
+                .addAnnotatedClass(UserEntity.class)
                 .addAnnotatedClass(BookingDatesEntity.class);
                 
         sessionFactory = configuration.buildSessionFactory();
