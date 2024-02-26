@@ -234,7 +234,7 @@ public class FirstUserView extends javax.swing.JFrame {
     private void saveUser() {
 
         UserDto userDto = new UserDto(userNameField.getText(), "admin", emailField.getText(), phoneNumberField.getText(), 
-                passwordField.getPassword());
+                passwordField.getPassword(),true);
 
         try {
             if (hasEmptityFields()) {

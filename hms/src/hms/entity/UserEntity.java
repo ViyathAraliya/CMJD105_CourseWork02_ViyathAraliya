@@ -45,7 +45,11 @@ public class UserEntity {
     
     @Column(name="password")
     private char password[];
-   
+    
+    @Column(name="keep_logged_in")
+    private boolean keep_logged_in;
+    
+    
             
 
     public UserEntity(String userName, String role, String email, String phoneNumber, char password[]) {
@@ -54,6 +58,16 @@ public class UserEntity {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
+    }
+
+    public UserEntity( String userName, String role, String email, String phoneNumber, char[] password, boolean keep_logged_in) {
+        this.id = id;
+        this.userName = userName;
+        this.role = role;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+        this.keep_logged_in = keep_logged_in;
     }
     
    

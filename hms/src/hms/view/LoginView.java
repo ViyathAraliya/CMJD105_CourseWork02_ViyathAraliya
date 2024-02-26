@@ -1,31 +1,32 @@
-
 package hms.view;
 
 import hms.controller.UserController;
 import hms.dto.UserDto;
 import java.util.Arrays;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class LoginView extends javax.swing.JFrame {
-
+    
     private final UserController USER_CONTROLLER;
-
+    
     public LoginView() {
-
-        initComponents();
         USER_CONTROLLER = new UserController();
-
+        initComponents();
+        
         if (isEmpty()) {
-
+            
             messegeLbl1.setText("A user has not been registered yet. Please register the first user");
             userNameField.setEditable(false);
             passwordField.setEditable(false);
             loginBtn.setEnabled(false);
-
+            
         } else {
             registerFirstUserBtn.setEnabled(false);
-
+            
         }
+        try{check_for_keep_logged_in();}catch(Exception e){
+        JOptionPane.showMessageDialog(this,e.getMessage());}
     }
 
     /**
@@ -45,6 +46,7 @@ public class LoginView extends javax.swing.JFrame {
         loginBtn = new javax.swing.JButton();
         registerFirstUserBtn = new javax.swing.JButton();
         titleLbl = new javax.swing.JLabel();
+        keepLoggedInCheckBox = new java.awt.Checkbox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +73,8 @@ public class LoginView extends javax.swing.JFrame {
         titleLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         titleLbl.setText("Hotel Manangement System");
 
+        keepLoggedInCheckBox.setLabel("keep logged in");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,18 +83,21 @@ public class LoginView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(messegeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(loginBtn)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(userNameLble, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(passwordLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(userNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                                        .addComponent(passwordField)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(loginBtn)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(userNameLble, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(passwordLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(userNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                                            .addComponent(passwordField))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(keepLoggedInCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(24, 24, 24)
                         .addComponent(registerFirstUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -101,7 +108,7 @@ public class LoginView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(messegeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,7 +122,9 @@ public class LoginView extends javax.swing.JFrame {
                     .addComponent(passwordLbl)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loginBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(loginBtn)
+                    .addComponent(keepLoggedInCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37))
         );
 
@@ -132,6 +141,7 @@ public class LoginView extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Checkbox keepLoggedInCheckBox;
     private javax.swing.JButton loginBtn;
     private javax.swing.JLabel messegeLbl1;
     private javax.swing.JPasswordField passwordField;
@@ -145,34 +155,56 @@ public class LoginView extends javax.swing.JFrame {
     private boolean isEmpty() {
         return USER_CONTROLLER.isEmpty();
     }
-
-    private void createTheFirstUser(){
+    
+    private void createTheFirstUser() {
         new FirstUserView().setVisible(true);
         this.dispose();
-       
+        
     }
+
     private void login() {
+        
         String userName = userNameField.getText();
         char pwd[] = passwordField.getPassword();
         
         try {
             boolean userExists = USER_CONTROLLER.doesUserNameExist(userName);
-            if(userExists){
-               
-                UserDto userDto=USER_CONTROLLER.getUser(userName);
-                if(Arrays.equals(pwd,userDto.getPassword())){
+            if (userExists) {
+                
+                UserDto userDto = USER_CONTROLLER.getUser(userName);
+                if (Arrays.equals(pwd, userDto.getPassword())) {
+                    boolean keepLoggedIn = keepLoggedInCheckBox.getState();
+                    userDto.setKeep_logged_in(keepLoggedIn);
+                    USER_CONTROLLER.setKeepLoggedInStatus(userDto);
+                    
                     new HomeView().setVisible(true);
                     this.dispose();
                     
-                    }
-                else{JOptionPane.showMessageDialog(this, "incorrect password");}
+                } else {
+                    JOptionPane.showMessageDialog(this, "incorrect password");
+                }
                 
-            }else{
-            JOptionPane.showMessageDialog(this, "no such user.");
-           }
+            } else {
+                JOptionPane.showMessageDialog(this, "no such user.");
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-
+        
+    }
+    
+    public void check_for_keep_logged_in() throws Exception {
+        List<UserDto> userDtos = USER_CONTROLLER.getAll();
+        for (UserDto dto : userDtos) {
+            if (dto.isKeep_logged_in()) {
+                userNameField.setText(dto.getName());
+                char[] pwd=dto.getPassword();
+                keepLoggedInCheckBox.setState(true);
+             
+                passwordField.setText(String.copyValueOf(dto.getPassword()));
+            }
+        }
+        
     }
 }
+

@@ -1,6 +1,6 @@
 package hms.repository.custom.implementation;
 
-
+import hms.dto.UserDto;
 import hms.repository.custom.UserRepository;
 import hms.entity.UserEntity;
 import java.util.ArrayList;
@@ -8,34 +8,29 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-
-
 public class UserRepositoryImplementation implements UserRepository {
 
-
-    public String save(UserEntity userEntity,Session session) {
-        Transaction transaction = session.beginTransaction();
+    public String save(UserEntity userEntity, Session session) {
+       
         try {
             Integer id = (Integer) session.save(userEntity);
-            transaction.commit();
-
             return id.toString();
         } catch (Exception e) {
-            transaction.rollback();
+         
             return e.getMessage();
         }
     }
 
-    public UserEntity getByName(String userName,Session session) {
-       
-            String hql = "FROM UserEntity WHERE userName='" + userName + "'";
-            List list = session.createQuery(hql).getResultList();
-            UserEntity userEntity = (UserEntity) list.get(0);
-            return userEntity;
+    public UserEntity getByName(String userName, Session session) {
+
+        String hql = "FROM UserEntity WHERE userName='" + userName + "'";
+        List list = session.createQuery(hql).getResultList();
+        UserEntity userEntity = (UserEntity) list.get(0);
+        return userEntity;
 
     }
 
-    public boolean doesNameExist(String name,Session session) {
+    public boolean doesNameExist(String name, Session session) {
 
         String hql = "select 1 from UserEntity where exists (select 1 from UserEntity  where userName='"
                 + name + "')";
@@ -50,22 +45,32 @@ public class UserRepositoryImplementation implements UserRepository {
 
     }
 
-    public ArrayList<UserEntity> getAll(Session session) {
-        return null;
+    public List<UserEntity> getAll(Session session) {
+       return session.createQuery("FROM UserEntity").getResultList();
     }
 
     @Override
-    public boolean update(UserEntity e,Session session) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public boolean update(UserEntity e, Session session) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public UserEntity getByID(String id,Session session) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public UserEntity getByID(String id, Session session) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public Integer deleteByID(String id, Session session) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+    @Override
+    public boolean setKeepLoggedInStatus(UserEntity e, Session session) throws Exception {
+       
+        if (session.merge(e) == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

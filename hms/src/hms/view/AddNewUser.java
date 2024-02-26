@@ -220,7 +220,7 @@ public class AddNewUser extends javax.swing.JFrame {
             }
             role = selectRoleCmbBx.getSelectedItem().toString();
             UserDto userDto = new UserDto(usernNameField.getText(), role, emailField.getText(), phoneNumberField.getText(),
-                    passwordField.getPassword());
+                    passwordField.getPassword(),false);
 
             if (role.equals("- please select a role")) {
                 JOptionPane.showMessageDialog(this, "please select a role");
