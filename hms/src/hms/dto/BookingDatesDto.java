@@ -16,4 +16,20 @@ public class BookingDatesDto {
     private Integer roomId;
     private Date checkInDate;
     private Date checkOutDate;
+
+    public BookingDatesDto(Integer roomId, Date checkInDate, Date checkOutDate) {
+        this.roomId = roomId;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+    }
+    private Integer reservationID;
+
+    public BookingDatesDto(Date checkInDate, Date checkOutDate, Integer reservationID) {
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.reservationID = reservationID;
+    }
+    
+    
+    
 }

@@ -57,7 +57,9 @@ public class RoomServiceImplementation implements RoomService {
         for (BookingDatesEntity bookingDatesEntity : bookingDatesEntities) {
             BookingDatesEntityID bookingDatesEntityID = bookingDatesEntity.getBookingDateID();
             BookingDatesDto bookingDatesDto = new BookingDatesDto(roomId,bookingDatesEntityID.getCheck_in_Date(), bookingDatesEntityID.getCheck_out_Date());
+           bookingDatesDto.setReservationID(bookingDatesEntity.getReservationID());//new(02/27/2024)
             bookingDatesDtos.add(bookingDatesDto);
+            
         }
         return new RoomDto(roomId, catagoryDto, bookingDatesDtos, roomEntity.getStatus());
 

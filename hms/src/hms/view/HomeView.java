@@ -14,6 +14,7 @@ public class HomeView extends javax.swing.JFrame {
         makeReservationBtn = new javax.swing.JButton();
         packageBtn = new javax.swing.JButton();
         reservationBtn = new javax.swing.JButton();
+        roomBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -34,10 +35,17 @@ public class HomeView extends javax.swing.JFrame {
             }
         });
 
-        reservationBtn.setText("View/Cancel Reeservation");
+        reservationBtn.setText("View/Cancel Reservation");
         reservationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reservationBtnActionPerformed(evt);
+            }
+        });
+
+        roomBtn.setText("manage rooms");
+        roomBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roomBtnActionPerformed(evt);
             }
         });
 
@@ -46,18 +54,20 @@ public class HomeView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(144, 144, 144)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(packageBtn)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(makeReservationBtn)
-                                .addGap(42, 42, 42)
-                                .addComponent(reservationBtn)))))
+                                .addComponent(makeReservationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(reservationBtn))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(roomBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(packageBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(201, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -71,7 +81,9 @@ public class HomeView extends javax.swing.JFrame {
                     .addComponent(reservationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addComponent(packageBtn)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(roomBtn)
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         pack();
@@ -92,11 +104,17 @@ public class HomeView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_packageBtnActionPerformed
 
+    private void roomBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomBtnActionPerformed
+        new RoomView().setVisible(true);
+        this.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_roomBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton makeReservationBtn;
     private javax.swing.JButton packageBtn;
     private javax.swing.JButton reservationBtn;
+    private javax.swing.JButton roomBtn;
     // End of variables declaration//GEN-END:variables
 }

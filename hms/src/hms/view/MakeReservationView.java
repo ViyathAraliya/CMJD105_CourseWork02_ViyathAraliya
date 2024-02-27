@@ -19,6 +19,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import java.util.List;
@@ -675,8 +676,16 @@ public class MakeReservationView extends javax.swing.JFrame {
                 .getSelectedItem();
 
         /*new*/
+        
         Date check_in_date = new SimpleDateFormat("MM/dd/yyyy").parse(checkInDateField.getText());
         Date check_out_date = new SimpleDateFormat("MM/dd/yyyy").parse(checkOutDateField.getText());
+        //new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").
+        String checkIn=new SimpleDateFormat("yyyy-mm-dd").format(check_in_date)+" 14:00:00";
+        String checkOut=new SimpleDateFormat("yyyy-mm-dd").format(check_out_date)+" 14:00:00";
+        
+        check_in_date=new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").parse(checkIn);
+        check_out_date=new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").parse(checkOut);
+        
         String catogoryName = (String) room_table.getValueAt(room_table.getSelectedRow(), 1);//error here
 
         CatagoryDto catagoryDto = CATAGORY_CONTROLLER.getByName(catogoryName);
@@ -770,11 +779,11 @@ public class MakeReservationView extends javax.swing.JFrame {
     }
 
     private void setFieldsAndDates() {
-        customerNameField.setText("Viyath");
-        nicField.setText("933554520V");
-        phoneNumberField.setText("0702476555");
-        emailField.setText("viyatharaliya@gmail.com");
-        addressField.setText("240/41D,yatiwawela katugastota");
+        customerNameField.setText("custName");
+        nicField.setText("1248725734V");
+        phoneNumberField.setText("0675245638");
+        emailField.setText("wemng@@gmail.com");
+        addressField.setText("34/31D, wsdaqd");
         checkInDateField.setText((""));
         checkOutDateField.setText("");
     }
@@ -798,10 +807,22 @@ public class MakeReservationView extends javax.swing.JFrame {
 
     private void enableCustomerDetailFields() {
         customerNameField.setEditable(true);
+        customerNameField.setText("");
+        
         nicField.setEditable(true);
+        nicField.setText("");
+        
         phoneNumberField.setVisible(true);
+        phoneNumberField.setText("");
+        
         emailField.setEditable(true);
+        emailField.setText("");
+        
         addressField.setEditable(true);
+        addressField.setText("");
+        
+        checkInDateField.setText("");
+        checkOutDateField.setText("");
     }
 
 }
