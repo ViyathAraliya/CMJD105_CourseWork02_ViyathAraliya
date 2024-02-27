@@ -10,15 +10,10 @@ import org.hibernate.Transaction;
 
 public class UserRepositoryImplementation implements UserRepository {
 
-    public String save(UserEntity userEntity, Session session) {
-       
-        try {
-            Integer id = (Integer) session.save(userEntity);
-            return id.toString();
-        } catch (Exception e) {
-         
-            return e.getMessage();
-        }
+    public Integer save(UserEntity userEntity, Session session) {
+
+       return (Integer)session.save(userEntity);
+
     }
 
     public UserEntity getByName(String userName, Session session) {
@@ -46,7 +41,7 @@ public class UserRepositoryImplementation implements UserRepository {
     }
 
     public List<UserEntity> getAll(Session session) {
-       return session.createQuery("FROM UserEntity").getResultList();
+        return session.createQuery("FROM UserEntity").getResultList();
     }
 
     @Override
@@ -55,18 +50,18 @@ public class UserRepositoryImplementation implements UserRepository {
     }
 
     @Override
-    public UserEntity getByID(String id, Session session) throws Exception {
+    public UserEntity getByID(Integer id, Session session) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Integer deleteByID(String id, Session session) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public Integer deleteByID(Integer id, Session session) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean setKeepLoggedInStatus(UserEntity e, Session session) throws Exception {
-       
+
         if (session.merge(e) == null) {
             return false;
         } else {

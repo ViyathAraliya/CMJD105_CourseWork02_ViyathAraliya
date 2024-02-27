@@ -10,11 +10,11 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 
-public class FirstUserView extends javax.swing.JFrame {
+public class RegisterView extends javax.swing.JFrame {
 
     private final UserController USER_CONTROLLER;
 
-    public FirstUserView() {
+    public RegisterView() {
           this.setResizable(false);
         USER_CONTROLLER = new UserController();
         initComponents();
@@ -82,7 +82,7 @@ public class FirstUserView extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Register the first user");
+        jLabel1.setText("Register ");
 
         role.setText("role");
 

@@ -1,17 +1,7 @@
 
 package hms;
-import hms.entity.CustomerEntity;
-import org.hibernate.Session;
 
-import hms.repository.RepositoryFactory;
-import hms.repository.custom.CustomerRepository;
-import hms.util.SessionFactoryConfiguration;
-import hms.view.ReservationView;
 import hms.view.LoginView;
-import hms.view.MakeReservationView;
-import hms.view.PackageView;
-
-import org.hibernate.Transaction;
 
 
 

@@ -1,10 +1,18 @@
 package hms.view;
 
-public class HomeView extends javax.swing.JFrame {
+import hms.controller.CatagoryController;
+import hms.controller.PackageContoller;
+import javax.swing.JOptionPane;
 
+public class HomeView extends javax.swing.JFrame {
+private final PackageContoller PACKAGE_CONTROLLER;
+private final CatagoryController CATAGORY_CONTROLER;
     public HomeView() {
+        PACKAGE_CONTROLLER=new PackageContoller();
+        CATAGORY_CONTROLER=new CatagoryController();
         this.setResizable(false);
         initComponents();
+        checkPackageAndCatgories();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -17,6 +25,7 @@ public class HomeView extends javax.swing.JFrame {
         roomBtn = new javax.swing.JButton();
         catagoryBtn = new javax.swing.JButton();
         homeBtn = new javax.swing.JButton();
+        noteLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -30,7 +39,7 @@ public class HomeView extends javax.swing.JFrame {
             }
         });
 
-        packageBtn.setText("View/Update packages");
+        packageBtn.setText("manage packages");
         packageBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 packageBtnActionPerformed(evt);
@@ -58,53 +67,69 @@ public class HomeView extends javax.swing.JFrame {
             }
         });
 
-        homeBtn.setText("Edit Customer Details");
+        homeBtn.setText("Edit Customer Information");
         homeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeBtnActionPerformed(evt);
             }
         });
 
+        noteLbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        noteLbl.setForeground(new java.awt.Color(255, 0, 51));
+        noteLbl.setText(".");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(packageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(catagoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roomBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(72, 72, 72)
+                .addComponent(noteLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 118, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(homeBtn)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(makeReservationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)
+                                .addComponent(reservationBtn))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(144, 144, 144)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(makeReservationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roomBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(packageBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(catagoryBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(homeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(reservationBtn)))
-                .addContainerGap(201, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(packageBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(catagoryBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(roomBtn))
+                    .addComponent(noteLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(makeReservationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(reservationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(packageBtn)
-                .addGap(31, 31, 31)
-                .addComponent(roomBtn)
-                .addGap(31, 31, 31)
-                .addComponent(catagoryBtn)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(homeBtn)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
+
+        noteLbl.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -145,8 +170,21 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JButton homeBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton makeReservationBtn;
+    private javax.swing.JLabel noteLbl;
     private javax.swing.JButton packageBtn;
     private javax.swing.JButton reservationBtn;
     private javax.swing.JButton roomBtn;
     // End of variables declaration//GEN-END:variables
+
+ public void checkPackageAndCatgories(){
+     try{
+     if(PACKAGE_CONTROLLER.getAll().size()==0 || CATAGORY_CONTROLER.getAll().size()==0){
+         noteLbl.setText("<html>NOTE :  add a package and a catagory <br>before performing other operations<br>(essential for loading JComboBoxes) </html>");
+     }
+     
+     }catch(Exception e){
+         JOptionPane.showMessageDialog(this,e.getMessage());
+                 }
+ }
 }
+

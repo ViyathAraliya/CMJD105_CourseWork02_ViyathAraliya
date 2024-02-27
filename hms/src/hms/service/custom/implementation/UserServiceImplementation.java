@@ -18,11 +18,19 @@ public class UserServiceImplementation implements UserService {
     UserRepository userRepository = (UserRepository) RepositoryFactory.getInstance().getRepository(RepositoryFactory.RepositoryType.USER);
 
     public String saveUser(UserDto userDto) throws Exception {
-        Transaction transaction=session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         UserEntity userEntity = new UserEntity(userDto.getName(), userDto.getRole(),
-                userDto.getEmail(), userDto.getPhoneNumber(), userDto.getPassword(),userDto.isKeep_logged_in());
+                userDto.getEmail(), userDto.getPhoneNumber(), userDto.getPassword(), userDto.isKeep_logged_in());
+
+        Integer id = userRepository.save(userEntity, session);
+
+        if (id == null) {
+            transaction.rollback();
+            return "failed to save user";
+        }
         transaction.commit();
-        return userRepository.save(userEntity, session);
+        return "user saved succssfully";
+
     }
 
     public UserDto getUser(String name) throws Exception {

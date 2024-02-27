@@ -309,7 +309,8 @@ public class PackageView extends javax.swing.JFrame {
         packageDto.setDescription(name);
         packageDto.setCharge_for_package(charge);
         try {
-            PACKAGE_CONTROLLER.save(packageDto);
+            String msg=PACKAGE_CONTROLLER.save(packageDto);
+            JOptionPane.showMessageDialog(this, msg);
             loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
