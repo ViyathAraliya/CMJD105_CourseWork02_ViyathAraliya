@@ -43,14 +43,27 @@ public class CatagoryServiceImplementation implements CatagoryService {
     public String update(CatagoryDto dto) throws Exception {
 
         CatagoryEntity e = new CatagoryEntity(dto.getId(), dto.getCatagoryName(), dto.getDescription(), dto.getChargeForCatagory());
-        Transaction transaction=session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         if (catagoryRepository.update(e, session)) {
             transaction.commit();
             return "succesfully updated";
         }
-         transaction.rollback();
+        transaction.rollback();
         return "error in updating";
-        
+
+    }
+
+    public String save(CatagoryDto dto) throws Exception {
+        CatagoryEntity e = new CatagoryEntity(dto.getCatagoryName(), dto.getDescription(), dto.getChargeForCatagory());
+        Transaction transaction = session.beginTransaction();
+        Integer id = catagoryRepository.save(e, session);
+        if (id == null || id == -1) {
+            transaction.rollback();
+            return "failed to save";
+        }
+        transaction.commit();
+        return "succes";
+
     }
 
 }

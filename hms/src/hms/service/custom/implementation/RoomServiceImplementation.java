@@ -39,13 +39,13 @@ public class RoomServiceImplementation implements RoomService {
             List<BookingDatesEntity> bookingDateEntities = e.getBookingDateEntities();
             for (BookingDatesEntity bookingDatesEntity : bookingDateEntities) {
                 BookingDatesEntityID bookingDatesEntityID = bookingDatesEntity.getBookingDateID();
-                BookingDatesDto datesDto = new BookingDatesDto(e.getId(),bookingDatesEntityID.getCheck_in_Date(), bookingDatesEntityID.getCheck_out_Date());
+                BookingDatesDto datesDto = new BookingDatesDto(e.getId(), bookingDatesEntityID.getCheck_in_Date(), bookingDatesEntityID.getCheck_out_Date());
                 datesDtos.add(datesDto);
             }
             RoomDto roomDto = new RoomDto(e.getId(), catagoryDto, datesDtos, e.getStatus());
             roomDtos.add(roomDto);
         }
-      
+
         return roomDtos;
     }
 
@@ -57,23 +57,24 @@ public class RoomServiceImplementation implements RoomService {
         List<BookingDatesEntity> bookingDatesEntities = roomEntity.getBookingDateEntities();
         for (BookingDatesEntity bookingDatesEntity : bookingDatesEntities) {
             BookingDatesEntityID bookingDatesEntityID = bookingDatesEntity.getBookingDateID();
-            BookingDatesDto bookingDatesDto = new BookingDatesDto(roomId,bookingDatesEntityID.getCheck_in_Date(), bookingDatesEntityID.getCheck_out_Date());
-           bookingDatesDto.setReservationID(bookingDatesEntity.getReservationID());//new(02/27/2024)
+            BookingDatesDto bookingDatesDto = new BookingDatesDto(roomId, bookingDatesEntityID.getCheck_in_Date(), bookingDatesEntityID.getCheck_out_Date());
+            bookingDatesDto.setReservationID(bookingDatesEntity.getReservationID());//new(02/27/2024)
             bookingDatesDtos.add(bookingDatesDto);
-            
+
         }
         return new RoomDto(roomId, catagoryDto, bookingDatesDtos, roomEntity.getStatus());
 
     }
-    public String save(RoomDto dto)throws Exception{
-        
-        RoomEntity roomEntity=new RoomEntity();
-        CatagoryDto catagoryDto=dto.getCatagoryDto();
-        CatagoryEntity  catagoryEntity=new CatagoryEntity(catagoryDto.getId(), catagoryDto.getCatagoryName(), catagoryDto.getDescription(), catagoryDto.getChargeForCatagory());
-       roomEntity.setCatagoryEntity(catagoryEntity);
-        Transaction transaction=session.beginTransaction();
-        Integer id=roomRepository.save(roomEntity, session);
-        if(id==null || id==-1){
+
+    public String save(RoomDto dto) throws Exception {
+
+        RoomEntity roomEntity = new RoomEntity();
+        CatagoryDto catagoryDto = dto.getCatagoryDto();
+        CatagoryEntity catagoryEntity = new CatagoryEntity(catagoryDto.getId(), catagoryDto.getCatagoryName(), catagoryDto.getDescription(), catagoryDto.getChargeForCatagory());
+        roomEntity.setCatagoryEntity(catagoryEntity);
+        Transaction transaction = session.beginTransaction();
+        Integer id = roomRepository.save(roomEntity, session);
+        if (id == null || id == -1) {
             transaction.rollback();
             return "error in saving";
         }

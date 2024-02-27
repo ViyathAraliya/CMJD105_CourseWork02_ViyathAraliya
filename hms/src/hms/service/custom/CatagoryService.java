@@ -11,6 +11,7 @@ public interface CatagoryService extends SuperService{
      CatagoryDto getById(Integer id) throws Exception;
      CatagoryDto getByName(String name)throws Exception;
      String update(CatagoryDto dto) throws Exception;
+     String save(CatagoryDto dto) throws Exception;
     
 }
 

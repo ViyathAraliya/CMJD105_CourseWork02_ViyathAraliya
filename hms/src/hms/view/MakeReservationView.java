@@ -467,7 +467,11 @@ public class MakeReservationView extends javax.swing.JFrame {
         String[] titles = {"roomID", "catagoryName", "charge for catagory",
             "availibilty", "reason if unavailable"};
 
-        DefaultTableModel dtm = new DefaultTableModel(null, titles);
+        DefaultTableModel dtm = new DefaultTableModel(null, titles){
+         public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }};
         for (int i = 0; i < roomDtos.size(); i++) {
             RoomDto roomDto = roomDtos.get(i);
             CatagoryDto catagoryDto = CATAGORY_CONTROLLER.getById(roomDto.getCatagoryDto().getId());
@@ -517,7 +521,10 @@ public class MakeReservationView extends javax.swing.JFrame {
                 = {"<html><br>roomId<br><br></html>", "<html>room catagory</html>", "<html>charge<br>for<br>catagory</html>",
                     "<html>availibilty</html>", "<html>reason<br>if<br>unavailable</html>"};
 
-        DefaultTableModel dtm = new DefaultTableModel(null, titles);
+        DefaultTableModel dtm = new DefaultTableModel(null, titles){ public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }};
         for (int i = 0; i < roomDtos.size(); i++) {
             RoomDto roomDto = roomDtos.get(i);
             CatagoryDto catagoryDto = CATAGORY_CONTROLLER.getById(roomDto.getCatagoryDto().getId());

@@ -10,7 +10,7 @@ import java.util.List;
 public class CatagoryRepositoryImplementation implements CatagoryRepository {
 
     public Integer save(CatagoryEntity e, Session session) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+       return (Integer)session.save(e);
     }
 
     public boolean doesNameExist(String name, Session session) throws Exception {

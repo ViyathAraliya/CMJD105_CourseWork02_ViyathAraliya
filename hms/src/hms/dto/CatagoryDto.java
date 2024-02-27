@@ -20,4 +20,12 @@ public class CatagoryDto {
     private String catagoryName;
     private String description;
     private Integer chargeForCatagory;
+
+    public CatagoryDto(String catagoryName, String description, Integer chargeForCatagory) {
+        this.catagoryName = catagoryName;
+        this.description = description;
+        this.chargeForCatagory = chargeForCatagory;
+    }
+    
+    
 }

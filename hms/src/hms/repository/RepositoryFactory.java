@@ -41,8 +41,7 @@ public class RepositoryFactory {
             case RESERVATION_DETAIL:
                 return new ReservationDetailRepositoryImplementation();
             case BOOKING_DATES:
-                return new BookingDatesRepositoryImplementation();
-                
+                return new BookingDatesRepositoryImplementation(); 
             default:
                 return null;
         }

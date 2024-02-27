@@ -56,6 +56,12 @@ public CatagoryEntity(Integer id,String name, String description, Integer charge
 @Transient
  @OneToMany(mappedBy = "roomEntity",targetEntity = RoomEntity.class)
 List<RoomEntity> roomEntities;
+
+    public CatagoryEntity(String name, String description, Integer chargeForCatagory) {
+        this.name = name;
+        this.description = description;
+        this.chargeForCatagory = chargeForCatagory;
+    }
  
  
 }

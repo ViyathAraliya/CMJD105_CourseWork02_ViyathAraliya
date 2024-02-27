@@ -26,4 +26,8 @@ public class CatagoryController {
     public String update(CatagoryDto dto) throws Exception{
         return catagoryService.update(dto);
     }
+    
+    public String save(CatagoryDto dto)throws Exception{
+        return catagoryService.save(dto);
+    }
 }

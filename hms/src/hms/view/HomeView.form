@@ -31,21 +31,15 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="makeReservationBtn" min="-2" pref="144" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="reservationBtn" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="roomBtn" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="packageBtn" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="catagoryBtn" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="makeReservationBtn" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                          <Component id="roomBtn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="packageBtn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="catagoryBtn" alignment="1" max="32767" attributes="0"/>
+                          <Component id="homeBtn" alignment="0" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="reservationBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="201" max="32767" attributes="0"/>
@@ -68,7 +62,9 @@
               <Component id="roomBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Component id="catagoryBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="95" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Component id="homeBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="44" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -120,6 +116,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="catagoryBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="homeBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Edit Customer Details"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homeBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

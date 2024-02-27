@@ -17,57 +17,57 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ReservationView extends javax.swing.JFrame {
-    
+
     private ReservationController RESERVATION_CONTROLLER;
     String[] columnHeads_reservation = {"customer NIC", "reservaionID", "time of booking"};
     String[] columnHeads_reservationDetails = {"<html><br>roomID<br> &nbsp; </html>", "room_catgory", "package", "<html>charge<br>for<br>package</html>",
         "<html>charge<br>for<br>roomCatagory</html>", "checkIn", "checkout", "<html>no Of<br>days</html>", "sum"};
-    
+
     public ReservationView() {
-          this.setResizable(false);
+        this.setResizable(false);
         RESERVATION_CONTROLLER = new ReservationController();
         initComponents();
-        
+
         try {
             loadTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-        
+
         DefaultTableModel dtm = new DefaultTableModel(columnHeads_reservationDetails, 0);
         reservationDetailTable.setModel(dtm);
         reservationDetailTable.getColumnModel().getColumn(5).setPreferredWidth(200);
         reservationDetailTable.getColumnModel().getColumn(6).setPreferredWidth(200);
         reservationDetailTable.getColumnModel().getColumn(8).setPreferredWidth(150);
-        
+
         reservationTable.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 tableClicked();
             }
-            
+
             @Override
             public void mousePressed(MouseEvent e) {
-                
+
             }
-            
+
             @Override
             public void mouseReleased(MouseEvent e) {
-                
+
             }
-            
+
             @Override
             public void mouseEntered(MouseEvent e) {
-                
+
             }
-            
+
             @Override
             public void mouseExited(MouseEvent e) {
-                
+
             }
         });
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -174,17 +174,22 @@ public class ReservationView extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void loadTable() throws Exception {
-        DefaultTableModel dtm = new DefaultTableModel(columnHeads_reservation, 0);
+        DefaultTableModel dtm = new DefaultTableModel(columnHeads_reservation, 0) {
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
         List<ReservationDto> reservationDtos = RESERVATION_CONTROLLER.getAll();
-        
+
         for (ReservationDto dto : reservationDtos) {
             Object[] row = {dto.getCustomerDto().getNic(), dto.getReservationID(), dto.getTime_of_booking()};
             dtm.addRow(row);
         }
         reservationTable.setModel(dtm);
-        
+
     }
-    
+
     public void deleteReservation() {
         if (reservationTable.getSelectionModel().isSelectionEmpty()) {
             JOptionPane.showMessageDialog(this, "please select a reservation");
@@ -195,7 +200,7 @@ public class ReservationView extends javax.swing.JFrame {
             return;
         }
         Integer reservationID = (Integer) reservationTable.getValueAt(reservationTable.getSelectedRow(), 1);
-        
+
         try {
             String msg = RESERVATION_CONTROLLER.delete(reservationID);
             JOptionPane.showMessageDialog(this, msg);
@@ -203,19 +208,19 @@ public class ReservationView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
-    
+
     public boolean has_24hrs_passed() {
-        
+
         Date time_of_booking = (Date) reservationTable.getValueAt(reservationTable.getSelectedRow(), 2);
         Date current_Date = new Date();
-        
+
         Long timeDiff = current_Date.getTime() - time_of_booking.getTime();
         if (timeDiff > (24 * 60 * 60 * 1000)) {/*time diffe in miliseconds*/
             return true;
         }
         return false;
     }
-    
+
     public void tableClicked() {
         DefaultTableModel dtm = new DefaultTableModel(columnHeads_reservationDetails, 0);
         reservationDetailTable.setModel(dtm);
@@ -224,9 +229,9 @@ public class ReservationView extends javax.swing.JFrame {
         reservationDetailTable.getColumnModel().getColumn(8).setPreferredWidth(150);
         try {
             Integer reservationID = (Integer) reservationTable.getValueAt(reservationTable.getSelectedRow(), 1);
-            
+
             List<ReservationDetailDto> reservationDetailDtos = RESERVATION_CONTROLLER.getReservationDetailsByID(reservationID);
-            
+
             for (ReservationDetailDto resDetDto : reservationDetailDtos) {
                 Integer roomID;
                 String room_catgory;
@@ -237,22 +242,22 @@ public class ReservationView extends javax.swing.JFrame {
                 Date checkOut;
                 Integer duration_of_stay;
                 Integer sumAmount;
-                
+
                 CatagoryDto catagoryDto = resDetDto.getRoomDto().getCatagoryDto();
                 RoomDto roomDto = resDetDto.getRoomDto();
                 PackageDto packageDto = resDetDto.getPackageDto();
                 ReservationDto resDto = RESERVATION_CONTROLLER.getByID(reservationID);
-                
+
                 roomID = roomDto.getRoomId();
-                
+
                 room_catgory = catagoryDto.getCatagoryName();
                 package_ = packageDto.getDescription();
                 charge_for_roomCatagory = catagoryDto.getChargeForCatagory();
                 charge_for_package = packageDto.getCharge_for_package();
-                
+
                 checkIn = resDto.getCheck_in_date();
                 checkOut = resDto.getCheck_out_date();
-                
+
                 long daysSince1970_for_checkIn = checkIn.getTime() / (1000 * 60 * 60 * 24);
                 long daysSince1970_for_checkOut = checkOut.getTime() / (1000 * 60 * 60 * 24);
                 duration_of_stay = (int) (daysSince1970_for_checkOut - daysSince1970_for_checkIn);
@@ -261,10 +266,10 @@ public class ReservationView extends javax.swing.JFrame {
                     checkOut, duration_of_stay, sumAmount};
                 dtm.addRow(row);
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
-    
+
 }

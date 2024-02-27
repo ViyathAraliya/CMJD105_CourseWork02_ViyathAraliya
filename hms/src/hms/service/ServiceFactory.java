@@ -3,6 +3,7 @@ package hms.service;
 
 
 import hms.service.custom.implementation.CatagoryServiceImplementation;
+import hms.service.custom.implementation.CustomerServiceImplementation;
 import hms.service.custom.implementation.PackageServiceImplementation;
 import hms.service.custom.implementation.ReservationServiceImplementation;
 import hms.service.custom.implementation.RoomServiceImplementation;
@@ -34,12 +35,14 @@ public class ServiceFactory {
                 return new PackageServiceImplementation();
             case RESERVATION:
                 return new ReservationServiceImplementation();
+            case CUSTOMER:
+                    return new CustomerServiceImplementation();
             default:
                 return null;
         }
     }
 
     public enum ServiceType {
-        USER, CATAGORY,ROOM,PACKAGE,RESERVATION}
+        USER, CATAGORY,ROOM,PACKAGE,RESERVATION,CUSTOMER}
 
 }
