@@ -36,6 +36,8 @@ public class RoomEntity {
     @Column(name = "RoomID")
     private Integer id;
     
+
+    
     @Column
     private String status;
     

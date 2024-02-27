@@ -37,9 +37,13 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="reservationBtn" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="roomBtn" alignment="0" max="32767" attributes="0"/>
-                              <Component id="packageBtn" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="roomBtn" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="packageBtn" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="catagoryBtn" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -62,7 +66,9 @@
               <Component id="packageBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Component id="roomBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="149" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="catagoryBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="95" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -106,6 +112,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roomBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="catagoryBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="manage catagories"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="catagoryBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

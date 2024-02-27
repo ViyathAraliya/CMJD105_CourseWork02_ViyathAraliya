@@ -15,6 +15,7 @@ public class HomeView extends javax.swing.JFrame {
         packageBtn = new javax.swing.JButton();
         reservationBtn = new javax.swing.JButton();
         roomBtn = new javax.swing.JButton();
+        catagoryBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,6 +50,13 @@ public class HomeView extends javax.swing.JFrame {
             }
         });
 
+        catagoryBtn.setText("manage catagories");
+        catagoryBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                catagoryBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,9 +73,12 @@ public class HomeView extends javax.swing.JFrame {
                                 .addComponent(makeReservationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(reservationBtn))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(roomBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(packageBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(roomBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(packageBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(catagoryBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(201, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -83,7 +94,9 @@ public class HomeView extends javax.swing.JFrame {
                 .addComponent(packageBtn)
                 .addGap(31, 31, 31)
                 .addComponent(roomBtn)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(catagoryBtn)
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         pack();
@@ -109,8 +122,14 @@ public class HomeView extends javax.swing.JFrame {
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_roomBtnActionPerformed
 
+    private void catagoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catagoryBtnActionPerformed
+        this.dispose();
+        new CatagoryView().setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_catagoryBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton catagoryBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton makeReservationBtn;
     private javax.swing.JButton packageBtn;

@@ -15,6 +15,7 @@ import hms.service.custom.RoomService;
 import hms.util.SessionFactoryConfiguration;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.Transaction;
 
 public class RoomServiceImplementation implements RoomService {
 
@@ -63,6 +64,21 @@ public class RoomServiceImplementation implements RoomService {
         }
         return new RoomDto(roomId, catagoryDto, bookingDatesDtos, roomEntity.getStatus());
 
+    }
+    public String save(RoomDto dto)throws Exception{
+        
+        RoomEntity roomEntity=new RoomEntity();
+        CatagoryDto catagoryDto=dto.getCatagoryDto();
+        CatagoryEntity  catagoryEntity=new CatagoryEntity(catagoryDto.getId(), catagoryDto.getCatagoryName(), catagoryDto.getDescription(), catagoryDto.getChargeForCatagory());
+       roomEntity.setCatagoryEntity(catagoryEntity);
+        Transaction transaction=session.beginTransaction();
+        Integer id=roomRepository.save(roomEntity, session);
+        if(id==null || id==-1){
+            transaction.rollback();
+            return "error in saving";
+        }
+        transaction.commit();
+        return "successfully saved";
     }
 
 }

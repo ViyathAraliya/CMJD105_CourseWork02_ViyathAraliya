@@ -17,12 +17,18 @@ public class RoomDto {
     private Integer roomId;
    private CatagoryDto catagoryDto;
    private List<BookingDatesDto> bookingDatesDtos;
+   
    private String status;
 
     public RoomDto(Integer roomId, CatagoryDto catagoryDto, String status) {
         this.roomId = roomId;
         this.catagoryDto = catagoryDto;
         this.status = status;
+    }
+
+    public RoomDto(CatagoryDto catagoryDto) {
+        this.catagoryDto = catagoryDto;
+       
     }
 
    
