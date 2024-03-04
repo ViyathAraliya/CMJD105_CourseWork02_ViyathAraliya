@@ -140,7 +140,7 @@ private final CatagoryController CATAGORY_CONTROLER;
     }//GEN-LAST:event_makeReservationBtnActionPerformed
 
     private void reservationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservationBtnActionPerformed
-        new MakeReservationView().setVisible(true);
+        new ReservationView().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_reservationBtnActionPerformed
 

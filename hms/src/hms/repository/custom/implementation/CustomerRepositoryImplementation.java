@@ -47,6 +47,14 @@ public class CustomerRepositoryImplementation implements CustomerRepository {
 
     @Override
     public boolean update(CustomerEntity e, Session session) throws Exception {
+
+        /*try {
+            session.update(e);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }*/
+
         if (session.merge(e) == null) {
             return false;
         }

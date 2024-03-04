@@ -46,7 +46,8 @@ public class UserRepositoryImplementation implements UserRepository {
 
     @Override
     public boolean update(UserEntity e, Session session) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Integer id=(Integer)session.merge(e);
+        return id!=null;
     }
 
     @Override

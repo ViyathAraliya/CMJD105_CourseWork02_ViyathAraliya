@@ -16,6 +16,7 @@ public class CustomerView extends javax.swing.JFrame {
     public CustomerView() {
         CUSTOMER_CONTROLER = new CustomerController();
         initComponents();
+        idField.setEditable(false);
         loadTable();
         customerTable.addMouseListener(new MouseListener() {
             @Override
@@ -61,6 +62,8 @@ public class CustomerView extends javax.swing.JFrame {
         addressField = new javax.swing.JTextField();
         updateBtn = new javax.swing.JButton();
         homeBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        idField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,6 +107,8 @@ public class CustomerView extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("CustomerID");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,25 +121,31 @@ public class CustomerView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(homeBtn))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nameField)
-                            .addComponent(nicField)
-                            .addComponent(phoneField)
-                            .addComponent(emailField)
-                            .addComponent(addressField, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(63, 63, 63)
+                                .addComponent(idField, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nameField)
+                                    .addComponent(nicField)
+                                    .addComponent(phoneField)
+                                    .addComponent(emailField)
+                                    .addComponent(addressField, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))))
                         .addGap(42, 42, 42)
-                        .addComponent(updateBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(updateBtn)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -142,7 +153,11 @@ public class CustomerView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -167,7 +182,7 @@ public class CustomerView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(12, Short.MAX_VALUE))
+                        .addContainerGap(9, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(homeBtn)
@@ -182,8 +197,9 @@ public class CustomerView extends javax.swing.JFrame {
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+       new HomeView().setVisible(true); 
         this.dispose();
-        new HomeView().setEnabled(false);        // TODO add your handling code here:
+            // TODO add your handling code here:
     }//GEN-LAST:event_homeBtnActionPerformed
 
 
@@ -192,7 +208,9 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JTable customerTable;
     private javax.swing.JTextField emailField;
     private javax.swing.JButton homeBtn;
+    private javax.swing.JTextField idField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -224,7 +242,8 @@ public class CustomerView extends javax.swing.JFrame {
     }
     
     public void update() {
-        CustomerDto dto = new CustomerDto(nameField.getText(), nicField.getText(), phoneField.getText(), emailField.getText(), addressField.getText());
+        Integer id=Integer.parseInt(idField.getText());
+        CustomerDto dto = new CustomerDto(id,nameField.getText(), nicField.getText(), phoneField.getText(), emailField.getText(), addressField.getText());
         
         try {
             CUSTOMER_CONTROLER.update(dto);
@@ -235,12 +254,14 @@ public class CustomerView extends javax.swing.JFrame {
     }
     
     public void selectCustomer() {
+        String id=(Integer) customerTable.getValueAt(customerTable.getSelectedRow(), 0)+"";
         String name = (String) customerTable.getValueAt(customerTable.getSelectedRow(), 1);
         String nic = (String) customerTable.getValueAt(customerTable.getSelectedRow(), 2);
         String phoneNumber = (String) customerTable.getValueAt(customerTable.getSelectedRow(), 3);
         String email = (String) customerTable.getValueAt(customerTable.getSelectedRow(), 4);
         String address = (String) customerTable.getValueAt(customerTable.getSelectedRow(), 5);
         
+        idField.setText(id);
         nameField.setText(name);
         nicField.setText(nic);
         phoneField.setText(phoneNumber);

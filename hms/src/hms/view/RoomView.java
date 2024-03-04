@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class RoomView extends javax.swing.JFrame {
-
+    
     private RoomController ROOM_CONTROLLER;
     private CatagoryController CATAGORY_CONTROLLER;
     String[] roomsColumnHeads = {"RoomID", "Catagory"};
     String[] bookingsColumnHeads = {"reservationID", "checkIn Date", "check out"};
-
+    
     public RoomView() {
         this.setResizable(false);
         ROOM_CONTROLLER = new RoomController();
@@ -34,29 +34,29 @@ public class RoomView extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 loadBookingsTable();
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
-
+                
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
-
+                
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
-
+                
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
-
+                
             }
         });
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -71,6 +71,7 @@ public class RoomView extends javax.swing.JFrame {
         addRoomLbl = new javax.swing.JLabel();
         catagoryComboBox = new javax.swing.JComboBox<>();
         addBtn = new javax.swing.JButton();
+        homeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,7 +101,7 @@ public class RoomView extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(bookingsTable);
 
-        bookingDatesLbl.setText("bookings (select a room from the rooms table)");
+        bookingDatesLbl.setText("bookings (select a room from rooms tables )");
 
         roomTableLbl.setText("rooms");
 
@@ -117,23 +118,30 @@ public class RoomView extends javax.swing.JFrame {
             }
         });
 
+        homeBtn.setText("home");
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(homeBtn)
+                        .addGap(26, 26, 26))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(roomTableLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bookingDatesLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(catagoryLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -142,7 +150,12 @@ public class RoomView extends javax.swing.JFrame {
                         .addComponent(catagoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(addBtn)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(roomTableLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bookingDatesLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,14 +167,17 @@ public class RoomView extends javax.swing.JFrame {
                     .addComponent(catagoryLbl)
                     .addComponent(catagoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bookingDatesLbl)
                     .addComponent(roomTableLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(homeBtn)))
                 .addContainerGap())
         );
 
@@ -171,6 +187,11 @@ public class RoomView extends javax.swing.JFrame {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         addRoom();        // TODO add your handling code here:
     }//GEN-LAST:event_addBtnActionPerformed
+
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        this.dispose();
+        new HomeView().setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_homeBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,6 +204,7 @@ public class RoomView extends javax.swing.JFrame {
     private javax.swing.JTable bookingsTable;
     private javax.swing.JComboBox<String> catagoryComboBox;
     private javax.swing.JLabel catagoryLbl;
+    private javax.swing.JButton homeBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable roomTable;
@@ -190,7 +212,7 @@ public class RoomView extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void loadRoomTable() {
-
+        
         DefaultTableModel dtm = new DefaultTableModel(roomsColumnHeads, 0) {
             public boolean isCellEditable(int row, int column) {
                 //all cells false
@@ -208,7 +230,7 @@ public class RoomView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
-
+    
     public void loadBookingsTable() {
         DefaultTableModel dtm = new DefaultTableModel(bookingsColumnHeads, 0) {
             public boolean isCellEditable(int row, int column) {
@@ -222,25 +244,30 @@ public class RoomView extends javax.swing.JFrame {
                 Object[] row = {dto.getReservationID(), dto.getCheckInDate(), dto.getCheckOutDate()};
                 dtm.addRow(row);
             }
+            if (bookingsDtos.size() == 0) {
+                bookingDatesLbl.setText("Currently there are no bookings for the selected room");
+            } else {
+                bookingDatesLbl.setText("");
+            }
             bookingsTable.setModel(dtm);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
-
+    
     public void loadCatgoryComboBox() {
         try {
             List<CatagoryDto> catagoryDtos = CATAGORY_CONTROLLER.getAll();
-
+            
             for (CatagoryDto dto : catagoryDtos) {
                 catagoryComboBox.addItem(dto.getCatagoryName());
             }
-
+            
         } catch (Exception E) {
-
+            
         }
     }
-
+    
     public void addRoom() {
         if (((String) catagoryComboBox.getSelectedItem()).equals("-select catagory")) {
             JOptionPane.showMessageDialog(this, "please select a catagory");
@@ -250,12 +277,12 @@ public class RoomView extends javax.swing.JFrame {
             CatagoryDto catgoryDto = CATAGORY_CONTROLLER.getByName((String) catagoryComboBox.getSelectedItem());
             RoomDto roomDto = new RoomDto();
             roomDto.setCatagoryDto(catgoryDto);
-           ROOM_CONTROLLER.save(roomDto);
-           loadRoomTable();
-        } catch (Exception e){
+            ROOM_CONTROLLER.save(roomDto);
+            loadRoomTable();
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-
+        
     }
-
+    
 }

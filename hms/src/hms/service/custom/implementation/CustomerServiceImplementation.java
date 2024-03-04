@@ -30,8 +30,8 @@ public class CustomerServiceImplementation implements CustomerService {
     @Override
     public String update(CustomerDto dto) throws Exception {
         Transaction transcation = session.beginTransaction();
-        
-        CustomerEntity e=new CustomerEntity(dto.getName(), dto.getNic(), dto.getPhoneNumber(),dto.getEmail(), dto.getAddress());
+      
+        CustomerEntity e=new CustomerEntity(dto.getId(),dto.getName(), dto.getNic(), dto.getPhoneNumber(),dto.getEmail(), dto.getAddress());
         if(customerRepository.update(e, session)){
             transcation.commit();
         return "succesfully updated";}else{

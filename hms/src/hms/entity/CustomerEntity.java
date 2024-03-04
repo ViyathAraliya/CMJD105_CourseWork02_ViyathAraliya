@@ -59,6 +59,7 @@ public class CustomerEntity {
         this.address=address;
     }
        public CustomerEntity(Integer id,String name,String nic, String phoneNumber,String email, String address ){
+           this.id=id;
         this.name=name;
         this.nic=nic;
         this.phoneNumber=phoneNumber;
