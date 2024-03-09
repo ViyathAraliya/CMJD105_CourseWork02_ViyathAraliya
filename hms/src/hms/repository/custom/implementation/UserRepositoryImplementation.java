@@ -46,8 +46,9 @@ public class UserRepositoryImplementation implements UserRepository {
 
     @Override
     public boolean update(UserEntity e, Session session) throws Exception {
-        Integer id=(Integer)session.merge(e);
-        return id!=null;
+        
+        return session.merge(e)==null;
+       
     }
 
     @Override
